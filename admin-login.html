@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Login</title>
+
+<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div class="background"></div>
+
+<!-- Lamp -->
+
+<div class="lamp-area">
+
+    <div class="lamp">
+
+        <div class="lamp-top"></div>
+
+        <div class="lamp-stand"></div>
+
+        <div class="lamp-base"></div>
+
+        <div class="light"></div>
+
+    </div>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<!-- Login Card -->
+
+<div class="login-card">
+
+    <h1>📒 Khata Management</h1>
+
+    <p class="subtitle">
+        Administrator Login
+    </p>
+
+    <!-- Username -->
+
+    <div class="input-group">
+
+        <label>👤 Username</label>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Enter Username"
+            autocomplete="username">
+
+    </div>
+
+    <!-- Password -->
+
+    <div class="input-group">
+
+        <label>🔒 Password</label>
+
+        <div class="password-container">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                autocomplete="current-password">
+
+            <span
+                id="togglePassword"
+                class="toggle-password"
+                onclick="togglePassword()">
+
+                👁️
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- Login -->
+
+    <button
+        class="login-btn"
+        onclick="adminLogin()">
+
+        🔐 Login
+
+    </button>
+
+    <!-- Forgot Password -->
+
+<button
+    type="button"
+    class="forgot-btn"
+    onclick="window.location.href='forgot-password.html'">
+
+    🔑 Forgot Password
+
+</button>
+
+    <!-- Back -->
+
+    <a
+        href="index.html"
+        class="back-btn">
+
+         Back to Home
+
+    </a>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="theme.js"></script>
+<script src="auth.js"></script>
+
+<script>
+
+// Login with Enter key
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        adminLogin();
+
+    }
+
+});
+
+// Show / Hide Password
+
+function togglePassword(){
+
+    const password =
+    document.getElementById("password");
+
+    const icon =
+    document.getElementById("togglePassword");
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+        icon.textContent = "🙈";
+
+    }else{
+
+        password.type = "password";
+
+        icon.textContent = "👁️";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

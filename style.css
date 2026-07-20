@@ -1,0 +1,510 @@
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:linear-gradient(
+        135deg,
+        #0F172A,
+        #172554,
+        #1E3A8A
+    );
+
+    position:relative;
+
+}
+
+/* ==========================
+   BACKGROUND GLOW
+========================== */
+
+.bg-glow{
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(100px);
+
+    opacity:.35;
+
+    pointer-events:none;
+
+    z-index:0;
+
+}
+
+.glow1{
+
+    width:340px;
+
+    height:340px;
+
+    background:#1976D2;
+
+    top:-120px;
+
+    right:-120px;
+
+}
+
+.glow2{
+
+    width:280px;
+
+    height:280px;
+
+    background:#42A5F5;
+
+    bottom:-100px;
+
+    left:-100px;
+
+}
+
+.home-card{
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+/* ==========================
+   MAIN CARD
+========================== */
+
+.home-card{
+
+    position:relative;
+
+    width:90%;
+
+    max-width:420px;
+
+    padding:40px 30px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 25px rgba(25,118,210,.20);
+
+    z-index:2;
+
+}
+
+/* ==========================
+   LOGO
+========================== */
+
+.logo-circle{
+
+    width:95px;
+
+    height:95px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #1976D2,
+        #42A5F5
+    );
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:46px;
+
+    color:#fff;
+
+    box-shadow:
+        0 0 35px rgba(25,118,210,.45);
+
+}
+
+/* ==========================
+   TITLE
+========================== */
+
+.home-card h1{
+
+    margin-top:20px;
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#FFFFFF;
+
+    letter-spacing:.5px;
+
+    text-shadow:0 0 18px rgba(66,165,245,.35);
+
+}
+
+.subtitle{
+
+    margin-top:10px;
+
+    margin-bottom:35px;
+
+    color:#CBD5E1;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.main-btn{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    width:100%;
+
+    text-decoration:none;
+
+    color:#FFFFFF;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    padding:16px;
+
+    margin:16px 0;
+
+    border-radius:16px;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.customer-btn{
+
+    background:linear-gradient(
+        135deg,
+        #1976D2,
+        #42A5F5
+    );
+
+    box-shadow:
+        0 10px 25px rgba(25,118,210,.35);
+
+}
+
+.admin-btn{
+
+    background:linear-gradient(
+        135deg,
+        #0F4C81,
+        #1976D2
+    );
+
+    box-shadow:
+        0 10px 25px rgba(15,76,129,.35);
+
+}
+
+.main-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(25,118,210,.45);
+
+}
+
+.main-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* Ripple Shine */
+
+.main-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:60%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.25);
+
+    transform:skewX(-25deg);
+
+    transition:.7s;
+
+}
+
+.main-btn:hover::before{
+
+    left:140%;
+
+}
+
+/* ==========================
+   VERSION
+========================== */
+
+.version-box{
+
+    margin-top:35px;
+
+    padding-top:20px;
+
+    border-top:1px solid rgba(255,255,255,.12);
+
+}
+
+.version-box p{
+
+    color:#E2E8F0;
+
+    font-size:14px;
+
+    margin:4px 0;
+
+}
+
+.version-box small{
+
+    display:block;
+
+    margin-top:10px;
+
+    color:#94A3B8;
+
+    font-size:12px;
+
+}
+
+/* ==========================
+   FEATURES
+========================== */
+
+.features{
+
+    width:100%;
+
+    margin:30px 0;
+
+    text-align:left;
+
+}
+
+.feature-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin:18px 0;
+
+}
+
+.feature-item span{
+
+    font-size:28px;
+
+    width:40px;
+
+    text-align:center;
+
+}
+
+.feature-item p{
+
+    color:#E2E8F0;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    margin:0;
+
+}
+
+/* ==========================================
+   INSTALL APP POPUP
+========================================== */
+
+.install-popup{
+
+    position:fixed;
+    inset:0;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.45);
+
+    z-index:99999;
+
+}
+
+.install-card{
+
+    width:90%;
+    max-width:340px;
+
+    background:#ffffff;
+
+    border-radius:26px;
+
+    padding:28px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+    animation:popup .35s ease;
+
+}
+
+.install-icon{
+
+    width:85px;
+    height:85px;
+
+    border-radius:22px;
+
+    margin-bottom:18px;
+
+}
+
+.install-card h2{
+
+    margin-bottom:10px;
+
+    color:#111827;
+
+}
+
+.install-card p{
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+    margin-bottom:22px;
+
+}
+
+.install-buttons{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.install-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+.cancel-install{
+
+    background:#e5e7eb;
+
+}
+
+.install-now{
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+}
+
+@keyframes popup{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}

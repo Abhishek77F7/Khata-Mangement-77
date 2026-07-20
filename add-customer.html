@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Customer</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<header class="page-header">
+
+<div class="header-left">
+
+<div class="page-icon">
+👤
+</div>
+
+<div>
+
+<h1>Add Customer</h1>
+
+<p>Create a new customer account</p>
+
+</div>
+
+</div>
+
+</header>
+
+<div class="add-card">
+
+<h2>Customer Information</h2>
+
+<div class="input-group">
+
+<label>
+👤 Customer Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter customer name">
+
+</div>
+
+<div class="input-group">
+
+<label>
+📱 Mobile Number
+</label>
+
+<input
+type="tel"
+id="mobile"
+placeholder="Enter mobile number">
+
+</div>
+
+<div class="input-group">
+
+<label>
+🏠 Address
+</label>
+
+<textarea
+id="address"
+rows="4"
+placeholder="Enter customer address"></textarea>
+
+</div>
+
+<button
+class="save-btn"
+onclick="saveCustomer()">
+
+  Save Customer
+
+</button>
+
+<div class="back-area">
+
+<a
+href="dashboard.html"
+class="back-btn">
+
+ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+<script src="toast.js"></script>
+<script type="module" src="customers.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,910 @@
+/* ======================================
+   RESET
+====================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Inter", Arial, sans-serif;
+    transition:0.3s ease;
+}
+
+
+/* ======================================
+   BODY
+====================================== */
+
+body{
+
+background: linear-gradient(135deg,
+#1E3C72,
+#2A5298,
+#FFD700,
+#FFF8DC,
+#C9A227);
+    
+    
+    color:#1e293b;
+    min-height:100vh;
+
+}
+
+
+/* ======================================
+   HEADER
+====================================== */
+
+.top-header{
+
+    background:
+    linear-gradient(
+        135deg,
+        skyblue,
+        violet
+        
+    );
+
+    color:white;
+
+    text-align:center;
+
+    padding:15px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.15);
+
+}
+
+
+.top-header h2{
+
+    font-size:26px;
+    font-weight:700;
+
+}
+
+
+/* ======================================
+   CONTAINER
+====================================== */
+
+.container{
+
+    max-width:520px;
+
+    margin:auto;
+
+    padding:20px;
+
+}
+
+
+/* ======================================
+   SETTINGS ICON
+====================================== */
+
+.settings-icon{
+
+    position:fixed;
+
+    top:15px;
+    left:15px;
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#2563eb;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:1000;
+
+    box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+}
+
+
+.settings-icon:hover{
+
+    transform:scale(1.1);
+
+}
+
+
+
+/* ======================================
+   PROFILE IMAGE
+====================================== */
+
+
+.profile-image{
+
+    text-align:center;
+
+    margin-top:30px;
+
+}
+
+
+
+.profile-photo{
+
+    width:300px;
+
+    height:300px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:5px solid green ;
+
+    box-shadow:
+
+    0 10px 25px rgba(0,0,0,.2),
+
+    0 0 0 5px #white;
+
+}
+
+
+
+.profile-photo:hover{
+
+    transform:scale(1.05);
+
+}
+
+
+
+/* ======================================
+   PROFILE DETAILS CARD
+====================================== */
+
+
+.profile{
+
+    background:white;
+
+    margin-top:25px;
+
+    padding:38px 30px;
+
+    border-radius:40px;
+
+    text-align:center;
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,.10);
+
+}
+
+
+
+.profile h1{
+
+    font-size:28px;
+
+    color:#2563EB;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.profile p{
+
+    font-size:16px;
+
+    color:#000;
+
+    margin:10px 0;
+
+}
+
+
+
+/* ======================================
+   SECTION HEADING
+====================================== */
+
+
+.heading{
+
+    margin:30px 0 15px;
+
+    font-size:22px;
+
+    color:#ffffff;
+
+}
+
+/* ======================================
+   ACCOUNT SUMMARY CARDS
+====================================== */
+
+
+.summary-card{
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    margin-bottom:18px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 8px 25px rgba(0,0,0,.10);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.summary-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:5px;
+
+    background:
+    linear-gradient(
+        90deg,
+      green,
+      cyan
+    );
+
+}
+
+
+
+.summary-card p{
+
+    color:#000;
+
+    font-size:15px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.summary-card h2{
+
+    font-size:28px;
+
+    color:#2563eb;
+
+}
+
+
+
+/* Remaining Balance Highlight */
+
+
+#balance{
+
+    color:#dc2626;
+
+}
+
+
+
+/* ======================================
+   QUICK ACTION BUTTONS
+====================================== */
+
+
+.action-btn{
+
+    display:block;
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:17px;
+
+    margin-top:15px;
+
+    border-radius:50px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,.15);
+
+}
+
+
+
+.action-btn:hover{
+
+    transform:
+
+    translateY(-4px);
+
+}
+
+
+
+.blue{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        skyblue,
+        green,
+        blue
+    );
+
+}
+
+
+
+.green{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #16a34a,
+        blue
+        
+    );
+
+}
+
+
+
+.red{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #dc2626,
+        #f87171
+    );
+
+}
+
+
+
+/* ======================================
+   HISTORY CARDS
+====================================== */
+
+
+.history-card{
+
+    background:white;
+
+    padding:22px;
+
+    margin-bottom:18px;
+
+    border-radius:20px;
+
+    border-left:
+
+    6px solid #2563eb;
+
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,.10);
+
+}
+
+
+
+.history-card h3{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    color:#2563eb;
+    font-size:18px;
+    font-weight:700;
+
+    margin:0 0 18px;
+    padding-bottom:12px;
+
+    border-bottom:2px dashed #000;
+}
+
+
+
+.history-card p{
+
+    margin:8px 0;
+
+    color:#000;
+
+}
+
+
+
+/* ======================================
+   BACK BUTTON
+====================================== */
+
+
+.back-btn{
+
+    display:block;
+
+    width:240px;
+
+    margin:30px auto;
+
+    padding:14px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    border-radius:50px;
+
+    color:#ffffff;
+
+    background:blue;
+
+    border:2px solid #2563eb;
+
+    font-weight:bold;
+
+}
+
+
+
+.back-btn:hover{
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+
+
+/* ======================================
+   FOOTER
+====================================== */
+
+
+.footer{
+
+    text-align:center;
+
+    margin-top:35px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+}
+
+/* ======================================
+   SETTINGS POPUP
+====================================== */
+
+
+.settings-popup{
+
+    display:none;
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:
+    rgba(0,0,0,0.55);
+
+    z-index:2000;
+
+}
+
+
+
+.settings-box{
+
+    width:320px;
+
+    max-width:90%;
+
+    margin:80px auto;
+
+    background:blue,gold;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    text-align:center;
+
+    box-shadow:
+
+    0 15px 40px rgba(0,0,0,.3);
+
+}
+
+
+
+.settings-box h2{
+
+    margin-bottom:20px;
+
+    color:#ffffff;
+
+}
+
+
+
+.settings-box button{
+
+    width:100%;
+
+    padding:14px;
+
+    margin:10px 0;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    background:#f1f5f9;
+
+    color:#000000;
+
+}
+
+
+
+.settings-box button:hover{
+
+    background:#000;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+
+
+
+.close-btn{
+
+    background:#ef4444 !important;
+
+    color:white !important;
+
+}
+
+
+
+
+
+/* ======================================
+   DARK THEME
+====================================== */
+
+
+.dark-theme{
+
+    background:#0f172a;
+
+    color:white;
+
+}
+
+
+
+.dark-theme .profile,
+.dark-theme .summary-card,
+.dark-theme .history-card,
+.dark-theme .settings-box{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+
+
+.dark-theme .profile p,
+.dark-theme .summary-card p,
+.dark-theme .history-card p{
+
+    color:#cbd5e1;
+
+}
+
+
+
+.dark-theme .heading{
+
+    color:white;
+
+}
+
+
+
+.dark-theme .footer{
+
+    color:#94a3b8;
+
+}
+
+
+
+.dark-theme .settings-box button{
+
+    background:#334155;
+
+    color:white;
+
+}
+
+
+
+
+/* ======================================
+   MOBILE RESPONSIVE
+====================================== */
+
+
+@media(max-width:600px){
+
+
+    .container{
+
+        padding:15px;
+
+    }
+
+
+
+    .top-header h2{
+
+        font-size:22px;
+
+    }
+
+
+
+    .profile-photo{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+
+
+    .profile{
+
+        padding:26px 20px;
+
+    }
+
+
+
+    .profile h1{
+
+        font-size:24px;
+
+    }
+
+
+
+    .summary-card h2{
+
+        font-size:24px;
+
+    }
+
+
+
+    .action-btn{
+
+        font-size:15px;
+
+        padding:15px;
+
+    }
+
+
+
+}
+
+
+
+
+/* ======================================
+   REMOVE OLD THEME ERRORS
+====================================== */
+
+
+.dark-theme{
+
+    color:white !important;
+
+}
+
+/* ===========================
+   Notification Bell
+=========================== */
+
+.top-header{
+    position:relative;
+}
+
+.notification-icon{
+
+    position:absolute;
+    top:60px;
+    right:18px;
+
+}
+
+.notification-icon a{
+
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    width:48px;
+    height:48px;
+
+    border-radius:50%;
+
+    background:white;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:24px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.notification-icon a:hover{
+
+    transform:scale(1.08);
+
+}
+
+#notificationBadge{
+
+    position:absolute;
+
+    top:-6px;
+    right:-6px;
+
+    min-width:22px;
+    height:22px;
+
+    padding:0 5px;
+
+    background:#DC2626;
+
+    color:white;
+
+    border-radius:50px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    border:2px solid gold;
+
+}
+.about-card{
+    margin:15px;
+    padding:12px;
+    border-radius:18px;
+    background:transparent;
+    box-shadow:none;
+    border:none;
+}
+
+.about-card h2{
+    color:blue;
+    font-size:24px;
+    margin-bottom:12px;
+    font-weight:700;
+}
+
+.about-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:12px;
+    padding:10px 14px;
+    margin-bottom:8px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.about-item:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(37,99,235,.15);
+}
+
+
+
+.label{
+    color:#6b7280;
+    font-size:13px;
+    font-weight:600;
+    text-transform:uppercase;
+    margin:0;
+}
+
+.value{
+    font-size:16px;
+    font-weight:700;
+    background:linear-gradient(90deg,#2563eb,#06b6d4,#10b981);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-align:right;
+}

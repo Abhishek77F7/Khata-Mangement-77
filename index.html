@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#2563eb">
+
+<link rel="apple-touch-icon" href="icon-192.png">
+
+<title>Khata Management</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<!-- Background Glow -->
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+
+<div class="home-card">
+
+    <!-- Logo -->
+
+    <div class="logo-circle">
+        📒
+    </div>
+
+    <!-- Shop Name -->
+    <h1 id="shopName">Khata Management</h1>
+
+    <p class="subtitle">
+        Smart Digital Khata System
+    </p>
+
+    <!-- Login Buttons -->
+
+    <a href="admin-login.html"
+       class="main-btn admin-btn">
+
+        👨‍💼 Admin Login
+
+    </a>
+
+    <a href="customer-login.html"
+       class="main-btn customer-btn">
+
+        👤 Customer Login
+
+    </a>
+
+    <!-- Features -->
+
+    <div class="features">
+
+        <p>✅ Secure Data</p>
+
+        <p>⚡ Fast & Easy to Use</p>
+
+        <p>📱 Mobile Friendly</p>
+
+        <p>🔒 Secure Customer Login</p>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="version-box">
+
+        <h2>Version 2.0</h2>
+
+        <p>© 2026 <span id="footerShopName">Khata Management</span></p>
+
+        <p>Developed by <strong>Abhishek</strong></p>
+
+    </div>
+
+</div>
+
+<!-- Install App Popup -->
+<div id="installPopup" class="install-popup">
+
+    <div class="install-card">
+
+        <img src="icon-192.png" class="install-icon">
+
+        <h2>Install Khata Management</h2>
+
+        <p>
+            Install this app for faster access,
+            full-screen experience and offline support.
+        </p>
+
+        <div class="install-buttons">
+
+            <button id="closeInstall" class="cancel-install">
+                Later
+            </button>
+
+            <button id="installBtn" class="install-now">
+                Install
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="theme.js"></script>
+<script src="toast.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const shopName = localStorage.getItem("shopName");
+
+    if (shopName && shopName.trim() !== "") {
+
+        document.getElementById("shopName").textContent = shopName;
+
+        document.getElementById("footerShopName").textContent = shopName;
+
+        document.title = shopName;
+
+    }
+
+});
+</script>
+
+
+<script>
+if ("serviceWorker" in navigator) {
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("./service-worker.js")
+            .then(() => {
+
+                console.log("✅ Service Worker Registered");
+
+            })
+            .catch((error) => {
+
+                console.log("Service Worker Error:", error);
+
+            });
+
+    });
+
+}
+</script>
+
+<script src="install.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Edit Borrowed Product</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+
+<body>
+
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+
+
+<header>
+
+<h2>
+ Edit Product
+</h2>
+
+</header>
+
+
+<div class="container">
+
+
+<div class="product-card">
+
+<div class="product-header">
+
+<h3>
+ Product Update
+</h3>
+
+
+</div>
+
+
+
+
+
+<div class="product-box">
+
+<label>
+Product Name
+</label>
+
+<input
+type="text"
+id="product"
+placeholder="Enter Product Name">
+
+</div>
+
+
+
+
+
+<div class="product-box">
+
+<label>
+ Quantity
+</label>
+
+<input
+type="number"
+id="qty"
+placeholder="Enter Quantity">
+
+</div>
+
+
+
+
+
+<div class="product-box">
+
+<label>
+Price per Unit
+</label>
+
+<input
+type="number"
+id="price"
+placeholder="Enter Price">
+
+</div>
+
+
+
+
+
+<div class="product-box">
+
+<label>
+ Total Amount
+</label>
+
+<input
+type="number"
+id="total"
+placeholder="Total Amount"
+readonly>
+
+</div>
+
+
+
+
+
+<div class="product-box">
+
+<label>
+ Date & Time
+</label>
+
+<input
+type="datetime-local"
+id="dateTime"
+class="modern-input">
+
+</div>
+
+
+
+
+
+<button
+id="updateBtn"
+class="blue-btn">
+
+ Update Product
+
+</button>
+
+
+<a
+id="backBtn"
+class="back-btn">
+
+  Cancel
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+<script type="module"
+src="edit-loan.js"></script>
+
+<script src="theme.js"></script>
+
+
+</body>
+
+</html>

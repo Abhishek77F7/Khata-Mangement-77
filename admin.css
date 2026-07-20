@@ -1,0 +1,2285 @@
+/* ==========================================
+   KHATA MANAGEMENT - ADMIN.CSS
+   PART 1 - GLOBAL STYLES
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:white;
+    color:#000;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+header{
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:18px;
+    font-weight:500;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.container{
+    width:100%;
+    max-width:100%;
+    padding:18px;
+    margin:auto;
+}
+
+/* ==========================================
+   DASHBOARD CARDS
+========================================== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:#2563eb;
+    font-size:30px;
+}
+
+.card p{
+    margin-top:8px;
+    color:#000;
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.menu a{
+    text-decoration:none;
+    background:#fff;
+    color:#111827;
+    padding:16px;
+    border-radius:16px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.menu a:hover{
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.form{
+    margin-top:20px;
+}
+
+.form input,
+.form textarea,
+.container input,
+.setting-card input{
+
+    width:100%;
+    padding:14px;
+    margin-bottom:16px;
+
+    border:1px solid #d1d5db;
+    border-radius:12px;
+
+    font-size:16px;
+    background:#fff;
+
+    transition:.25s;
+}
+
+.form textarea{
+    min-height:110px;
+    resize:none;
+}
+
+.form input:focus,
+.form textarea:focus,
+.container input:focus,
+.setting-card input:focus{
+
+    outline:none;
+    border-color:#256efd;
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+button{
+    cursor:pointer;
+}
+
+.form button,
+.blue-btn,
+.green-btn,
+.theme-btn{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width:100%;
+    border:none;
+    border-radius:14px;
+
+    padding:15px;
+
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.form button,
+.green-btn{
+    background:#22c55e;
+}
+
+.blue-btn{
+    background:#2563eb;
+}
+
+.theme-btn{
+    background:#6d28d9;
+}
+
+.form button:hover,
+.green-btn:hover,
+.blue-btn:hover,
+.theme-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-btn,
+.modern-back-btn{
+
+    display:block;
+
+    width:260px;
+
+    margin:30px auto;
+
+    text-align:center;
+    text-decoration:none;
+
+    padding:14px;
+
+    border-radius:40px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.back-btn{
+
+    background:#2563EB;
+    color:#fff;
+
+}
+
+.modern-back-btn{
+
+    background:#2563EB;
+    color:#fff;
+    border:2px solid #2563eb;
+
+}
+
+.back-btn:hover,
+.modern-back-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+
+.search-container{
+
+    width:100%;
+    margin:18px auto;
+
+    display:flex;
+    align-items:center;
+
+    background:#fff;
+
+    border:2px solid #e5e7eb;
+    border-radius:50px;
+
+    padding:0 18px;
+
+    height:56px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.search-container:focus-within{
+
+    border-color:blue;
+
+}
+
+.search-icon{
+
+    font-size:22px;
+    color:#000000;
+    margin-right:10px;
+
+}
+
+.search-container input{
+
+    border:none;
+    outline:none;
+    background:none;
+
+    margin:0;
+    padding:0;
+
+    width:100%;
+
+    box-shadow:none;
+
+}
+
+/* ==========================================
+   SETTING CARD
+========================================== */
+
+.setting-card{
+
+background:linear-gradient(135deg, #2568, #0B6776); (Modern premium look)
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.setting-card h3{
+
+    margin-bottom:15px;
+    color:black;
+
+}
+
+/* ==========================================
+   LOADER
+========================================== */
+
+.loader-overlay{
+
+    position:fixed;
+    inset:0;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.8);
+
+    z-index:9999;
+
+}
+
+.loader{
+
+    width:55px;
+    height:55px;
+
+    border:5px solid #ddd;
+    border-top:5px solid #256;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark-theme{
+
+    background:#121212;
+    color:#fff;
+
+}
+
+.dark-theme header{
+
+    background:#1f1f1f;
+
+}
+
+.dark-theme .card,
+.dark-theme .menu a,
+.dark-theme .setting-card{
+
+    background:#1f2937;
+    color:#fff;
+
+}
+
+.dark-theme input,
+.dark-theme textarea{
+
+    background:#374151;
+    color:#fff;
+    border-color:#4b5563;
+
+}
+
+
+/* ==========================================
+   CUSTOMER LIST
+========================================== */
+
+#customerList{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    margin-top:20px;
+    padding:0;
+}
+
+/* ==========================================
+   CUSTOMER CARD
+========================================== */
+
+.customer-card{
+
+    background:linear-gradient(135deg,#2563eb,skyblue,#3b82f6,lightblue,#2563eb);
+    
+
+    border-radius:50px;
+
+    padding:50px;
+
+    border:5px solid orange;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    animation:fadeUp .35s ease;
+
+    transition:transform .25s ease,
+               box-shadow .25s ease;
+
+}
+
+.customer-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+
+}
+
+.customer-card:active{
+
+    transform:scale(.99);
+
+}
+
+/* ==========================================
+   CARD HEADER
+========================================== */
+
+.card-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+/* ==========================================
+   CUSTOMER INFO
+========================================== */
+
+.customer-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    flex:1;
+
+}
+
+/* ==========================================
+   AVATAR
+========================================== */
+
+.avatar{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:purple;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================================
+   NAME
+========================================== */
+
+.customer-name{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#ffff;
+
+}
+
+.customer-id{
+
+    margin-top:5px;
+
+    font-size:14px;
+
+    color:#ffff;
+
+}
+
+.customer-mobile{
+
+    margin-top:5px;
+
+    font-size:15px;
+
+    color:#ffff;
+
+}
+
+/* ==========================================
+   EDIT BUTTON
+========================================== */
+
+.customer-card {
+    position: relative;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #ffff;
+    color: white;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.edit-btn:hover {
+    transform: scale(1.1);
+}
+
+/* ==========================================
+   SUMMARY
+========================================== */
+
+.customer-summary{
+
+    margin:8px 0;
+
+    padding:8px 0;
+
+    border-top:1px solid #ffff;
+
+    border-bottom:1px solid #ffff;
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:2px 0;
+
+    font-size:4px;
+
+}
+
+.summary-row span{
+
+    color:#fff;
+
+}
+
+.summary-row strong{
+
+    color:#ffff;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.customer-footer{
+
+    margin-top:28px;
+
+}
+
+/* ==========================================
+   BUTTON ROW
+========================================== */
+
+.card-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+/* ==========================================
+   VIEW BUTTON
+========================================== */
+
+.view-btn{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:7px;
+
+    background:#1e4c;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+.view-btn:hover{
+
+    background:#1e4c;
+
+}
+
+/* ==========================================
+   DELETE BUTTON
+========================================== */
+
+.delete-btn{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:7px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    transition:.25s;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+}
+
+/* ==========================================
+   BUTTON PRESS
+========================================== */
+
+.view-btn:active,
+.delete-btn:active,
+.edit-btn:active{
+
+    transform:scale(.95);
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+    .customer-card{
+
+        padding:16px;
+
+    }
+
+    .avatar{
+
+        width:70px;
+
+        height:70px;
+
+        font-size:30px;
+
+    }
+
+    .customer-name{
+
+        font-size:19px;
+
+    }
+
+    .summary-row{
+
+        font-size:18px;
+
+    }
+
+    .card-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ==========================================
+   MODERN CUSTOMER DETAILS
+========================================== */
+
+.customer-profile-card{
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    color:#fff;
+    border-radius:28px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+}
+
+.profile-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.profile-avatar{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    background:rgba(255,255,255,.25);
+    border:4px solid rgba(255,255,255,.4);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    font-weight:bold;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.profile-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-details{
+    flex:1;
+}
+
+.profile-details h2{
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.profile-details p{
+    margin:6px 0;
+    opacity:.95;
+}
+
+/* Summary */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:20px 0;
+}
+
+.summary-card{
+    background:#fff;
+    border-radius:22px;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.summary-card:hover{
+    transform:translateY(-3px);
+}
+
+.summary-card p{
+    color:#666;
+    margin-bottom:8px;
+}
+
+.summary-card h2{
+    color:#2563eb;
+    font-size:28px;
+}
+
+.title{
+    font-size:24px;
+    margin:25px 0 18px;
+    font-weight:bold;
+}
+
+/* ==========================================
+   BORROWED PRODUCT CARDS
+========================================== */
+
+.history-card{
+    position:relative;
+    background:#ffffff;
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    transition:.25s;
+    overflow:hidden;
+}
+
+.history-card:hover{
+    transform:translateY(-4px);
+}
+
+.history-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:6px;
+    height:100%;
+    background:#2563eb;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:15px;
+}
+
+.card-top h3{
+    font-size:21px;
+    color:#111827;
+    margin:0;
+    padding-right:50px;
+}
+
+.history-card hr{
+    border:none;
+    border-top:1px solid #e5e7eb;
+    margin:12px 0 18px;
+}
+
+.history-card p{
+    margin:9px 0;
+    font-size:16px;
+    color:#374151;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:18px;
+}
+
+/* Edit Button */
+
+.history-card .edit-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#2563eb;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.history-card .edit-btn:hover{
+    transform:scale(1.08);
+    background:#1d4ed8;
+}
+
+/* Delete Button */
+
+.history-card .delete-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:#ef4444;
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.history-card .delete-btn:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   STICKY QUICK ACTION BUTTONS
+========================================== */
+
+.action-buttons{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr); /* Change from 4 to 2 */
+
+    gap:10px;
+    padding:12px;
+
+    background:#fff;
+    border-top:1px solid #e5e7eb;
+
+    box-shadow:0 -8px 25px rgba(0,0,0,.12);
+    z-index:999;
+}
+
+.action-buttons a{
+    margin:0 !important;
+    width:100% !important;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:14px 8px;
+
+    border-radius:16px;
+
+    font-size:14px;
+    font-weight:700;
+
+    text-decoration:none;
+}
+
+/* Give space for sticky buttons */
+
+.container{
+    padding-bottom:110px;
+}
+
+/* Mobile */
+
+@media(max-width:600px){
+
+    .action-buttons{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .action-buttons a{
+        font-size:15px;
+        padding:14px 10px;
+    }
+
+}
+
+/* Dark Theme */
+
+.dark-theme .action-buttons{
+    background:#1f2937;
+    border-top:1px solid #374151;
+}
+
+.logout-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:14px;
+    background:#ef4444;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+}
+
+.logout-btn:active{
+    transform:scale(.97);
+}
+
+
+/* ==========================================
+   NOTIFICATION PAGE
+========================================== */
+
+.notification-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #8B6F00,
+        #B8860B,
+        #D4AF37,
+        #FFD700,
+        #FFF4B0
+    );
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.notification-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:#ffff;
+
+}
+
+.notification-header p{
+
+    margin-top:6px;
+
+    color:#ffff;
+
+}
+
+.clear-btn{
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:12px 18px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.clear-btn:hover{
+
+    background:#dc2626;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   NOTIFICATION CARD
+========================================== */
+
+.notification-card{
+
+    position:relative;
+
+background: linear-gradient(135deg,#111827,#374151,#FFD700);
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    border-left:5px solid #indigo;
+
+    border:1px solid #e5e7eb;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.notification-card h3{
+
+    margin-bottom:10px;
+
+    color:#ffff;
+
+}
+
+
+.notification-card p{
+
+    margin:8px 0;
+
+    color:#ffff;
+
+}
+
+
+.refresh-btn{
+
+    display:block;
+
+    width:260px;
+
+    margin:30px auto;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#fff;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.refresh-btn:hover{
+
+    background:#ffff;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   DELETE NOTIFICATION BUTTON
+========================================== */
+
+.delete-notification{
+
+    position:absolute;
+
+    top:14px;
+
+    right:14px;
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f3f4f5;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.delete-notification:hover{
+
+    background:#ef4444;
+
+    color:#fff;
+
+}
+
+/* ==========================================
+   NOTIFICATION ACTIONS
+========================================== */
+
+.notification-actions{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:24px;
+
+}
+
+.notification-actions .back-btn{
+
+    flex:1;
+
+    margin:0;
+
+}
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark-theme .customer-card,
+.dark-theme .customer-file-card,
+.dark-theme .summary-card,
+.dark-theme .history-card,
+.dark-theme .notification-card{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+.dark-theme .customer-name,
+.dark-theme .profile-details h2,
+.dark-theme .card-top h3,
+.dark-theme .summary-row strong{
+
+    color:#ffffff;
+
+}
+
+.dark-theme .customer-id,
+.dark-theme .customer-mobile,
+.dark-theme .history-card p,
+.dark-theme .profile-details p,
+.dark-theme .notification-card p{
+
+    color:#d1d5db;
+
+}
+
+.dark-theme .notification-header{
+
+    background:#1f2937;
+
+}
+
+.dark-theme .delete-notification{
+
+    background:#374151;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f4f6;
+
+}
+
+/* ==========================================
+   SMALL SCREEN
+========================================== */
+
+@media(max-width:600px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+.notification-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    padding:20px;
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    background: linear-gradient(135deg,#111827,#374151,#FFD700);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+    .notification-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+
+
+/* Borrowed product cards */
+.history-card {
+    position: relative;
+}
+
+
+/* Card top section */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Edit button only inside card */
+.history-card .edit-btn {
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #ffff;
+    color: white;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+
+.history-card .edit-btn:hover {
+
+    transform: scale(1.1);
+
+}
+
+/* ==========================================
+   END OF ADMIN.CSS
+========================================== */
+
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.history-amount{
+    margin-top:4px;
+    font-size:18px;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+
+/* =========================================
+   MODERN ADD CUSTOMER PAGE
+========================================= */
+
+.page-header{
+    width:92%;
+    margin:20px auto;
+    padding:22px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    color:#fff;
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.page-icon{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    backdrop-filter:blur(12px);
+}
+
+.page-header h1{
+    font-size:30px;
+    margin:0;
+    font-weight:700;
+}
+
+.page-header p{
+    margin-top:6px;
+    opacity:.9;
+    font-size:15px;
+}
+
+.add-card{
+    width:92%;
+    margin:25px auto;
+    background:#fff;
+    border-radius:26px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.add-card h2{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:28px;
+    font-size:28px;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-group label{
+    display:block;
+    font-weight:600;
+    color:#444;
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    padding:16px 18px;
+    border:none;
+    outline:none;
+    border-radius:18px;
+    background:#f4f8ff;
+    font-size:17px;
+    transition:.3s;
+}
+
+.input-group textarea{
+    resize:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(37,99,235,.18);
+}
+
+.save-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    box-shadow:0 12px 30px rgba(37,99,235,.35);
+    transition:.25s;
+}
+
+.save-btn:hover{
+    transform:translateY(-3px);
+}
+
+.save-btn:active{
+    transform:scale(.97);
+}
+
+.back-area{
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.back-btn{
+    padding:14px 24px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    background:#eef4ff;
+    color:#2563eb;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* =========================================
+   MODERN REPORTS PAGE
+========================================= */
+
+.page-header{
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:25px;
+}
+
+.back-circle{
+width:48px;
+height:48px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#ffffff;
+border-radius:50%;
+text-decoration:none;
+font-size:24px;
+color:#2563eb;
+box-shadow:0 10px 25px rgba(37,99,235,.15);
+}
+
+.page-header h2{
+font-size:30px;
+font-weight:700;
+margin:0;
+color:#222;
+}
+
+.page-header p{
+margin-top:5px;
+color:#777;
+font-size:15px;
+}
+
+.section-title{
+margin:30px 0 15px;
+font-size:18px;
+font-weight:700;
+letter-spacing:.5px;
+color:#555;
+}
+
+.report-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+margin-bottom:15px;
+}
+
+.report-card{
+background:#fff;
+border-radius:22px;
+padding:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.report-card:hover{
+transform:translateY(-4px);
+}
+
+.report-icon{
+width:60px;
+height:60px;
+margin:auto;
+margin-bottom:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+border-radius:18px;
+background:linear-gradient(135deg,#3b82f6,#06b6d4);
+color:#fff;
+box-shadow:0 8px 20px rgba(37,99,235,.35);
+}
+
+.report-card h4{
+margin:8px 0;
+font-size:16px;
+font-weight:600;
+color:#666;
+}
+
+.report-card h2{
+margin-top:8px;
+font-size:28px;
+font-weight:700;
+color:#2563eb;
+}
+
+.report-info{
+background:#fff;
+border-radius:22px;
+padding:22px;
+margin-bottom:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.report-info p{
+font-size:18px;
+font-weight:600;
+color:#333;
+}
+
+.report-buttons{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin:30px 0;
+}
+
+.report-btn{
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+color:#fff;
+border:none;
+border-radius:18px;
+padding:18px;
+font-size:17px;
+font-weight:700;
+text-decoration:none;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+box-shadow:0 12px 25px rgba(37,99,235,.35);
+transition:.3s;
+}
+
+.report-btn:hover{
+transform:translateY(-3px);
+}
+
+@media(max-width:600px){
+
+.report-grid{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+.dark-theme .report-card,
+.dark-theme .report-info,
+.dark-theme .back-circle{
+
+background:#1f2937;
+color:#fff;
+
+}
+
+.dark-theme .page-header h2{
+
+color:#fff;
+
+}
+
+.dark-theme .page-header p,
+.dark-theme .section-title,
+.dark-theme .report-card h4{
+
+color:#bbb;
+
+}
+
+.dark-theme .report-info p{
+
+color:#fff;
+
+}
+
+/* ==========================================
+   EDIT PAYMENT MODERN UI
+========================================== */
+
+
+.payment-card{
+
+    margin:20px;
+    padding:25px;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+
+
+.payment-header{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.payment-header h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.payment-header p{
+
+    opacity:0.9;
+
+    font-size:15px;
+
+}
+
+
+
+
+.payment-box{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.payment-box label{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+    color:#333;
+
+}
+
+
+
+
+.customer-display{
+
+    background:#f1f5f9;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#000;
+
+}
+
+
+
+
+.payment-box input{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    border:1px solid #ddd;
+
+    font-size:17px;
+
+    outline:none;
+
+}
+
+
+
+.payment-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px rgba(37,99,235,0.15);
+
+}
+
+
+
+
+.payment-card .button-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.payment-card .green-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+
+.payment-card .back-btn{
+
+    text-align:center;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#f1f5f9;
+
+    color:#333;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================
+   EDIT BORROWED PRODUCT MODERN UI
+========================================== */
+
+
+.product-card{
+
+    background:#ffffff;
+
+    margin:20px;
+
+    padding:24px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+
+
+.product-header{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.product-header h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.product-header h2{
+
+    font-size:16px;
+
+    font-weight:500;
+
+    opacity:.9;
+
+}
+
+
+
+
+.product-box{
+
+    margin-bottom:18px;
+
+}
+
+
+
+
+.product-box label{
+
+    display:block;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#444447;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+.product-box input{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    border:1px solid #009;
+
+    font-size:16px;
+
+    outline:none;
+
+    background:#fff;
+
+    transition:.3s;
+
+}
+
+
+
+
+.product-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+
+
+
+.product-box input[readonly]{
+
+    background:#f1f5f9;
+
+    color:#000;
+
+    font-weight:600;
+
+}
+
+
+
+
+.blue-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+}
+
+
+
+
+.back-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:#f1f5f9;
+
+    color:#000;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FLOATING QUICK ACTION MENU
+========================================== */
+
+.fab-container{
+
+    position:fixed;
+    right:20px;
+    bottom:25px;
+    z-index:999;
+
+}
+
+.fab-main{
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+    color:#fff;
+
+    font-size:34px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+    transition:.35s;
+
+}
+
+.fab-main.rotate{
+
+    transform:rotate(45deg);
+
+}
+
+.fab-menu{
+
+    position:absolute;
+
+    right:0;
+    bottom:80px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:12px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(20px);
+
+    transition:.35s;
+
+}
+
+.fab-menu.show{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.fab-item{
+
+    text-decoration:none;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    min-width:190px;
+
+    font-weight:bold;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    transition:.25s;
+
+}
+
+.fab-item:hover{
+
+    transform:translateX(-6px);
+
+}
+
+.loan{
+
+    border-left:5px solid #2563eb;
+
+}
+
+.payment{
+
+    border-left:5px solid #22c55e;
+
+}
+
+.history{
+
+    border-left:5px solid #f59e0b;
+
+}
+
+.back{
+
+    border-left:5px solid #6b7280;
+
+}

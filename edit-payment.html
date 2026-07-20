@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Payment</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+<link rel="stylesheet" href="loader.css">
+
+</head>
+
+
+<body>
+
+
+<!-- Loader -->
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+</div>
+
+
+
+<header>
+
+<h2>
+  Edit Payment
+</h2>
+
+</header>
+
+
+
+<div class="container">
+
+
+<div class="payment-card">
+
+
+
+<div class="payment-header">
+
+<h3>
+ Payment Update
+</h3>
+
+<p id="customerName">
+Customer Payment
+</p>
+
+</div>
+
+
+
+<div class="payment-box">
+
+<label>
+👤 Developed By
+</label>
+
+<div class="customer-display">
+Abhishek
+</div>
+
+</div>
+
+
+
+
+<div class="payment-box">
+
+<label>
+Amount
+</label>
+
+<input
+type="number"
+id="amount"
+placeholder="₹ Enter Payment Amount"
+min="1">
+
+</div>
+
+
+
+
+<div class="payment-box">
+
+<label>
+Date
+</label>
+
+<input
+type="datetime-local"
+id="date">
+
+</div>
+
+
+
+
+<div class="button-group">
+
+
+<button
+id="updateBtn"
+class="green-btn">
+
+ Update Payment
+
+</button>
+
+
+
+<a
+id="backBtn"
+class="back-btn">
+
+  Cancel
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- Scripts -->
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+<script src="theme.js"></script>
+
+<script type="module" src="edit-payment.js"></script>
+
+
+</body>
+
+</html>

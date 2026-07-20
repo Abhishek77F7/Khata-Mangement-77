@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Receive Payment</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+<body>
+
+<header>
+
+<h2>💰 Receive Payment</h2>
+
+</header>
+
+<div class="container">
+
+<div class="customer-info">
+
+<h2 id="customerName"></h2>
+
+
+</div>
+
+<input
+type="number"
+id="amount"
+placeholder="Enter Payment Amount">
+
+<button onclick="receivePayment()" class="green-btn">
+
+Receive Payment
+
+</button>
+
+<center>
+<a id="backBtn" class="back-btn">
+      Back
+</a>
+</center>
+
+</div>
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+<script type="module" src="payments.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>

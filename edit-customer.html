@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Edit Customer</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>✏️ Edit Customer</h2>
+
+</header>
+
+<div class="container">
+
+<div class="setting-card">
+
+<h3>Customer Details</h3>
+
+<input
+type="text"
+id="name"
+placeholder="Customer Name">
+
+<input
+type="tel"
+id="mobile"
+maxlength="10"
+placeholder="Mobile Number">
+
+<input
+type="text"
+id="address"
+placeholder="Address">
+
+<br><br>
+
+<button
+id="updateBtn"
+class="green-btn">
+
+Update Customer
+
+</button>
+
+</div>
+
+<a
+href="customers.html"
+class="modern-back-btn">
+
+   Back to Customers
+
+</a>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+<div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="theme.js"></script>
+
+<script type="module" src="edit-customer.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer List</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>📒 Customer List</h2>
+
+</header>
+
+
+
+<div class="search-container">
+
+    <span class="search-icon">🔍</span>
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search customer..."
+        oninput="searchCustomer()"
+        autocomplete="off">
+
+</div>
+
+
+
+<div id="customerList"></div>
+
+
+
+<br>
+
+
+<center>
+
+<a href="dashboard.html" class="back-btn">
+
+    Back to Dashboard
+
+</a>
+
+</center>
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+
+<script type="module" src="customers.js"></script>
+
+<script src="theme.js"></script>
+
+
+
+
+</body>
+
+</html>

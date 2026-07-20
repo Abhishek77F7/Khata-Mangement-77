@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Borrowed Products</title>
+
+<link rel="stylesheet" href="customer.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<header class="top-header">
+
+<h2>🛒 My Borrowed Products</h2>
+
+</header>
+
+<div class="summary">
+
+    <div class="summary-card">
+
+      <h1>Total Products</h1>
+
+        <h1 id="totalProducts">0</h1>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+<div id="loanHistory">
+
+<p class="loading-text">Loading Borrowed Products...</p>
+
+</div>
+
+<a href="profile.html" class="back-btn">
+  Back to My Account
+</a>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+<script type="module" src="customer.js"></script>
+<script src="theme.js"></script>
+
+</body>
+
+</html>

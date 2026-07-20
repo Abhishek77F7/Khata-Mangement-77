@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Notifications</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+<link rel="stylesheet" href="loader.css">
+
+</head>
+
+<body>
+
+<!-- Loader -->
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+</div>
+
+<header>
+
+<h2>🔔 Pending Balance Notifications</h2>
+
+</header>
+
+<div class="container">
+
+<div class="notification-header">
+
+    <div>
+
+        <h3>🔔 Notifications</h3>
+     <center>   
+       <h1>
+        <p id="notificationCount">0 Notifications</p>
+        </h1>
+        </center>
+ 
+    </div>
+    
+
+    <button
+        class="clear-btn"
+        onclick="clearAllNotifications()">
+
+        🧹 Clear All
+
+    </button>
+
+</div>
+
+<div id="notificationList">
+
+<p style="text-align:center;">Loading notifications...</p>
+
+</div>
+
+<div style="text-align:center;margin-top:25px;">
+
+<button class="refresh-btn" onclick="location.reload()">
+    🔄 
+</button>
+
+<a
+id="backButton"
+href="dashboard.html"
+class="back-btn">
+
+   Back
+
+</a>
+
+</div>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+<script src="theme.js"></script>
+
+<script type="module" src="notifications.js"></script>
+
+</body>
+
+</html>

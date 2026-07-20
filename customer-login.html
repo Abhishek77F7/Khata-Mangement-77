@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Login</title>
+
+<link rel="stylesheet" href="login.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div class="background"></div>
+
+<!-- Lamp Animation -->
+
+<div class="lamp-area">
+
+    <div class="lamp">
+
+        <div class="lamp-top"></div>
+
+        <div class="lamp-stand"></div>
+
+        <div class="lamp-base"></div>
+
+        <div class="light"></div>
+
+    </div>
+
+</div>
+
+<!-- Login Card -->
+
+<div class="login-card">
+
+    <h1>👤 Welcome</h1>
+
+    <p class="subtitle">
+        Sign in to your Khata account
+    </p>
+
+    <!-- Mobile Number -->
+
+    <div class="input-group">
+
+        <label>📞 Mobile Number</label>
+
+        <input
+            type="tel"
+            id="mobile"
+            placeholder="Enter Mobile Number"
+            maxlength="10">
+
+    </div>
+
+    <!-- Customer ID -->
+
+    <div class="input-group">
+
+        <label>🆔 Customer ID</label>
+
+        <input
+            type="text"
+            id="customerCode"
+            placeholder="Enter Customer ID">
+
+    </div>
+
+    <!-- Login -->
+
+    <button
+        class="login-btn"
+        onclick="loginCustomer()">
+
+        🔓 Login
+
+    </button>
+
+    <!-- Back -->
+
+    <a
+        href="index.html"
+        class="back-btn">
+
+         Back to Home
+
+    </a>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+
+<script type="module" src="customer.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Settings</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>⚙️ Settings</h2>
+
+</header>
+
+<div class="container">
+
+<!-- Shop Name -->
+
+<div class="setting-card">
+
+<h3>🏪 Shop Name</h3>
+
+<input
+type="text"
+id="shopName"
+placeholder="Enter Shop Name">
+
+<button
+onclick="saveShopName()"
+class="blue-btn">
+
+Save Shop Name
+
+</button>
+
+</div>
+
+<!-- Admin Username -->
+
+<div class="setting-card">
+
+<h3>👤 Admin Username</h3>
+
+<input
+type="text"
+id="newUsername"
+placeholder="Enter New Username">
+
+<button
+onclick="changeUsername()"
+class="blue-btn">
+
+Update Username
+
+</button>
+
+</div>
+
+<!-- Password -->
+
+<div class="setting-card">
+
+<h3>🔒 Change Admin Password</h3>
+
+<input
+type="password"
+id="newPassword"
+placeholder="New Password">
+
+<button
+onclick="changePassword()"
+class="green-btn">
+
+Update Password
+
+</button>
+
+</div>
+
+<!-- Theme -->
+
+<div class="setting-card">
+
+<h3>🎨 Theme</h3>
+
+<button
+onclick="setLightTheme()"
+class="theme-btn">
+
+🌞 Light Theme
+
+</button>
+
+<br><br>
+
+<button
+onclick="setDarkTheme()"
+class="theme-btn">
+
+🌙 Dark Theme
+
+</button>
+
+<br><br>
+</div>
+
+
+<!-- Password Recovery -->
+
+<div class="setting-card">
+
+<h3>🛡️ Password Recovery</h3>
+
+<button
+onclick="window.location.href='forgot-password.html'"
+class="orange-btn">
+
+🔑 Reset Admin Password
+
+</button>
+
+</div>
+
+
+<!-- Version -->
+
+<div class="setting-card">
+
+<h3>ℹ️ Application</h3>
+
+<p><strong>Khata Management v2.0</strong></p>
+
+<p>DVELOPED BY ABHISHEK</p>
+
+</div>
+
+<button onclick="logoutDashboard()" class="logout-btn">
+    🚪 Logout
+</button>
+
+<a
+href="dashboard.html"
+class="modern-back-btn">
+
+  Back to Dashboard
+
+</a>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+<div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="theme.js"></script>
+<script src="auth.js"></script>
+<script src="utils.js"></script>
+
+<script>
+
+function logoutDashboard() {
+
+    localStorage.removeItem("adminLoggedIn");
+
+    showToast(
+        "Logged out successfully",
+        "success"
+    );
+
+    setTimeout(() => {
+
+        window.location.href = "admin-login.html";
+
+    }, 700);
+
+}
+
+</script>
+
+</body>
+
+</html>

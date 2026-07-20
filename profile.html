@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Account</title>
+
+<link rel="stylesheet" href="customer.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+
+<body>
+
+<!-- Header -->
+
+<header class="top-header">
+
+<h2>
+📒 Khata Management
+</h2>
+
+<div class="notification-icon">
+
+<a href="notifications.html?customer=true">
+
+        🔔
+
+        
+
+    </a>
+
+</div>
+
+</header>
+
+
+<!-- Settings -->
+
+<button 
+class="settings-icon"
+onclick="openSettings()">
+
+⚙️
+
+</button>
+
+
+<div class="container">
+
+<!-- Profile Photo -->
+
+<div class="profile-image">
+
+
+<img
+id="profilePhoto"
+class="profile-photo"
+src="default-user.png"
+alt="Customer Photo">
+
+
+<input
+type="file"
+id="photo"
+accept="image/*"
+hidden
+onchange="uploadPhoto()">
+
+
+<button
+class="photo-btn"
+onclick="document.getElementById('photo').click()">
+
+📷 Change Photo
+
+</button>
+
+</div>
+
+
+<!-- Customer Details -->
+
+<div class="profile">
+
+<h1 id="customerName">
+Customer Name
+</h1>
+
+<p id="customerID">
+🆔 Customer ID
+</p>
+
+<p id="customerMobile">
+📞 Mobile Number
+</p>
+
+<p id="customerAddress">
+📍 Address
+</p>
+
+
+</div>
+
+
+<!-- Account Summary -->
+
+
+<h2 class="heading">
+
+💰 Account Details
+
+</h2>
+
+
+<div class="summary-card">
+
+<p>
+Total Amoumt
+</p>
+
+<h2 id="loan">
+₹0
+</h2>
+
+</div>
+
+
+<div class="summary-card">
+
+<p>
+Total Paid
+</p>
+
+<h2 id="paid">
+₹0
+</h2>
+
+</div>
+
+
+
+<div class="summary-card">
+
+<p>
+  Remaining Balance
+</p>
+
+<h2 id="balance">
+₹0
+</h2>
+
+</div>
+
+
+
+<!-- Quick Actions -->
+
+
+<h2 class="heading">
+
+⚡ Quick Actions
+
+</h2>
+
+
+<a 
+href="my-loans.html"
+class="action-btn blue">
+
+🛒 My Borrowed Products
+
+</a>
+
+
+<a 
+href="my-payment-history.html"
+class="action-btn green">
+
+💳 My Payment History
+
+</a>
+
+
+<!-- Recent Activity -->
+
+<h2 class="heading">
+
+📊 Recent Activity
+
+</h2>
+
+<div class="history-card">
+
+<h3>
+🛒 Latest Purchase
+</h3>
+
+<p id="latestLoan">
+No borrowed products yet.
+</p>
+
+</div>
+
+
+<div class="history-card">
+
+<h3>
+💰 Latest Payment
+</h3>
+
+<p id="latestPayment">
+No payments yet.
+</p>
+
+</div>
+
+<!-- Footer -->
+
+
+<div class="about-card">
+  <h2>ℹ️ ABOUT</h2> 
+
+    <div class="about-item">
+        
+        <span class="value">KHATHA MANAGEMENT V2.0</span>
+    </div>
+
+    <div class="about-item">
+      
+        <span class="value">DEVELOPED BY ABHISHEK </span>
+    </div>
+
+    <div class="about-item">
+        
+        <span class="value">© 2026 All RIGHTS RESERVED</span>
+    </div>
+</div>
+
+</div>
+
+<!-- Settings Popup -->
+
+<div 
+id="settingsPopup"
+class="settings-popup">
+
+
+<div class="settings-box">
+
+<h2>
+⚙️ Settings
+</h2>
+
+<button
+onclick="document.getElementById('photo').click()">
+
+👤 Change Profile Photo
+
+</button>
+
+<button
+onclick="window.location.href='notifications.html'">
+
+🔔 Notifications
+
+</button>
+
+<button
+onclick="setLightTheme()">
+
+🌞 Light Theme
+
+</button>
+
+<button
+onclick="setDarkTheme()">
+
+🌙 Dark Theme
+
+</button>
+
+<button
+onclick="customerLogout()">
+
+🚪 Logout
+
+</button>
+
+<button
+class="close-btn"
+onclick="closeSettings()">
+
+  Close
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+<div class="loader"></div>
+
+</div>
+
+
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+<script src="theme.js"></script>
+
+<script type="module" src="customer.js"></script>
+
+
+</body>
+
+</html>

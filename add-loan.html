@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Borrowed Product</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h2>
+🛒 Add Borrowed Product
+</h2>
+
+</header>
+
+
+
+<div class="container">
+
+
+
+<div class="customer-info">
+
+
+<h2 id="customerName">
+Customer Name
+</h2>
+
+
+</div>
+
+
+
+<!-- Customer Document ID -->
+
+<input
+type="hidden"
+id="customerDocID">
+
+
+
+<!-- Product Details -->
+
+
+<input
+type="text"
+id="product"
+placeholder="Product Name">
+
+
+
+<input
+type="number"
+id="qty"
+placeholder="Quantity">
+
+
+
+<input
+type="number"
+id="price"
+placeholder="Price per Unit">
+
+
+
+<input
+type="number"
+id="total"
+placeholder="Total Amount"
+readonly>
+
+
+
+
+<button
+onclick="saveLoan()"
+class="blue-btn">
+
+Save Loan
+
+</button>
+
+
+
+<center>
+
+<a
+id="backBtn"
+class="back-btn">
+
+Back
+
+</a>
+
+
+</center>
+
+
+
+</div>
+
+
+
+
+<!-- Loader -->
+
+<div
+id="loader"
+class="loader-overlay">
+
+<div class="loader"></div>
+
+</div>
+
+
+
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+
+<script type="module" src="loans.js"></script>
+
+<script src="theme.js"></script>
+
+
+</body>
+
+</html>

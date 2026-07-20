@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Customer Details</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+<link rel="stylesheet" href="loader.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h2>📒 Customer Details</h2>
+
+</header>
+
+<div class="container">
+
+    <!-- Customer Profile -->
+
+    <div class="customer-profile-card">
+
+        <div class="profile-left">
+
+            <div class="profile-avatar" id="customerAvatar">
+
+                A
+
+            </div>
+
+            <div class="profile-details">
+
+                <h2 id="customerName">
+
+                    Customer Name
+
+                </h2>
+
+                <p id="customerID">
+
+                    🆔 Customer ID
+
+                </p>
+
+                <p id="customerMobile">
+
+                    📞 Mobile Number
+
+                </p>
+
+                <p id="customerAddress">
+
+                    📍 Address
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary">
+
+        <div class="summary-card">
+
+            <p>Total Amount</p>
+
+            <h2 id="loan">₹0</h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <p>Total Paid</p>
+
+            <h2 id="paid">₹0</h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <p>Remaining Balance</p>
+
+            <h2 id="balance">₹0</h2>
+
+        </div>
+
+        <div class="summary-card">
+
+            <p>Borrowed Products</p>
+
+            <h2 id="totalProducts">0</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Borrowed Products -->
+
+    <h2 class="title">
+
+        🛒 Borrowed Products
+
+    </h2>
+
+    <div id="loanHistory">
+
+        <div class="history-card">
+
+            <h3>No Borrowed Products</h3>
+
+            <p>No loan records available.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Floating Quick Action Button -->
+
+<div class="fab-container">
+
+    <button id="fabMain" class="fab-main">
+
+        ⊕
+
+    </button>
+
+    <div id="fabMenu" class="fab-menu">
+      
+              <a id="addLoanBtn" class="fab-item loan">
+
+             ➕ Add Loan
+
+        </a>
+
+
+        <a id="paymentBtn" class="fab-item payment">
+
+            💰 Payment
+
+        </a>
+
+        <a id="historyBtn" class="fab-item history">
+
+            📜 History
+
+        </a>
+
+        <a href="customers.html" class="fab-item back">
+
+            👥 Customers
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Loader -->
+
+<div id="loader" class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+<script src="theme.js"></script>
+
+<script type="module" src="customer-details.js"></script>
+
+<script>
+
+const fabMain = document.getElementById("fabMain");
+const fabMenu = document.getElementById("fabMenu");
+
+fabMain.addEventListener("click", () => {
+
+    fabMenu.classList.toggle("show");
+
+    fabMain.classList.toggle("rotate");
+
+    fabMain.textContent =
+        fabMenu.classList.contains("show")
+        ? "＋"
+        : "⨁";
+
+});
+
+</script>
+
+</body>
+
+</html>

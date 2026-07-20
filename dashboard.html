@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<!-- Header -->
+
+<header class="top-header">
+
+<div class="profile">
+
+<div class="profile-left">
+
+<div class="profile-box" onclick="document.getElementById('adminPhoto').click()">
+
+    <img
+        id="adminProfile"
+        src="https://ui-avatars.com/api/?name=Admin&background=1976d2&color=fff"
+        alt="Profile">
+
+</div>
+
+<input
+    type="file"
+    id="adminPhoto"
+    accept="image/*"
+    onchange="uploadAdminPhoto()"
+    hidden>
+
+<div>
+
+<h2>Khata Management</h2>
+
+<p>Welcome ABHI</p>
+
+</div>
+
+</div>
+
+<div class="header-icons">
+
+<a href="notifications.html">🔔</a>
+
+<a href="settings.html">⚙️</a>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- Customer / Supplier -->
+
+<div class="switch-box">
+
+<button class="active">
+
+Customers
+
+</button>
+
+<button>
+
+Suppliers
+
+</button>
+
+</div>
+
+<!-- Summary -->
+
+<div class="summary-grid">
+
+<div class="summary-card">
+
+<p>You Give</p>
+
+<h2 id="totalLoan">₹0</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>You Get</p>
+
+<h2 id="totalPaid">₹0</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>Remaining</p>
+
+<h2 id="remaining">₹0</h2>
+
+</div>
+
+<div class="summary-card">
+
+<p>Customers</p>
+
+<h2 id="totalCustomers">0</h2>
+
+</div>
+
+</div>
+
+<!-- Buttons -->
+
+<div class="action-grid">
+
+<a href="reports.html">
+
+📊 View Report
+
+</a>
+
+<a href="customers.html">
+
+👥 Customer List
+
+</a>
+
+</div>
+
+
+
+<!-- Recent Customers -->
+
+<div class="recent-box">
+
+<div class="recent-title">
+
+<h3>Recent Customers</h3>
+
+</div>
+
+<div id="recentCustomers">
+
+</div>
+
+</div>
+
+<!-- Floating Button -->
+
+<a
+
+href="add-customer.html"
+
+class="fab">
+
+✚
+
+</a>
+
+<!-- Bottom Navigation -->
+
+<nav class="bottom-nav">
+
+<a href="dashboard.html">
+
+🏠
+
+<br>
+
+Home
+
+</a>
+
+<a href="customers.html">
+
+👥
+
+<br>
+
+Customers
+
+</a>
+
+<a href="reports.html">
+
+📊
+
+<br>
+
+Reports
+
+</a>
+
+<a href="settings.html">
+
+⚙️
+
+<br>
+
+Settings
+
+</a>
+
+</nav>
+
+<script src="auth.js"></script>
+
+<script>
+checkAdminLogin();
+</script>
+
+<script src="toast.js"></script>
+
+<script src="theme.js"></script>
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+
+</html>
