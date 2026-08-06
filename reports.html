@@ -10,86 +10,77 @@
 
 <link rel="stylesheet" href="admin.css">
 <link rel="stylesheet" href="toast.css">
-<link rel="stylesheet" href="loader.css">
+
 
 </head>
 
 <body>
 
 <!-- Loader -->
+
 <div id="loader" class="loader-overlay">
-<div class="loader"></div>
+    <div class="loader"></div>
 </div>
+
+<!-- Green Header -->
+
+<header class="report-header">
+
+    <div class="header-top">
+
+        <a href="dashboard.html" class="back-circle">
+            ❮
+        </a>
+
+        <div class="header-title">
+
+            <h2>Reports</h2>
+
+            <p>Business Overview</p>
+
+        </div>
+
+        <div class="bell-circle">
+            📊
+        </div>
+
+    </div>
+
+</header>
 
 <div class="container">
 
-<!-- Header -->
-
-<div class="page-header">
-
-<a href="dashboard.html" class="back-circle">
-
-❮
-
-</a>
-
-<div>
-
-<h2>📊 Reports</h2>
-
-<p>Business Overview</p>
-
-</div>
-
-</div>
-
 <!-- Financial -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-💰 Financial Reports
-
-</h3>
+<h3>💰 Financial Reports</h3>
 
 <div class="report-grid">
 
 <div class="report-card">
-
 <div class="report-icon">💰</div>
-
 <h4>Total Loan</h4>
-
 <h2 id="loan">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">💵</div>
-
 <h4>Total Paid</h4>
-
 <h2 id="paid">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">⚠️</div>
-
 <h4>Remaining</h4>
-
 <h2 id="balance">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">👥</div>
-
 <h4>Customers</h4>
-
 <h2 id="customers">0</h2>
+</div>
 
 </div>
 
@@ -97,41 +88,29 @@
 
 <!-- Today -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-📅 Today's Report
-
-</h3>
+<h3>📅 Today's Report</h3>
 
 <div class="report-grid">
 
 <div class="report-card">
-
 <div class="report-icon">🛒</div>
-
 <h4>Today's Loan</h4>
-
 <h2 id="todayLoan">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">💸</div>
-
 <h4>Today's Paid</h4>
-
 <h2 id="todayPaid">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
-<div class="report-icon">➕</div>
-
+<div class="report-icon">👥</div>
 <h4>New Customers</h4>
-
 <h2 id="todayCustomers">0</h2>
+</div>
 
 </div>
 
@@ -139,41 +118,29 @@
 
 <!-- Monthly -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-📆 Monthly Report
-
-</h3>
+<h3>📆 Monthly Report</h3>
 
 <div class="report-grid">
 
 <div class="report-card">
-
 <div class="report-icon">📈</div>
-
 <h4>Monthly Loan</h4>
-
 <h2 id="monthLoan">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">💳</div>
-
 <h4>Monthly Paid</h4>
-
 <h2 id="monthPaid">₹0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">👤</div>
-
 <h4>New Customers</h4>
-
 <h2 id="monthCustomers">0</h2>
+</div>
 
 </div>
 
@@ -181,41 +148,29 @@
 
 <!-- Statistics -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-📊 Statistics
-
-</h3>
+<h3>📊 Statistics</h3>
 
 <div class="report-grid">
 
 <div class="report-card">
-
 <div class="report-icon">📦</div>
-
 <h4>Products</h4>
-
 <h2 id="products">0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">💰</div>
-
 <h4>Payments</h4>
-
 <h2 id="payments">0</h2>
-
 </div>
 
 <div class="report-card">
-
 <div class="report-icon">📉</div>
-
 <h4>Average Loan</h4>
-
 <h2 id="averageLoan">₹0</h2>
+</div>
 
 </div>
 
@@ -223,33 +178,27 @@
 
 <!-- Top Customer -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-🏆 Highest Pending Customer
-
-</h3>
+<h3>🏆 Highest Pending Customer</h3>
 
 <div class="report-info">
-
 <p id="topCustomer">
-
 No Data
-
 </p>
+</div>
 
 </div>
 
-<!-- Date -->
+<!-- Today -->
 
-<h3 class="section-title">
+<div class="report-section">
 
-📅 Today
-
-</h3>
+<h3>📅 Today</h3>
 
 <div class="report-info">
-
 <p id="today"></p>
+</div>
 
 </div>
 
@@ -257,25 +206,49 @@ No Data
 
 <div class="report-buttons">
 
-<button
-id="pdfBtn"
-class="report-btn">
+<button id="pdfBtn" class="report-btn">
 
-📄 Generate PDF
+📄 Export PDF
 
 </button>
 
-<a
-href="dashboard.html"
-class="report-btn">
+<button id="excelBtn" class="report-btn">
 
-🏠 Dashboard
+📊 Export Excel
 
-</a>
+</button>
+
+<button id="printBtn" class="report-btn">
+
+🖨️ Print Report
+
+</button>
+
 
 </div>
 
 </div>
+
+<!-- Bottom Navigation -->
+
+<nav class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <span>🏠</span>
+        <small>Home</small>
+    </a>
+
+    <a href="customers.html" class="nav-item">
+        <span>👥</span>
+        <small>Customers</small>
+    </a>
+
+    <a href="settings.html" class="nav-item">
+        <span>⚙️</span>
+        <small>Settings</small>
+    </a>
+
+</nav>
 
 <script src="loader.js"></script>
 <script src="toast.js"></script>
@@ -283,6 +256,8 @@ class="report-btn">
 <script src="theme.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 
 <script type="module" src="reports.js"></script>
 
