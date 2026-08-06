@@ -8,7 +8,7 @@
 
 <title>Notifications</title>
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="notifications.css">
 <link rel="stylesheet" href="toast.css">
 <link rel="stylesheet" href="loader.css">
 
@@ -17,64 +17,154 @@
 <body>
 
 <!-- Loader -->
+
 <div id="loader" class="loader-overlay">
     <div class="loader"></div>
 </div>
 
-<header>
+<!-- Header -->
 
-<h2>🔔 Pending Balance Notifications</h2>
+<header class="notification-header">
+
+    <div class="header-top">
+
+        <a href="dashboard.html" class="back-circle">
+            ❮
+        </a>
+
+        <div class="header-title">
+
+            <h2>Notifications</h2>
+
+            <p>Keep track of all activities</p>
+
+        </div>
+
+        <div class="bell-circle">
+            🔔
+        </div>
+
+    </div>
 
 </header>
 
-<div class="container">
+<!-- Notification Counters -->
 
-<div class="notification-header">
+<div class="counter-grid">
 
-    <div>
+    <div class="counter-card active">
 
-        <h3>🔔 Notifications</h3>
-     <center>   
-       <h1>
-        <p id="notificationCount">0 Notifications</p>
-        </h1>
-        </center>
- 
+        <span>All</span>
+
+        <h3 id="notificationCount">0</h3>
+
     </div>
-    
 
-    <button
-        class="clear-btn"
-        onclick="clearAllNotifications()">
+    <div class="counter-card">
 
-        🧹 Clear All
+        <span>Unread</span>
 
-    </button>
+        <h3 id="unreadCount">0</h3>
+
+    </div>
+
+    <div class="counter-card">
+
+        <span>Important</span>
+
+        <h3 id="importantCount">0</h3>
+
+    </div>
+
+    <div class="counter-card">
+
+        <span>Others</span>
+
+        <h3 id="otherCount">0</h3>
+
+    </div>
+
+</div>
+
+<!-- Today -->
+
+<div class="section-title">
+
+    <h3>Today</h3>
 
 </div>
 
 <div id="notificationList">
 
-<p style="text-align:center;">Loading notifications...</p>
+    <p class="loading-text">
+        Loading notifications...
+    </p>
 
 </div>
 
-<div style="text-align:center;margin-top:25px;">
+<!-- Bottom Button -->
 
-<button class="refresh-btn" onclick="location.reload()">
-    🔄 
-</button>
+<div class="bottom-buttons">
 
-<a
-id="backButton"
-href="dashboard.html"
-class="back-btn">
+    <button
+        class="clear-btn"
+        onclick="clearAllNotifications()">
 
-   Back
+         Clear All
 
-</a>
+    </button>
 
 </div>
+
+<div id="deleteConfirmPopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">️⚠️</div>
+
+        <h2>Delete Notification?</h2>
+
+        <p>This notification will be permanently deleted.</p>
+
+        <div class="popup-buttons">
+
+            <button id="cancelDeleteBtn" class="cancel-btn">
+                Cancel
+            </button>
+
+            <button id="confirmDeleteBtn" class="delete-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="deleteConfirmPopup" class="popup-overlay">
+
+    <div class="popup-box">
+
+        <div class="popup-icon">️⚠️</div>
+
+        <h2>Delete Notification?</h2>
+
+        <p>This notification will be permanently deleted.</p>
+
+        <div class="popup-buttons">
+
+            <button id="cancelDeleteBtn" class="cancel-btn">
+                Cancel
+            </button>
+
+            <button id="confirmDeleteBtn" class="delete-btn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
