@@ -226,97 +226,215 @@ async function loadReports() {
 
 }
 
+
 // ======================================
-// GENERATE PDF REPORT
+// PRINT REPORT
+// ======================================
+
+const printBtn = document.getElementById("printBtn");
+
+if(printBtn){
+
+    printBtn.onclick = () => {
+
+        window.print();
+
+    };
+
+}
+
+// ======================================
+// EXPORT EXCEL
+// ======================================
+
+const excelBtn = document.getElementById("excelBtn");
+
+if(excelBtn){
+
+    excelBtn.onclick = () => {
+
+        const data = [
+
+            ["Report","Value"],
+
+            ["Total Loan", document.getElementById("loan").textContent],
+
+            ["Total Paid", document.getElementById("paid").textContent],
+
+            ["Remaining", document.getElementById("balance").textContent],
+
+            ["Customers", document.getElementById("customers").textContent],
+
+            ["Today's Loan", document.getElementById("todayLoan").textContent],
+
+            ["Today's Paid", document.getElementById("todayPaid").textContent],
+
+            ["Today's Customers", document.getElementById("todayCustomers").textContent],
+
+            ["Monthly Loan", document.getElementById("monthLoan").textContent],
+
+            ["Monthly Paid", document.getElementById("monthPaid").textContent],
+
+            ["Monthly Customers", document.getElementById("monthCustomers").textContent],
+
+            ["Products", document.getElementById("products").textContent],
+
+            ["Payments", document.getElementById("payments").textContent],
+
+            ["Average Loan", document.getElementById("averageLoan").textContent],
+
+            ["Highest Pending Customer", document.getElementById("topCustomer").textContent],
+
+            ["Generated On", new Date().toLocaleString()]
+
+        ];
+
+        const worksheet = XLSX.utils.aoa_to_sheet(data);
+
+        const workbook = XLSX.utils.book_new();
+
+        XLSX.utils.book_append_sheet(
+            workbook,
+            worksheet,
+            "Reports"
+        );
+
+        XLSX.writeFile(
+            workbook,
+            "Khata_Report.xlsx"
+        );
+
+    };
+
+}
+
+// ======================================
+// PROFESSIONAL PDF
 // ======================================
 
 const pdfBtn = document.getElementById("pdfBtn");
 
-if (pdfBtn) {
+if(pdfBtn){
 
-    pdfBtn.addEventListener("click", generatePDF);
+pdfBtn.onclick = () => {
+
+const { jsPDF } = window.jspdf;
+
+const pdf = new jsPDF();
+
+const green = [22,163,74];
+
+pdf.setFillColor(...green);
+pdf.rect(0,0,210,32,"F");
+
+pdf.setTextColor(255,255,255);
+pdf.setFontSize(22);
+pdf.text("KHATA MANAGEMENT",105,15,{align:"center"});
+
+pdf.setFontSize(12);
+pdf.text("Business Report",105,24,{align:"center"});
+
+pdf.setTextColor(0,0,0);
+
+let y = 42;
+
+pdf.setFontSize(11);
+pdf.text(
+"Generated : " + new Date().toLocaleString(),
+15,
+y
+);
+
+y += 10;
+
+function section(title){
+
+pdf.setFillColor(22,163,74);
+pdf.roundedRect(12,y-5,186,9,2,2,"F");
+
+pdf.setTextColor(255,255,255);
+pdf.setFontSize(13);
+pdf.text(title,16,y+1);
+
+pdf.setTextColor(0,0,0);
+
+y += 12;
 
 }
 
-function generatePDF() {
+function row(name,value){
 
-    const { jsPDF } = window.jspdf;
+pdf.setFontSize(11);
 
-    const doc = new jsPDF();
+pdf.text(name,18,y);
 
-    doc.setFontSize(18);
-    doc.text("Khata Management Report", 20, 20);
+pdf.text(String(value),185,y,{align:"right"});
 
-    doc.setFontSize(12);
+y += 7;
 
-    doc.text("Date : " + new Date().toLocaleDateString(), 20, 35);
+}
 
-    doc.text(
-        "Total Customers : " +
-        document.getElementById("customers").textContent,
-        20,
-        50
-    );
+section("Financial Report");
 
-    doc.text(
-        "Total Loan : " +
-        document.getElementById("loan").textContent,
-        20,
-        60
-    );
+row("Total Loan", document.getElementById("loan").textContent);
+row("Total Paid", document.getElementById("paid").textContent);
+row("Remaining", document.getElementById("balance").textContent);
+row("Customers", document.getElementById("customers").textContent);
 
-    doc.text(
-        "Total Paid : " +
-        document.getElementById("paid").textContent,
-        20,
-        70
-    );
+y += 5;
 
-    doc.text(
-        "Remaining Balance : " +
-        document.getElementById("balance").textContent,
-        20,
-        80
-    );
+section("Today's Report");
 
-    doc.text(
-        "Today's Loan : " +
-        document.getElementById("todayLoan").textContent,
-        20,
-        95
-    );
+row("Today's Loan", document.getElementById("todayLoan").textContent);
+row("Today's Paid", document.getElementById("todayPaid").textContent);
+row("New Customers", document.getElementById("todayCustomers").textContent);
 
-    doc.text(
-        "Today's Payment : " +
-        document.getElementById("todayPaid").textContent,
-        20,
-        105
-    );
+y += 5;
 
-    doc.text(
-        "Monthly Loan : " +
-        document.getElementById("monthLoan").textContent,
-        20,
-        120
-    );
+section("Monthly Report");
 
-    doc.text(
-        "Monthly Payment : " +
-        document.getElementById("monthPaid").textContent,
-        20,
-        130
-    );
+row("Monthly Loan", document.getElementById("monthLoan").textContent);
+row("Monthly Paid", document.getElementById("monthPaid").textContent);
+row("New Customers", document.getElementById("monthCustomers").textContent);
 
-    doc.text(
-        "Top Customer : " +
-        document.getElementById("topCustomer").textContent,
-        20,
-        145
-    );
+y += 5;
 
-    doc.save("Khata_Report.pdf");
+section("Statistics");
 
-    showToast("PDF Generated Successfully", "success");
+row("Products", document.getElementById("products").textContent);
+row("Payments", document.getElementById("payments").textContent);
+row("Average Loan", document.getElementById("averageLoan").textContent);
+
+y += 5;
+
+section("Highest Pending Customer");
+
+pdf.setFontSize(11);
+
+pdf.text(
+    document.getElementById("topCustomer").textContent,
+    18,
+    y
+);
+
+y += 10;
+
+pdf.setDrawColor(22,163,74);
+pdf.line(12,285,198,285);
+
+pdf.setFontSize(9);
+pdf.setTextColor(120);
+
+pdf.text(
+"Generated by Khata Management • Business Report",
+105,
+291,
+{align:"center"}
+);
+
+pdf.save("Khata_Business_Report.pdf");
+
+};
 
 }
 
