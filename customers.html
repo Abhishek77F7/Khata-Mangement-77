@@ -13,17 +13,27 @@
 
 </head>
 
-
 <body>
 
+<header class="customer-header">
 
-<header>
+    <div class="header-top">
 
-<h2>📒 Customer List</h2>
+        <a href="dashboard.html" class="back-circle">
+            ❮
+        </a>
+
+        <div class="header-title">
+
+            <h2>👥 Customer List</h2>
+
+            <p>Manage all customers</p>
+
+        </div>
+
+    </div>
 
 </header>
-
-
 
 <div class="search-container">
 
@@ -38,14 +48,23 @@
 
 </div>
 
+<div class="sort-container">
 
+    <label>Sort By</label>
+
+    <select id="sortCustomer" class="sort-select">
+
+        <option value="latest">Latest</option>
+
+        <option value="oldest">Oldest</option>
+
+        <option value="name">Name (A-Z)</option>
+
+    </select>
+
+</div>
 
 <div id="customerList"></div>
-
-
-
-<br>
-
 
 <center>
 
@@ -57,23 +76,62 @@
 
 </center>
 
-<div id="loader" class="loader-overlay">
+<!-- Floating Add Customer Button -->
 
-    <div class="loader"></div>
+<a href="add-customer.html" class="fab-add">
+
+    <span>＋</span>
+
+</a>
+
+<!-- Delete Confirmation Popup -->
+
+<div id="deletePopup" class="delete-popup">
+
+    <div class="delete-card">
+
+        <div class="delete-icon">
+            ⚠️
+        </div>
+
+        <h2>Delete Customer</h2>
+
+        <p>
+    This customer will be moved to the <b>Recycle Bin</b>.
+    You can restore it later.
+</p>
+
+        <div class="delete-actions">
+
+            <button
+                id="cancelDelete"
+                class="cancel-delete">
+
+                Cancel
+
+            </button>
+
+<button
+    id="confirmDelete"
+    class="confirm-delete">
+    Move to Bin
+</button>
+
+        </div>
+
+    </div>
 
 </div>
 
-<script src="loader.js"></script>
-
-<script src="toast.js"></script>
-
-
-<script type="module" src="customers.js"></script>
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+</div>
 
 <script src="theme.js"></script>
+<script src="loader.js"></script>
+<script src="toast.js"></script>
 
-
-
+<script type="module" src="customers.js"></script>
 
 </body>
 
