@@ -8,42 +8,49 @@
 
 <title>Add Customer</title>
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="add-customer.css">
 <link rel="stylesheet" href="toast.css">
 
 </head>
 
 <body>
 
-<header class="page-header">
+<!-- Header -->
 
-<div class="header-left">
+<header class="add-header">
 
-<div class="page-icon">
-👤
-</div>
+    <a href="customers.html" class="back-circle">
+        ❮
+    </a>
 
-<div>
+    <div class="header-text">
 
-<h1>Add Customer</h1>
+        <h1>Add Customer</h1>
 
-<p>Create a new customer account</p>
+        <p>Create a new customer account</p>
 
-</div>
+    </div>
 
-</div>
 
 </header>
 
+
+
+<!-- Form Card -->
+
 <div class="add-card">
 
-<h2>Customer Information</h2>
+    <h2>Customer Information</h2>
+
+    <hr>
 
 <div class="input-group">
 
-<label>
-👤 Customer Name
-</label>
+<label>Customer Name</label>
+
+<div class="input-box">
+
+<span>👤</span>
 
 <input
 type="text"
@@ -52,11 +59,15 @@ placeholder="Enter customer name">
 
 </div>
 
+</div>
+
 <div class="input-group">
 
-<label>
-📱 Mobile Number
-</label>
+<label>Mobile Number</label>
+
+<div class="input-box">
+
+<span>📱</span>
 
 <input
 type="tel"
@@ -65,11 +76,15 @@ placeholder="Enter mobile number">
 
 </div>
 
+</div>
+
 <div class="input-group">
 
-<label>
-🏠 Address
-</label>
+<label>Address</label>
+
+<div class="input-box textarea-box">
+
+<span>📍</span>
 
 <textarea
 id="address"
@@ -78,31 +93,48 @@ placeholder="Enter customer address"></textarea>
 
 </div>
 
+</div>
+
+</div>
+
 <button
 class="save-btn"
 onclick="saveCustomer()">
 
-  Save Customer
+    ✔ Save Customer
 
 </button>
 
-<div class="back-area">
 
-<a
-href="dashboard.html"
-class="back-btn">
-
- Back to Dashboard
-
-</a>
-
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
 </div>
 
-</div>
+<!-- Bottom Navigation -->
 
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+        <span>🏠</span>
+        <small>Home</small>
+    </a>
+
+    <a href="customers.html" class="active">
+        <span>👥</span>
+        <small>Customers</small>
+    </a>
+
+    <a href="settings.html">
+        <span>⚙️</span>
+        <small>Settings</small>
+    </a>
+
+</nav>
+
+<script src="loader.js"></script>
 <script src="toast.js"></script>
-<script type="module" src="customers.js"></script>
 <script src="theme.js"></script>
+<script type="module" src="customers.js"></script>
 
 </body>
 </html>
