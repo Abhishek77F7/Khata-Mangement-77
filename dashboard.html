@@ -15,143 +15,209 @@
 
 <body>
 
-<!-- Header -->
+<!-- Premium Header -->
 
-<header class="top-header">
+<header class="dashboard-header">
 
-<div class="profile">
+    <div class="header-row">
 
-<div class="profile-left">
+        <div class="profile-left">
 
-<div class="profile-box" onclick="document.getElementById('adminPhoto').click()">
+            <div
+                class="profile-box"
+                onclick="document.getElementById('adminPhoto').click()">
 
-    <img
-        id="adminProfile"
-        src="https://ui-avatars.com/api/?name=Admin&background=1976d2&color=fff"
-        alt="Profile">
+                <img
+                    id="adminProfile"
+                    src="https://ui-avatars.com/api/?name=Admin&background=1976d2&color=fff"
+                    alt="Profile">
 
-</div>
+            </div>
 
-<input
-    type="file"
-    id="adminPhoto"
-    accept="image/*"
-    onchange="uploadAdminPhoto()"
-    hidden>
+            <input
+                type="file"
+                id="adminPhoto"
+                accept="image/*"
+                onchange="uploadAdminPhoto()"
+                hidden>
 
-<div>
+            <div class="welcome-text">
 
-<h2>Khata Management</h2>
+                <h2>Khata Management</h2>
 
-<p>Welcome ABHI</p>
+                <p>Welcome back</p>
 
-</div>
+                <h3>ABHI 👋</h3>
 
-</div>
+            </div>
 
-<div class="header-icons">
+        </div>
 
-<a href="notifications.html">🔔</a>
+        <div class="header-icons">
 
-<a href="settings.html">⚙️</a>
+            <a href="notifications.html" class="header-btn">
+                🔔
+            </a>
 
-</div>
+            <a href="settings.html" class="header-btn">
+                ⚙️
+            </a>
 
-</div>
+        </div>
+
+    </div>
 
 </header>
 
-<!-- Customer / Supplier -->
+<!-- Customer / lier -->
 
 <div class="switch-box">
 
-<button class="active">
+<button
+    id="customerTab"
+    class="switch-btn active"
+    onclick="window.location.href='customers.html'">
 
-Customers
+    👥 Customers
 
 </button>
 
-<button>
+<button
+    id="reportsTab"
+    class="switch-btn"
+    onclick="window.location.href='reports.html'">
 
-Suppliers
+    📊 Reports
 
 </button>
 
 </div>
 
-<!-- Summary -->
+<!-- Premium Summary -->
 
 <div class="summary-grid">
 
-<div class="summary-card">
+    <div class="summary-card give-card">
 
-<p>You Give</p>
+        <div class="summary-icon">💸</div>
 
-<h2 id="totalLoan">₹0</h2>
+        <div>
+
+            <p>You Give</p>
+
+            <h2 id="totalLoan">₹0</h2>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card get-card">
+
+        <div class="summary-icon">💰</div>
+
+        <div>
+
+            <p>You Get</p>
+
+            <h2 id="totalPaid">₹0</h2>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card remain-card">
+
+        <div class="summary-icon">📊</div>
+
+        <div>
+
+            <p>Remaining</p>
+
+            <h2 id="remaining">₹0</h2>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card customer-card">
+
+        <div class="summary-icon">👥</div>
+
+        <div>
+
+            <p>Customers</p>
+
+            <h2 id="totalCustomers">0</h2>
+
+        </div>
+
+    </div>
 
 </div>
 
-<div class="summary-card">
+<!-- Quick Actions -->
 
-<p>You Get</p>
+<div class="quick-actions">
 
-<h2 id="totalPaid">₹0</h2>
+    <a href="customers.html" class="action-card">
+
+        <div class="action-icon customer">👥</div>
+
+        <h3>Customers</h3>
+
+        <p>Manage customers</p>
+
+    </a>
+
+    <a href="reports.html" class="action-card">
+
+        <div class="action-icon report">📊</div>
+
+        <h3>Reports</h3>
+
+        <p>Business reports</p>
+
+    </a>
+
+    <a href="notifications.html" class="action-card">
+
+        <div class="action-icon notify">🔔</div>
+
+        <h3>Notifications</h3>
+
+        <p>View alerts</p>
+
+    </a>
+    
+        <a href="deleted-customers.html" class="action-card">
+
+        <div class="action-icon recycle">️♻️</div>
+
+        <h3>Recycle Bin</h3>
+
+        <p>Restore customers</p>
+
+    </a>
 
 </div>
-
-<div class="summary-card">
-
-<p>Remaining</p>
-
-<h2 id="remaining">₹0</h2>
-
-</div>
-
-<div class="summary-card">
-
-<p>Customers</p>
-
-<h2 id="totalCustomers">0</h2>
-
-</div>
-
-</div>
-
-<!-- Buttons -->
-
-<div class="action-grid">
-
-<a href="reports.html">
-
-📊 View Report
-
-</a>
-
-<a href="customers.html">
-
-👥 Customer List
-
-</a>
-
-</div>
-
-
 
 <!-- Recent Customers -->
 
-<div class="recent-box">
+<section class="recent-section">
 
-<div class="recent-title">
+    <div class="section-header">
 
-<h3>Recent Customers</h3>
+        <h2>Recent Customers</h2>
 
-</div>
+        <a href="customers.html">View All</a>
 
-<div id="recentCustomers">
+    </div>
 
-</div>
+    <div id="recentCustomers">
 
-</div>
+    </div>
+
+</section>
 
 <!-- Floating Button -->
 
@@ -161,7 +227,7 @@ href="add-customer.html"
 
 class="fab">
 
-✚
+＋
 
 </a>
 
@@ -169,45 +235,37 @@ class="fab">
 
 <nav class="bottom-nav">
 
-<a href="dashboard.html">
+    <a href="dashboard.html" class="active">
 
-🏠
+        <span>🏠</span>
 
-<br>
+        <small>Home</small>
 
-Home
+    </a>
 
-</a>
+    <a href="customers.html">
 
-<a href="customers.html">
+        <span>👥</span>
 
-👥
+        <small>Customers</small>
 
-<br>
+    </a>
 
-Customers
+    <a href="reports.html">
 
-</a>
+        <span>📊</span>
 
-<a href="reports.html">
+        <small>Reports</small>
 
-📊
+    </a>
 
-<br>
+    <a href="settings.html">
 
-Reports
+        <span>⚙️</span>
 
-</a>
+        <small>Settings</small>
 
-<a href="settings.html">
-
-⚙️
-
-<br>
-
-Settings
-
-</a>
+    </a>
 
 </nav>
 
