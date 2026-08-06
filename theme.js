@@ -10,6 +10,27 @@ function applyTheme(theme) {
         document.body.classList.add("dark-theme");
     }
 
+    // Update active theme button
+
+    const lightBtn = document.getElementById("lightBtn");
+    const darkBtn = document.getElementById("darkBtn");
+
+    if (lightBtn && darkBtn) {
+
+        if (theme === "dark") {
+
+            darkBtn.classList.add("active-theme");
+            lightBtn.classList.remove("active-theme");
+
+        } else {
+
+            lightBtn.classList.add("active-theme");
+            darkBtn.classList.remove("active-theme");
+
+        }
+
+    }
+
 }
 
 // ======================================
