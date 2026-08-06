@@ -168,9 +168,21 @@ function loadRecentCustomers() {
 
         recentBox.innerHTML = `
 
-        <div class="customer-item">
+        <div class="recent-card">
 
-            <p>No customers found.</p>
+            <div class="recent-left">
+
+                <div class="recent-avatar">?</div>
+
+                <div class="recent-info">
+
+                    <h3>No Customers</h3>
+
+                    <p>Add your first customer</p>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -183,8 +195,8 @@ function loadRecentCustomers() {
     let html = "";
 
     customers
-        .slice(0, 5)
-        .forEach((customer) => {
+        .slice(0,5)
+        .forEach((customer)=>{
 
             const initial =
                 (customer.name || "?")
@@ -193,82 +205,58 @@ function loadRecentCustomers() {
 
             const loan =
                 (customer.loans || []).reduce(
-                    (sum, item) =>
+                    (sum,item)=>
                         sum + Number(item.total || 0),
                     0
                 );
 
             const paid =
                 (customer.payments || []).reduce(
-                    (sum, item) =>
+                    (sum,item)=>
                         sum + Number(item.amount || 0),
                     0
                 );
 
             const balance =
-                Math.max(loan - paid, 0);
+                Math.max(loan-paid,0);
 
             html += `
 
-            <div class="customer-item"
+<div class="recent-card"
 
-            onclick="openCustomer('${customer.firebaseID}')">
+onclick="openCustomer('${customer.firebaseID}')">
 
-                <div style="display:flex;align-items:center;gap:12px;">
+    <div class="recent-left">
 
-                    <div style="
-                        width:48px;
-                        height:48px;
-                        border-radius:50%;
-                        background:#1976d2;
-                        color:#fff;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:20px;
-                        font-weight:bold;">
+        <div class="recent-avatar">
 
-                        ${initial}
+            ${initial}
 
-                    </div>
+        </div>
 
-                    <div>
+        <div class="recent-info">
 
-                        <strong>${customer.name}</strong>
+            <h3>${customer.name}</h3>
 
-                        <br>
+            <p>
 
-                        <small>
+                ${customer.mobile}
 
-                            ${customer.mobile}
+            </p>
 
-                        </small>
+        </div>
 
-                    </div>
+    </div>
 
-                </div>
+    <div class="amount-badge">
 
-                <div style="text-align:right;">
+        ₹${balance.toLocaleString()}
 
-                    <strong>
+    </div>
 
-                        ₹${balance}
+</div>
 
-                    </strong>
-
-                    <br>
-
-                    <small>
-
-                        Balance
-
-                    </small>
-
-                </div>
-
-            </div>
-
-            `;
+`;
 
         });
 
@@ -289,9 +277,9 @@ window.searchCustomer = function () {
         .toLowerCase();
 
     const items =
-        document.querySelectorAll(
-            "#recentCustomers .customer-item"
-        );
+document.querySelectorAll(
+"#recentCustomers .recent-card"
+);
 
     items.forEach((item) => {
 
@@ -435,4 +423,3 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.uploadAdminPhoto = uploadAdminPhoto;
-
