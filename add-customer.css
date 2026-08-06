@@ -1,0 +1,439 @@
+/* ===========================
+   PAGE
+=========================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#222;
+padding-bottom:40px;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+
+.add-header{
+
+background:linear-gradient(135deg,#0f9d58,#42c94f);
+padding:6px 6px 8px;
+border-bottom-left-radius:15px;
+border-bottom-right-radius:15px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+position:relative;
+
+box-shadow:0 12px 30px rgba(0,0,0,.18);
+
+}
+
+.back-circle{
+
+width:45px;
+height:45px;
+
+background:white;
+
+border:2px solid rgba(255,255,255,.2);
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:25px;
+font-weight:bold;
+
+color:green;
+text-decoration:none;
+
+backdrop-filter:blur(10px);
+
+}
+
+.header-text{
+
+flex:1;
+text-align:center;
+color:#fff;
+
+}
+
+.header-text h1{
+
+font-size:34px;
+font-weight:700;
+
+}
+
+.header-text p{
+
+margin-top:8px;
+font-size:18px;
+opacity:.95;
+
+}
+
+.header-icon{
+
+font-size:42px;
+color:#fff;
+
+}
+
+
+/* ===========================
+FORM CARD
+=========================== */
+
+.add-card{
+    width:90%;
+    margin:40px auto 0;
+    background:#fff;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+
+background:#fff;
+
+border-radius:25px;
+
+padding:25px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.add-card h2{
+
+font-size:28px;
+color:#1976d2;
+
+margin-bottom:15px;
+
+}
+
+.add-card hr{
+
+border:none;
+height:2px;
+background:#ececec;
+
+margin-bottom:25px;
+
+}
+
+/* ===========================
+INPUTS
+=========================== */
+
+.input-group{
+
+margin-bottom:22px;
+
+}
+
+.input-group label{
+
+display:block;
+
+font-size:20px;
+font-weight:600;
+
+margin-bottom:10px;
+
+}
+
+.input-group input,
+.input-group textarea{
+
+width:100%;
+
+padding:16px 18px;
+
+font-size:17px;
+
+border:2px solid #e5e5e5;
+
+border-radius:18px;
+
+outline:none;
+
+transition:.25s;
+
+background:#fff;
+
+}
+
+.input-group textarea{
+
+resize:none;
+
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+
+border-color:#17b857;
+
+box-shadow:0 0 15px rgba(23,184,87,.18);
+
+}
+
+/* ===========================
+SAVE BUTTON
+=========================== */
+
+.save-btn{
+
+display:block;
+
+width:90%;
+
+margin:28px auto 15px;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:linear-gradient(135deg,#18b35f,#48d14d);
+
+color:#fff;
+
+font-size:23px;
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 12px 25px rgba(24,179,95,.35);
+
+transition:.25s;
+
+}
+
+.save-btn:active{
+
+transform:scale(.97);
+
+}
+
+
+/* ===========================
+MOBILE
+=========================== */
+
+@media(max-width:600px){
+
+.header-text h1{
+
+font-size:28px;
+
+}
+
+.header-text p{
+
+font-size:16px;
+
+}
+
+.add-card{
+
+padding:20px;
+
+}
+
+.save-btn{
+
+font-size:20px;
+
+}
+
+}
+
+/*==========================
+ PREMIUM INPUT BOXES
+==========================*/
+
+.input-box{
+
+display:flex;
+
+align-items:center;
+
+background:#fff;
+
+border:2px solid #e8e8e8;
+
+border-radius:18px;
+
+padding:5px;
+
+transition:.3s;
+
+}
+
+.input-box span{
+
+font-size:24px;
+
+margin-right:18px;
+
+}
+
+.input-box input{
+
+border:none;
+
+width:100%;
+
+padding:16px;
+
+font-size:17px;
+
+outline:none;
+
+background:none;
+
+box-shadow:none;
+
+}
+
+.textarea-box{
+
+align-items:flex-start;
+
+padding-top:18px;
+
+}
+
+.textarea-box textarea{
+
+border:none;
+
+width:100%;
+
+resize:none;
+
+font-size:17px;
+
+outline:none;
+
+background:none;
+
+padding:10px;
+
+box-shadow:none;
+
+}
+
+.input-box:focus-within{
+
+border-color:#42c94f;
+
+box-shadow:0 0 18px rgba(34,197,94,.18);
+
+transform:translateY(-2px);
+
+}
+/* ===== Compact Bottom Navigation ===== */
+
+.bottom-nav{
+
+    position:fixed;
+
+    left:2px;
+    right:2px;
+    bottom:2px;
+
+    height:60px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:space-around;
+
+    align-items:center;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    z-index:999;
+
+}
+
+.bottom-nav a{
+
+    text-decoration:none;
+
+    color:#666;
+
+    width:78px;
+
+    height:46px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:2px;
+
+    transition:.3s;
+
+}
+
+.bottom-nav a span{
+
+    font-size:22px;
+
+    line-height:1;
+
+}
+
+.bottom-nav a small{
+
+    font-size:11px;
+
+    font-weight:600;
+
+}
+
+.bottom-nav a.active{
+
+    background:#fff;
+
+    color:#666;
+
+}
+
+.bottom-nav a.active span{
+
+    transform:scale(1.08);
+
+}
+
+body{
+
+    padding-bottom:85px;
+
+}
