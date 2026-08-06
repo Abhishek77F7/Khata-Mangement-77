@@ -1,0 +1,2951 @@
+/* ==========================================
+   KHATA MANAGEMENT - ADMIN.CSS
+   PART 1 - GLOBAL STYLES
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:white;
+    color:#000;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+
+
+
+.container{
+    width:100%;
+    max-width:100%;
+    padding:18px;
+    margin:auto;
+}
+
+/* ==========================================
+   DASHBOARD CARDS
+========================================== */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.card h2{
+    color:#2563eb;
+    font-size:30px;
+}
+
+.card p{
+    margin-top:8px;
+    color:#000;
+}
+
+/* ==========================================
+   MENU
+========================================== */
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.menu a{
+    text-decoration:none;
+    background:#fff;
+    color:#111827;
+    padding:16px;
+    border-radius:16px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.25s;
+}
+
+.menu a:hover{
+    transform:translateY(-2px);
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.form{
+    margin-top:20px;
+}
+
+.form input,
+.form textarea,
+.container input,
+.setting-card input{
+
+    width:100%;
+    padding:14px;
+    margin-bottom:16px;
+
+    border:1px solid #d1d5db;
+    border-radius:12px;
+
+    font-size:16px;
+    background:#fff;
+
+    transition:.25s;
+}
+
+.form textarea{
+    min-height:110px;
+    resize:none;
+}
+
+.form input:focus,
+.form textarea:focus,
+.container input:focus,
+.setting-card input:focus{
+
+    outline:none;
+    border-color:#256efd;
+    box-shadow:0 0 0 4px rgba(37,99,235,.15);
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+button{
+    cursor:pointer;
+}
+
+.form button,
+.blue-btn,
+.green-btn{
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    width:100%;
+    border:none;
+    border-radius:14px;
+
+    padding:15px;
+
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.form button,
+.green-btn{
+    background:#22c55e;
+}
+
+.blue-btn{
+    background:#2563eb;
+}
+
+
+.form button:hover,
+.green-btn:hover,
+.blue-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   BACK BUTTON
+========================================== */
+
+.back-btn,
+.modern-back-btn{
+
+    display:block;
+
+    width:260px;
+
+    margin:30px auto;
+
+    text-align:center;
+    text-decoration:none;
+
+    padding:14px;
+
+    border-radius:40px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.back-btn{
+
+    background:#2563EB;
+    color:#fff;
+
+}
+
+.modern-back-btn{
+
+    background:#2563EB;
+    color:#fff;
+    border:2px solid #2563eb;
+
+}
+
+.back-btn:hover,
+.modern-back-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+
+.search-container{
+
+    width:100%;
+    margin:18px auto;
+
+    display:flex;
+    align-items:center;
+
+    background:#fff;
+
+    border:2px solid #e5e7eb;
+    border-radius:50px;
+
+    padding:0 18px;
+
+    height:56px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.search-container:focus-within{
+
+    border-color:blue;
+
+}
+
+.search-icon{
+
+    font-size:22px;
+    color:#000000;
+    margin-right:10px;
+
+}
+
+.search-container input{
+
+    border:none;
+    outline:none;
+    background:none;
+
+    margin:0;
+    padding:0;
+
+    width:100%;
+
+    box-shadow:none;
+
+}
+
+
+
+/* ==========================================
+   LOADER
+========================================== */
+
+.loader-overlay{
+
+    position:fixed;
+    inset:0;
+
+    display:none;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.8);
+
+    z-index:9999;
+
+}
+
+.loader{
+
+    width:55px;
+    height:55px;
+
+    border:5px solid #ddd;
+    border-top:5px solid #256;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark-theme{
+
+    background:#121212;
+    color:#fff;
+
+}
+
+.dark-theme header{
+
+    background:#1f1f1f;
+
+}
+
+.dark-theme .card,
+.dark-theme .menu a,
+.dark-theme .setting-card{
+
+    background:#1f2937;
+    color:#fff;
+
+}
+
+.dark-theme input,
+.dark-theme textarea{
+
+    background:#374151;
+    color:#fff;
+    border-color:#4b5563;
+
+}
+
+
+/* ==========================================
+   CUSTOMER LIST
+========================================== */
+
+#customerList{
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+    margin-top:20px;
+    padding:0;
+}
+
+
+/* ==========================================
+   CUSTOMER HEADER
+========================================== */
+
+.customer-header{
+
+    background:linear-gradient(135deg,#0f766e,#15803d);
+
+    padding:18px 18px 22px;
+
+    border-bottom-left-radius:28px;
+    border-bottom-right-radius:28px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    position:relative;
+}
+
+.back-circle{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:#fff;
+    color:green;
+    text-decoration:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    font-weight:bold;
+    flex-shrink:0;
+    z-index:1000;
+    position:relative;
+    cursor:pointer;
+}
+
+.header-title{
+    flex:1;
+    margin-left:30px;
+}
+
+.header-title h2{
+
+    color:#fff;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    margin:0;
+
+}
+
+.header-title p{
+
+    margin-top:4px;
+
+    color:rgba(255,255,255,.85);
+
+    font-size:14px;
+
+}
+
+/* ==========================================
+   SEARCH BAR
+========================================== */
+
+.search-container{
+
+    width:92%;
+
+    margin:18px auto 15px;
+
+    height:54px;
+
+    background:#fff;
+
+    border-radius:50px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.search-icon{
+
+    font-size:20px;
+
+    margin-right:10px;
+
+}
+
+.search-container input{
+
+    border:none;
+
+    outline:none;
+
+    width:100%;
+
+    font-size:16px;
+
+    background:none;
+
+}
+
+/* ==========================================
+   SORT BOX
+========================================== */
+
+.sort-container{
+
+    width:92%;
+
+    margin:0 auto 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.sort-container label{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#374151;
+
+}
+
+.sort-select{
+
+    border:none;
+
+    outline:none;
+
+    padding:10px 16px;
+
+    border-radius:14px;
+
+    background:#ffffff;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+
+    font-size:15px;
+
+}
+
+/* ==========================================
+   MODERN CUSTOMER CARD
+========================================== */
+
+.customer-card{
+
+    position:relative;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    margin:4px 6px;
+    
+    padding:18px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    border-left:6px solid #16a34a;
+
+    transition:.25s;
+
+    overflow:hidden;
+
+}
+
+.customer-card:hover .avatar{
+
+    transform:scale(1.08) rotate(-5deg);
+
+}
+
+.customer-info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.avatar{
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:50%;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:26px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+    border:3px solid #fff;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.15),
+        inset 0 2px 4px rgba(255,255,255,.25);
+
+    text-transform:uppercase;
+
+    transition:.3s;
+
+}
+
+.customer-text{
+
+    flex:1;
+
+}
+
+.customer-name{
+
+    font-size:20px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    margin-bottom:6px;
+
+}
+
+.customer-id,
+
+.customer-mobile{
+
+    font-size:15px;
+
+    color:#6b7280;
+
+    margin:3px 0;
+
+}
+
+.customer-summary{
+
+    margin-top:6px;
+
+    border-top:1px solid #e5e7eb;
+
+    padding-top:10px;
+
+}
+
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:3px 0;
+
+    font-size:15px;
+
+}
+
+.summary-row span{
+
+    color:#6b7280;
+
+}
+
+.summary-row strong{
+
+    color:#111827;
+
+    font-weight:700;
+
+}
+
+.edit-btn{
+
+    position:absolute;
+
+    top:15px;
+
+    right:15px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ffff;
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    box-shadow:0 6px 15px rgba(22,163,74,.3);
+
+}
+
+/* ==========================================
+   FLOATING ADD CUSTOMER BUTTON
+========================================== */
+
+.fab-add{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:25px;
+
+    width:64px;
+
+    height:64px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+
+    color:#fff;
+
+    text-decoration:none;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    box-shadow:0 10px 25px rgba(22,163,74,.45);
+
+    z-index:999;
+
+    transition:.25s;
+
+}
+
+.fab-add:hover{
+
+    transform:scale(1.08);
+
+}
+
+.fab-add:active{
+
+    transform:scale(.95);
+
+}
+
+/* Prevent overlap with button */
+
+#customerList{
+
+    padding-bottom:100px;
+
+}
+
+
+/* ==========================================
+   ANIMATION
+========================================== */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+   BORROWED PRODUCT CARDS
+========================================== */
+
+.history-card{
+    position:relative;
+    background:#ffffff;
+    border-radius:24px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    transition:.25s;
+    overflow:hidden;
+}
+
+.history-card:hover{
+    transform:translateY(-4px);
+}
+
+.history-card::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:6px;
+    height:100%;
+    background:#2563eb;
+}
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:15px;
+}
+
+.card-top h3{
+    font-size:21px;
+    color:#111827;
+    margin:0;
+    padding-right:50px;
+}
+
+.history-card hr{
+    border:none;
+    border-top:1px solid #e5e7eb;
+    margin:12px 0 18px;
+}
+
+.history-card p{
+    margin:9px 0;
+    font-size:16px;
+    color:#374151;
+}
+
+.card-bottom{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:18px;
+}
+
+/* Edit Button */
+
+.history-card .edit-btn{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:#2563eb;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:18px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.history-card .edit-btn:hover{
+    transform:scale(1.08);
+    background:#1d4ed8;
+}
+
+/* Delete Button */
+
+.history-card .delete-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:12px;
+    background:#ef4444;
+    color:#fff;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.history-card .delete-btn:hover{
+    background:#dc2626;
+    transform:translateY(-2px);
+}
+
+
+
+/* ==========================================
+   NOTIFICATION PAGE
+========================================== */
+
+.notification-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    background:linear-gradient(
+        135deg,
+        #8B6F00,
+        #B8860B,
+        #D4AF37,
+        #FFD700,
+        #FFF4B0
+    );
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.notification-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:#ffff;
+
+}
+
+.notification-header p{
+
+    margin-top:6px;
+
+    color:#ffff;
+
+}
+
+.clear-btn{
+
+    border:none;
+
+    border-radius:30px;
+
+    padding:12px 18px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.clear-btn:hover{
+
+    background:#dc2626;
+
+    transform:translateY(-2px);
+
+}
+
+.notification-card h3{
+
+    margin-bottom:10px;
+
+    color:#ffff;
+
+}
+
+
+.notification-card p{
+
+    margin:8px 0;
+
+    color:#ffff;
+
+}
+
+
+.refresh-btn{
+
+    display:block;
+
+    width:260px;
+
+    margin:30px auto;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:40px;
+
+    background:#fff;
+
+    color:#fff;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.refresh-btn:hover{
+
+    background:#ffff;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================================
+   DELETE NOTIFICATION BUTTON
+========================================== */
+
+.delete-notification{
+
+    position:absolute;
+
+    top:14px;
+
+    right:14px;
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f3f4f5;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.25s;
+
+}
+
+.delete-notification:hover{
+
+    background:#ef4444;
+
+    color:#fff;
+
+}
+
+/* ==========================================
+   NOTIFICATION ACTIONS
+========================================== */
+
+.notification-actions{
+
+    display:flex;
+
+    gap:14px;
+
+    margin-top:24px;
+
+}
+
+.notification-actions .back-btn{
+
+    flex:1;
+
+    margin:0;
+
+}
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark-theme .customer-card,
+.dark-theme .customer-file-card,
+.dark-theme .summary-card,
+.dark-theme .history-card,
+.dark-theme .notification-card{
+
+    background:#1f2937;
+
+    border-color:#374151;
+
+    color:#ffffff;
+
+}
+
+.dark-theme .customer-name,
+.dark-theme .profile-details h2,
+.dark-theme .card-top h3,
+.dark-theme .summary-row strong{
+
+    color:#ffffff;
+
+}
+
+.dark-theme .customer-id,
+.dark-theme .customer-mobile,
+.dark-theme .history-card p,
+.dark-theme .profile-details p,
+.dark-theme .notification-card p{
+
+    color:#d1d5db;
+
+}
+
+.dark-theme .notification-header{
+
+    background:#1f2937;
+
+}
+
+.dark-theme .delete-notification{
+
+    background:#374151;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================
+   SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#2563eb;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f3f4f6;
+
+}
+
+/* ==========================================
+   SMALL SCREEN
+========================================== */
+
+@media(max-width:600px){
+
+    .cards{
+
+        grid-template-columns:1fr;
+
+    }
+
+.notification-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+
+    padding:20px;
+    margin-bottom:20px;
+
+    border-radius:20px;
+
+    background: linear-gradient(135deg,#111827,#374151,#FFD700);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+    .notification-actions{
+
+        flex-direction:column;
+
+    }
+
+}
+
+
+
+/* Borrowed product cards */
+.history-card {
+    position: relative;
+}
+
+
+/* Card top section */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Edit button only inside card */
+.history-card .edit-btn {
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #ffff;
+    color: white;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+}
+
+
+.history-card .edit-btn:hover {
+
+    transform: scale(1.1);
+
+}
+
+/* ==========================================
+   END OF ADMIN.CSS
+========================================== */
+
+
+.card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.history-amount{
+    margin-top:4px;
+    font-size:18px;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+
+/* =========================================
+   MODERN ADD CUSTOMER PAGE
+========================================= */
+
+.page-header{
+    width:92%;
+    margin:20px auto;
+    padding:22px;
+    border-radius:24px;
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    color:#fff;
+    box-shadow:0 15px 35px rgba(37,99,235,.35);
+}
+
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.page-icon{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    background:rgba(255,255,255,.2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    backdrop-filter:blur(12px);
+}
+
+.page-header h1{
+    font-size:30px;
+    margin:0;
+    font-weight:700;
+}
+
+.page-header p{
+    margin-top:6px;
+    opacity:.9;
+    font-size:15px;
+}
+
+.add-card{
+    width:92%;
+    margin:25px auto;
+    background:#fff;
+    border-radius:26px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.add-card h2{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:28px;
+    font-size:28px;
+}
+
+.input-group{
+    margin-bottom:22px;
+}
+
+.input-group label{
+    display:block;
+    font-weight:600;
+    color:#444;
+    margin-bottom:10px;
+    font-size:16px;
+}
+
+.input-group input,
+.input-group textarea{
+    width:100%;
+    padding:16px 18px;
+    border:none;
+    outline:none;
+    border-radius:18px;
+    background:#f4f8ff;
+    font-size:17px;
+    transition:.3s;
+}
+
+.input-group textarea{
+    resize:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus{
+    background:#fff;
+    box-shadow:0 0 0 3px rgba(37,99,235,.18);
+}
+
+.save-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    cursor:pointer;
+    font-size:20px;
+    font-weight:700;
+    color:#fff;
+    background:linear-gradient(135deg,#2563eb,#3b82f6,#60a5fa);
+    box-shadow:0 12px 30px rgba(37,99,235,.35);
+    transition:.25s;
+}
+
+.save-btn:hover{
+    transform:translateY(-3px);
+}
+
+.save-btn:active{
+    transform:scale(.97);
+}
+
+.back-area{
+    display:flex;
+    justify-content:center;
+    margin-top:25px;
+}
+
+.back-btn{
+    padding:14px 24px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    background:#eef4ff;
+    color:#2563eb;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#2563eb;
+    color:#fff;
+}
+
+/* ==========================================
+   EDIT PAYMENT MODERN UI
+========================================== */
+
+
+.payment-card{
+
+    margin:20px;
+    padding:25px;
+
+    background:#ffffff;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+
+
+.payment-header{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #1d4ed8
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.payment-header h3{
+
+    font-size:24px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+.payment-header p{
+
+    opacity:0.9;
+
+    font-size:15px;
+
+}
+
+
+
+
+.payment-box{
+
+    margin-bottom:20px;
+
+}
+
+
+
+.payment-box label{
+
+    display:block;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    margin-bottom:8px;
+
+    color:#333;
+
+}
+
+
+
+
+.customer-display{
+
+    background:#f1f5f9;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    color:#000;
+
+}
+
+
+
+
+.payment-box input{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:15px;
+
+    border:1px solid #ddd;
+
+    font-size:17px;
+
+    outline:none;
+
+}
+
+
+
+.payment-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px rgba(37,99,235,0.15);
+
+}
+
+
+
+
+.payment-card .button-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.payment-card .green-btn{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+
+
+.payment-card .back-btn{
+
+    text-align:center;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:#f1f5f9;
+
+    color:#333;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================
+   EDIT BORROWED PRODUCT MODERN UI
+========================================== */
+
+
+.product-card{
+
+    background:#ffffff;
+
+    margin:20px;
+
+    padding:24px;
+
+    border-radius:24px;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+
+}
+
+
+
+.product-header{
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #06b6d4
+    );
+
+    color:white;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.product-header h3{
+
+    font-size:24px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+.product-header h2{
+
+    font-size:16px;
+
+    font-weight:500;
+
+    opacity:.9;
+
+}
+
+
+
+
+.product-box{
+
+    margin-bottom:18px;
+
+}
+
+
+
+
+.product-box label{
+
+    display:block;
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#444447;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+.product-box input{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:14px;
+
+    border:1px solid #009;
+
+    font-size:16px;
+
+    outline:none;
+
+    background:#fff;
+
+    transition:.3s;
+
+}
+
+
+
+
+.product-box input:focus{
+
+    border-color:#2563eb;
+
+    box-shadow:
+    0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+
+
+
+.product-box input[readonly]{
+
+    background:#f1f5f9;
+
+    color:#000;
+
+    font-weight:600;
+
+}
+
+
+
+
+.blue-btn{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    margin-top:10px;
+
+}
+
+
+
+
+.back-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:14px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:#f1f5f9;
+
+    color:#000;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+/* ==========================================
+   FLOATING QUICK ACTION MENU
+========================================== */
+
+.fab-container{
+
+    position:fixed;
+    right:20px;
+    bottom:25px;
+    z-index:999;
+
+}
+
+.fab-main{
+
+    width:65px;
+    height:65px;
+
+    border:none;
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#256b,#3b8);
+
+    color:#fff;
+
+    font-size:34px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(37,99,235,.35);
+
+    transition:.35s;
+
+}
+
+.fab-main.rotate{
+
+    transform:rotate(45deg);
+
+}
+
+.fab-menu{
+
+    position:absolute;
+
+    right:0;
+    bottom:80px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:12px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(20px);
+
+    transition:.35s;
+
+}
+
+.fab-menu.show{
+
+    opacity:1;
+    visibility:visible;
+
+    transform:translateY(0);
+
+}
+
+.fab-item{
+
+    text-decoration:none;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    padding:12px 18px;
+
+    border-radius:30px;
+
+    min-width:190px;
+
+    font-weight:bold;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    transition:.25s;
+
+}
+
+.fab-item:hover{
+
+    transform:translateX(-6px);
+
+}
+
+.loan{
+
+    border-left:5px solid #2563eb;
+
+}
+
+.payment{
+
+    border-left:5px solid #22c55e;
+
+}
+
+.history{
+
+    border-left:5px solid #f59e0b;
+
+}
+
+.back{
+
+    border-left:5px solid #6b7280;
+
+}
+
+.dashboard-btn{
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    width:100%;
+
+    padding:12px 18px;
+
+    text-decoration:none;
+
+    background:#ffffff;
+
+    color:#111827;
+
+    font-size:15px;
+    font-weight:700;
+
+    border-radius:18px;
+
+    border-left:5px solid #256;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+    transition:.25s;
+
+}
+
+.dashboard-btn:hover{
+
+    transform:translateX(-5px);
+
+    box-shadow:0 12px 28px rgba(37,99,235,.25);
+
+}
+
+.dashboard-btn:active{
+
+    transform:scale(.97);
+
+}
+
+/* ==========================================
+   DELETE CONFIRMATION POPUP
+========================================== */
+
+.delete-popup{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:9999;
+
+    animation:fadeIn .25s ease;
+
+}
+
+.delete-card{
+
+    width:90%;
+    max-width:330px;
+
+    background:#fff;
+
+    border-radius:24px;
+
+    padding:28px 22px;
+
+    text-align:center;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+    animation:popupScale .25s ease;
+
+}
+
+.delete-icon{
+
+    width:70px;
+    height:70px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#fee2e2;
+
+    color:#ef4444;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:34px;
+
+    margin-bottom:18px;
+
+}
+
+.delete-card h2{
+
+    margin-bottom:10px;
+
+    color:#111827;
+
+}
+
+.delete-card p{
+
+    color:#6b7280;
+
+    margin-bottom:24px;
+
+}
+
+.delete-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+.cancel-delete,
+.confirm-delete{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.cancel-delete{
+
+    background:#e5e7eb;
+
+    color:#111827;
+
+}
+
+.confirm-delete{
+
+    background:#ef4444;
+
+    color:#fff;
+
+}
+
+.cancel-delete:hover{
+
+    background:#d1d5db;
+
+}
+
+.confirm-delete:hover{
+
+    background:#dc2626;
+
+}
+
+@keyframes popupScale{
+
+    from{
+
+        transform:scale(.85);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================
+   RECYCLE BIN PAGE
+========================================== */
+
+/* Header */
+
+.customer-header{
+
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+
+    padding:15px;
+
+    border-bottom-left-radius:38px;
+
+    border-bottom-right-radius:38px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+}
+
+/* Top Bar */
+
+.top-bar{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* Back Button */
+
+.back-btn-circle{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    color:#16a34a;
+
+    text-decoration:none;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.15);
+
+    transition:.25s;
+
+}
+
+.back-btn-circle:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* Title */
+
+.title-area{
+
+    flex:1;
+
+}
+
+.title-area h2{
+
+    color:#fff;
+
+    font-size:24px;
+
+    margin:0;
+
+}
+
+.title-area p{
+
+    margin-top:5px;
+
+    color:#e8ffe8;
+
+    font-size:15px;
+
+}
+
+/* Customer List */
+
+#deletedCustomerList{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    padding:18px;
+
+    padding-bottom:100px;
+
+}
+
+/* Restore Button */
+
+.restore-btn{
+
+    position:absolute;
+
+    top:16px;
+
+    right:16px;
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#fff,#fff);
+
+    color:#fff;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(22,163,74,.35);
+
+    transition:.25s;
+
+}
+
+.restore-btn:hover{
+
+    transform:scale(1.08);
+
+}
+
+/* Delete Forever Button */
+
+.delete-btn{
+
+    width:100%;
+
+    margin-top:18px;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.delete-btn:hover{
+
+    background:#dc2626;
+
+}
+
+/* Empty State */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:70px 20px;
+
+}
+
+.empty-state h2{
+
+    font-size:28px;
+
+    color:#16a34a;
+
+    margin-bottom:12px;
+
+}
+
+.empty-state p{
+
+    color:#6b7280;
+
+    font-size:16px;
+
+}
+
+/* Dark Theme */
+
+.dark-theme .customer-header{
+
+    background:#1f2937;
+
+}
+
+.dark-theme .back-btn-circle{
+
+    background:#374151;
+
+    color:#fff;
+
+}
+
+.dark-theme .title-area p{
+
+    color:#d1d5db;
+
+}
+
+.dark-theme .empty-state h2{
+
+    color:#22c55e;
+
+}
+
+.dark-theme .empty-state p{
+
+    color:#d1d5db;
+
+}
+
+.avatar{
+
+    width:60px;
+    height:60px;
+
+    border-radius:50%;
+
+    background:green;
+
+    color:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:24px;
+    font-weight:700;
+
+    flex-shrink:0;
+
+}
+
+/* ==========================================
+   MODERN REPORT PAGE
+========================================== */
+
+/* Header */
+
+.report-header{
+
+    background:linear-gradient(135deg,#0f8a46,#18b357);
+
+    padding:18px 18px 24px;
+
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.report-header .header-top{
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+}
+
+.report-header .header-title{
+
+    flex:1;
+    margin-left:45px;
+
+}
+
+.report-header .header-title h2{
+
+    color:#fff;
+    font-size:30px;
+    margin:0;
+
+}
+
+.report-header .header-title p{
+
+    color:#eaffef;
+    margin-top:6px;
+
+}
+
+/* Sections */
+
+.report-section{
+
+    padding:20px 18px 10px;
+
+}
+
+.report-section h3{
+
+    font-size:24px;
+    color:#222;
+    margin-bottom:15px;
+
+}
+
+/* Cards */
+
+.report-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:12px;
+
+    margin-top:15px;
+
+}
+
+.report-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:14px 10px;
+
+    text-align:center;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.report-card:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.report-icon{
+
+    width:48px;
+
+    height:48px;
+
+    margin:0 auto 10px;
+
+    border-radius:14px;
+
+    background:#eaf6ff;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:22px;
+
+}
+
+.report-card h4{
+
+    font-size:12px;
+
+    color:#666;
+
+    margin-bottom:6px;
+
+    font-weight:600;
+
+}
+
+.report-card h2{
+
+    font-size:18px;
+
+    color:#111;
+
+    font-weight:700;
+
+}
+
+/* Info Box */
+
+.report-info{
+
+    margin:18px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.report-info p{
+
+    font-size:18px;
+
+    color:#333;
+
+}
+
+/* Buttons */
+
+.report-buttons{
+
+    padding:20px 18px 100px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.report-btn{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#16a34a;
+
+    color:#fff;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-decoration:none;
+
+}
+
+.report-btn{
+
+    width:100%;
+    padding:18px;
+
+    border:none;
+    border-radius:22px;
+
+    background:#eaf6ff;
+    color:#000;
+
+    font-size:18px;
+    font-weight:700;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+
+    cursor:pointer;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.report-btn:hover{
+
+    transform:translateY(-2px);
+
+    background:#dbeeff;
+
+}
+
+/* Bottom Navigation */
+
+.bottom-nav{
+
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:70px;
+
+    background:#fff;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    box-shadow:0 -5px 20px rgba(0,0,0,.1);
+
+    z-index:999;
+
+}
+
+.nav-item{
+
+    flex:1;
+
+    text-decoration:none;
+
+    color:#777;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    font-size:22px;
+
+}
+
+.nav-item small{
+
+    font-size:11px;
+    margin-top:4px;
+
+}
+
+.nav-item.active{
+
+    color:#16a34a;
+    font-weight:bold;
+
+}
+
+.report-buttons{
+
+    margin:25px 0 90px;
+
+}
+
+@media print{
+
+    .bottom-nav,
+    .back-circle,
+    .bell-circle,
+    .report-btn{
+
+        display:none !important;
+
+    }
+
+}
+
+/* ==========================================
+   EDIT CUSTOMER PAGE
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#111827;
+    min-height:100vh;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.edit-header{
+    width:92%;
+    margin:20px auto;
+    padding:22px;
+    border-radius:28px;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    display:flex;
+    align-items:center;
+    gap:18px;
+    box-shadow:0 15px 35px rgba(22,163,74,.25);
+}
+
+.back-circle{
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    background:#fff;
+    color:#16a34a;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:34px;
+    font-weight:bold;
+    flex-shrink:0;
+    transition:.25s;
+}
+
+.back-circle:hover{
+    transform:scale(1.08);
+}
+
+.header-text{
+    flex:1;
+}
+
+.header-text h1{
+    color:#fff;
+    font-size:28px;
+    margin-bottom:6px;
+}
+
+.header-text p{
+    color:rgba(255,255,255,.9);
+    font-size:15px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.edit-card{
+    width:92%;
+    max-width:520px;
+    margin:25px auto;
+    background:#fff;
+    border-radius:28px;
+    padding:25px;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+}
+
+.edit-card h2{
+    text-align:center;
+    color:#111827;
+    margin-bottom:25px;
+    font-size:24px;
+}
+
+/* ==========================================
+   INPUT GROUP
+========================================== */
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group label{
+    display:block;
+    margin-bottom:8px;
+    color:#374151;
+    font-size:15px;
+    font-weight:700;
+}
+
+.input-group input{
+    width:100%;
+    padding:16px;
+    border:none;
+    outline:none;
+    border-radius:16px;
+    background:#f3f6fb;
+    font-size:16px;
+    transition:.25s;
+    border:2px solid transparent;
+}
+
+.input-group input:focus{
+    background:#fff;
+    border-color:#16a34a;
+    box-shadow:0 0 0 5px rgba(22,163,74,.12);
+}
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.update-btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:18px;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.25s;
+    box-shadow:0 10px 25px rgba(22,163,74,.25);
+}
+
+.update-btn:hover{
+    transform:translateY(-3px);
+}
+
+.update-btn:active{
+    transform:scale(.97);
+}
+
+/* ==========================================
+   LOADER
+========================================== */
+
+.loader-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(255,255,255,.7);
+    z-index:9999;
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+.dark-theme{
+    background:#111827;
+}
+
+.dark-theme .edit-card{
+    background:#1f2937;
+}
+
+.dark-theme .edit-card h2,
+.dark-theme label{
+    color:#fff;
+}
+
+.dark-theme input{
+    background:#374151;
+    color:#fff;
+}
+
+.dark-theme input:focus{
+    background:#1f2937;
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:600px){
+
+.edit-header{
+    padding:20px;
+    border-radius:24px;
+}
+
+.back-circle{
+    width:50px;
+    height:50px;
+    font-size:28px;
+}
+
+.header-text h1{
+    font-size:24px;
+}
+
+.edit-card{
+    width:92%;
+    padding:20px;
+    border-radius:22px;
+}
+
+.update-btn{
+    font-size:17px;
+}
+
+}
