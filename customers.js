@@ -12,7 +12,8 @@ import {
     orderBy,
     serverTimestamp,
     deleteDoc,
-   doc
+   doc,
+   setDoc
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 // ======================================
@@ -20,6 +21,7 @@ import {
 // ======================================
 
 let customers = [];
+let deleteIndex = null;
 
 // ======================================
 // GENERATE CUSTOMER ID
@@ -71,6 +73,59 @@ async function generateCustomerID() {
         return null;
 
     }
+
+}
+
+// ======================================
+// AVATAR COLOR
+// ======================================
+
+function getAvatarColor(name){
+
+const colors = [
+
+"#2563EB", // Blue
+"#3B82F6", // Sky Blue
+"#1D4ED8", // Royal Blue
+"#6366F1", // Indigo
+"#7C3AED", // Purple
+"#9333EA", // Violet
+"#A855F7", // Bright Purple
+"#EC4899", // Pink
+"#DB2777", // Dark Pink
+"#E11D48", // Rose
+"#EF4444", // Red
+"#DC2626", // Dark Red
+"#F97316", // Orange
+"#EA580C", // Deep Orange
+"#F59E0B", // Amber
+"#D97706", // Gold
+"#0EA5E9", // Light Blue
+"#0284C7", // Ocean Blue
+"#4F46E5", // Deep Indigo
+"#8B5CF6", // Lavender Purple
+"#C026D3", // Magenta
+"#BE123C", // Crimson
+"#B91C1C", // Wine Red
+"#334155", // Slate
+"#475569", // Steel Gray
+"#6B7280", // Gray
+"#0F172A", // Navy Black
+"#7C2D12", // Brown
+"#9A3412", // Burnt Orange
+"#581C87"  // Dark Violet
+
+];
+
+    let hash = 0;
+
+    for(let i = 0; i < name.length; i++){
+
+        hash += name.charCodeAt(i);
+
+    }
+
+    return colors[hash % colors.length];
 
 }
 
@@ -148,34 +203,53 @@ async function saveCustomer() {
         }
 
         await addDoc(
-            collection(db, "customers"),
-            {
+    collection(db, "customers"),
+    {
 
-                id: customerID,
+        id: customerID,
 
-                name,
+        name,
 
-                mobile,
+        mobile,
 
-                address,
+        address,
 
-                loan: 0,
+        loan: 0,
 
-                paid: 0,
+        paid: 0,
 
-                balance: 0,
+        balance: 0,
 
-                loans: [],
+        loans: [],
 
-                payments: [],
+        payments: [],
 
-                createdAt: serverTimestamp()
+        createdAt: serverTimestamp()
 
-            }
-        );
+    }
+);
+
+        await addDoc(
+    collection(db, "adminNotifications"),
+    {
+
+        icon: "👤",
+
+        title: "New Customer Added",
+
+        message: `${name} was added successfully.`,
+
+        customerID: customerID,
+
+        customerName: name,
+
+        createdAt: serverTimestamp()
+
+    }
+);
 
         showToast(
-            `Customer Saved Successfully\nCustomer ID: ${customerID}`,
+            `Customer Saved Successfully: ${customerID}`,
             "success"
         );
 
@@ -230,10 +304,31 @@ async function loadCustomers() {
 
         customers = [];
 
-        const q = query(
-    collection(db, "customers"),
-    orderBy("createdAt", "desc")
-);
+        let sortValue = "latest";
+
+const sortSelect = document.getElementById("sortCustomer");
+
+if (sortSelect) {
+    sortValue = sortSelect.value;
+}
+
+let q;
+
+if (sortValue === "oldest") {
+
+    q = query(
+        collection(db, "customers"),
+        orderBy("createdAt", "asc")
+    );
+
+} else {
+
+    q = query(
+        collection(db, "customers"),
+        orderBy("createdAt", "desc")
+    );
+
+}
 
 const snapshot = await getDocs(q);
 
@@ -266,113 +361,116 @@ const snapshot = await getDocs(q);
             });
 
         });
+        
+        if (sortValue === "name") {
+
+    customers.sort((a, b) =>
+        a.name.localeCompare(b.name)
+    );
+
+}
 
         
         if (customers.length === 0) {
 
             list.innerHTML = `
-                <div class="empty-state">
-                    <h3>No Customers Found</h3>
-                </div>
-            `;
+<div class="empty-state">
+
+    <div class="empty-box">
+
+        <div class="empty-icon">👥</div>
+
+        <h2>No Customers Found</h2>
+
+        <p>Add your first customer to get started.</p>
+
+    </div>
+
+</div>
+`;
 
             return;
 
         }
 
-        let html = "";
+let html = "";
 
 customers.forEach((customer, index) => {
 
-    const avatar =
-        customer.name
+    const avatar = customer.name
         ? customer.name.charAt(0).toUpperCase()
         : "?";
+    const avatarColor = getAvatarColor(customer.name || "");
 
     html += `
 
-<div class="customer-card">
+<div class="customer-card"
+     onmousedown="startHold(${index})"
+     onmouseup="cancelHold()"
+     onmouseleave="cancelHold()"
+     ontouchstart="startHold(${index})"
+     ontouchend="cancelHold()"
+     onclick="viewCustomer(${index})">
 
-    <div class="card-header">
+    <button
+        class="edit-btn"
+        onclick="event.stopPropagation(); editCustomer('${customer.firebaseID}')">
+        ✏️
+    </button>
+
+    <div
+        class="customer-content"
+        onclick="viewCustomer(${index})">
 
         <div class="customer-info">
 
-            <div class="avatar">
-                ${avatar}
-            </div>
+<div
+    class="avatar"
+    style="background:${avatarColor};">
 
-            <div>
+    ${avatar}
+
+</div>
+
+            <div class="customer-text">
 
                 <h2 class="customer-name">
                     ${customer.name}
                 </h2>
 
-                <div class="customer-id">
+                <p class="customer-id">
                     🆔 ${customer.id}
-                </div>
+                </p>
 
-                <div class="customer-mobile">
+                <p class="customer-mobile">
                     📞 ${customer.mobile}
-                </div>
+                </p>
 
             </div>
 
         </div>
 
-        <button
-            class="edit-btn"
-            onclick="editCustomer('${customer.firebaseID}')"
-            title="Edit Customer">
+        <div class="customer-summary">
 
-            🖋️
+            <div class="summary-row">
+                <span>Total Loan</span>
+                <strong>₹${Number(customer.loan).toLocaleString()}</strong>
+            </div>
 
-        </button>
+            <div class="summary-row">
+                <span>Paid</span>
+                <strong>₹${Number(customer.paid).toLocaleString()}</strong>
+            </div>
 
-    </div>
-
-    <div class="customer-summary">
-
-        <div class="summary-row">
-            <span>💰 Loan</span>
-            <strong>₹${Number(customer.loan).toLocaleString()}</strong>
-        </div>
-
-        <div class="summary-row">
-            <span>✅ Paid</span>
-            <strong>₹${Number(customer.paid).toLocaleString()}</strong>
-        </div>
-
-        <div class="summary-row">
-            <span>🔴 Balance</span>
-            <strong>₹${Number(customer.balance).toLocaleString()}</strong>
-        </div>
-
-    </div>
-
-    <div class="customer-footer">
-
-
-        <div class="card-actions">
-
-            <button
-                class="view-btn"
-                onclick="viewCustomer(${index})">
-
-                ️ VIEW
-
-            </button>
-
-            <button
-                class="delete-btn"
-                onclick="deleteCustomer(${index})">
-
-                ️ DELETE
-
-            </button>
+            <div class="summary-row">
+                <span>Balance</span>
+                <strong>₹${Number(customer.balance).toLocaleString()}</strong>
+            </div>
 
         </div>
 
     </div>
+
 
 </div>
 
@@ -380,7 +478,7 @@ customers.forEach((customer, index) => {
 
 });
 
-        list.innerHTML = html;
+list.innerHTML = html;
 
     }
 
@@ -409,11 +507,17 @@ customers.forEach((customer, index) => {
 // DELETE CUSTOMER
 // ======================================
 
-async function deleteCustomer(index) {
+// Opens the delete popup
+async function deleteCustomer(index){
 
-    if (!confirm("Delete this customer?")) {
-        return;
-    }
+    deleteIndex = index;
+
+    document.getElementById("deletePopup").style.display = "flex";
+
+}
+
+// Moves customer to Recycle Bin
+async function moveCustomerToRecycleBin(index){
 
     if (typeof showLoader === "function") {
         showLoader();
@@ -421,11 +525,46 @@ async function deleteCustomer(index) {
 
     try {
 
+        const customer = customers[index];
+
+        await setDoc(
+    doc(db, "deletedCustomers", customer.firebaseID),
+    {
+        ...customer,
+        deletedAt: serverTimestamp()
+    }
+);
+
+// Create admin notification
+
+await addDoc(
+    collection(db, "adminNotifications"),
+    {
+
+        icon: "🗑️",
+
+        title: "Customer Deleted",
+
+        message: `${customer.name} was moved to Recycle Bin.`,
+
+        customerID: customer.id,
+
+        customerName: customer.name,
+
+        createdAt: serverTimestamp()
+
+    }
+);
+
+
         await deleteDoc(
-            doc(db, "customers", customers[index].firebaseID)
+            doc(db, "customers", customer.firebaseID)
         );
 
-        showToast("Customer deleted successfully.", "success");
+        showToast(
+            "Customer moved to Recycle Bin.",
+            "success"
+        );
 
         await loadCustomers();
 
@@ -433,9 +572,12 @@ async function deleteCustomer(index) {
 
     catch (error) {
 
-        console.error("Delete Error:", error);
+        console.error(error);
 
-        showToast("Failed to delete customer.", "error");
+        showToast(
+            "Failed to move customer.",
+            "error"
+        );
 
     }
 
@@ -539,7 +681,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadCustomers();
 
+    const sort = document.getElementById("sortCustomer");
+
+    if (sort) {
+
+        sort.addEventListener("change", () => {
+
+            loadCustomers();
+
+        });
+
+    }
+
 });
+
+let holdTimer;
+
+function startHold(index){
+
+    holdTimer = setTimeout(() => {
+
+        deleteIndex = index;
+
+        document.getElementById("deletePopup").style.display = "flex";
+
+    }, 1000);
+
+}
+
+function cancelHold(){
+
+    clearTimeout(holdTimer);
+
+}
+
+// ======================================
+// DELETE POPUP
+// ======================================
+
+const deletePopup = document.getElementById("deletePopup");
+const cancelDelete = document.getElementById("cancelDelete");
+const confirmDelete = document.getElementById("confirmDelete");
+
+if (deletePopup && cancelDelete && confirmDelete) {
+
+    cancelDelete.onclick = () => {
+
+        deleteIndex = null;
+        deletePopup.style.display = "none";
+
+    };
+
+confirmDelete.onclick = async () => {
+
+    deletePopup.style.display = "none";
+
+    const index = deleteIndex;
+
+    deleteIndex = null;
+
+    if(index !== null){
+
+        await moveCustomerToRecycleBin(index);
+
+    }
+
+};
+
+    deletePopup.addEventListener("click", (e) => {
+
+        if (e.target === deletePopup) {
+
+            deleteIndex = null;
+
+            deletePopup.style.display = "none";
+
+        }
+
+    });
+
+}
+
 
 // ======================================
 // MAKE FUNCTIONS AVAILABLE TO HTML
@@ -550,3 +772,5 @@ window.deleteCustomer = deleteCustomer;
 window.viewCustomer = viewCustomer;
 window.searchCustomer = searchCustomer;
 window.editCustomer = editCustomer;
+window.startHold = startHold;
+window.cancelHold = cancelHold;
