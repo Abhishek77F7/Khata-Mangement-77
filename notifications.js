@@ -7,9 +7,15 @@ import { db } from "./firebase.js";
 import {
     collection,
     getDocs,
-    doc,
     getDoc,
-    updateDoc
+    doc,
+    updateDoc,
+    query,
+    orderBy,
+    deleteDoc,
+    writeBatch,
+    addDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 // ======================================
@@ -17,12 +23,24 @@ import {
 // ======================================
 
 const isAdmin =
-    localStorage.getItem("adminLoggedIn") === "true";
+    sessionStorage.getItem("adminLoggedIn") === "true";
 
 const customerDocID =
     localStorage.getItem("customerDocID");
 
-    let notifications = [];
+// ======================================
+// VARIABLES
+// ======================================
+
+let notifications = [];
+
+let deleteNotificationIndex = null;
+
+let clearAllMode = false;
+
+// ======================================
+// LOGIN VALIDATION
+// ======================================
 
 if (isAdmin) {
 
@@ -30,72 +48,226 @@ if (isAdmin) {
         checkAdminLogin();
     }
 
-}
-
-if (!isAdmin && !customerDocID) {
+} else if (!customerDocID) {
 
     window.location.href = "customer-login.html";
 
 }
 
+// ======================================
+// DELETE POPUP ELEMENTS
+// ======================================
+
+const deletePopup =
+    document.getElementById("deleteConfirmPopup");
+
+const cancelDeleteBtn =
+    document.getElementById("cancelDeleteBtn");
+
+const confirmDeleteBtn =
+    document.getElementById("confirmDeleteBtn");
 
 // ======================================
-// DELETE NOTIFICATION
+// COUNTERS
 // ======================================
 
-window.deleteNotification = async function(index){
+const notificationCount =
+    document.getElementById("notificationCount");
 
-    if(!customerDocID){
+const unreadCount =
+    document.getElementById("unreadCount");
 
-        notifications.splice(index,1);
+const importantCount =
+    document.getElementById("importantCount");
 
-        loadNotifications();
+const otherCount =
+    document.getElementById("otherCount");
+    
+// ======================================
+// POPUP FUNCTIONS
+// ======================================
 
-        return;
+function showDeletePopup(index, clearMode = false) {
+
+    deleteNotificationIndex = index;
+    clearAllMode = clearMode;
+
+    const title =
+        document.querySelector("#deleteConfirmPopup h2");
+
+    const message =
+        document.querySelector("#deleteConfirmPopup p");
+
+    if (clearMode) {
+
+        title.textContent =
+            "Clear All Notifications?";
+
+        message.textContent =
+            "All notifications will be permanently deleted.";
+
+    } else {
+
+        title.textContent =
+            "Delete Notification?";
+
+        message.textContent =
+            "This notification will be permanently deleted.";
 
     }
 
-    const ok = confirm("Delete this notification?");
+    deletePopup.style.display = "flex";
 
-    if(!ok) return;
+}
 
-    try{
+// ======================================
+// CANCEL BUTTON
+// ======================================
 
-        const ref = doc(db,"customers",customerDocID);
+cancelDeleteBtn.onclick = () => {
 
-        const snap = await getDoc(ref);
+    deletePopup.style.display = "none";
 
-        if(!snap.exists()) return;
+    deleteNotificationIndex = null;
 
-        const customer = snap.data();
+    clearAllMode = false;
 
-        customer.notifications =
-        customer.notifications || [];
+};
 
-        customer.notifications.splice(index,1);
+// ======================================
+// DELETE BUTTON
+// ======================================
 
-        await updateDoc(ref,{
+confirmDeleteBtn.onclick = async () => {
 
-            notifications:
-            customer.notifications
+    deletePopup.style.display = "none";
 
-        });
+    try {
+
+        // ==========================
+        // CLEAR ALL
+        // ==========================
+
+        if (clearAllMode) {
+
+            if (isAdmin) {
+
+                const batch = writeBatch(db);
+
+                notifications.forEach(item => {
+
+                    batch.delete(
+                        doc(
+                            db,
+                            "adminNotifications",
+                            item.id
+                        )
+                    );
+
+                });
+
+                await batch.commit();
+
+            } else {
+
+                await updateDoc(
+
+                    doc(
+                        db,
+                        "customers",
+                        customerDocID
+                    ),
+
+                    {
+                        notifications: []
+                    }
+
+                );
+
+            }
+
+            notifications = [];
+
+            showToast(
+                "All notifications cleared.",
+                "success"
+            );
+
+            loadNotifications();
+
+            clearAllMode = false;
+
+            return;
+
+        }
+
+        // ==========================
+        // DELETE SINGLE
+        // ==========================
+
+        if (deleteNotificationIndex === null)
+            return;
+
+        if (isAdmin) {
+
+            await deleteDoc(
+
+                doc(
+                    db,
+                    "adminNotifications",
+                    notifications[deleteNotificationIndex].id
+                )
+
+            );
+
+        } else {
+
+            const ref = doc(
+                db,
+                "customers",
+                customerDocID
+            );
+
+            const snap = await getDoc(ref);
+
+            if (!snap.exists()) return;
+
+            const customer = snap.data();
+
+            customer.notifications =
+                customer.notifications || [];
+
+            customer.notifications.splice(
+                deleteNotificationIndex,
+                1
+            );
+
+            await updateDoc(ref, {
+
+                notifications:
+                    customer.notifications
+
+            });
+
+        }
 
         showToast(
             "Notification deleted.",
             "success"
         );
 
+        deleteNotificationIndex = null;
+
         loadNotifications();
 
     }
 
-    catch(error){
+    catch (error) {
 
         console.error(error);
 
         showToast(
-            "Failed to delete notification.",
+            "Failed to complete action.",
             "error"
         );
 
@@ -104,20 +276,53 @@ window.deleteNotification = async function(index){
 };
 
 // ======================================
+// CLOSE POPUP
+// ======================================
+
+deletePopup.onclick = (e) => {
+
+    if (e.target === deletePopup) {
+
+        deletePopup.style.display = "none";
+
+        deleteNotificationIndex = null;
+
+        clearAllMode = false;
+
+    }
+
+};
+
+document.addEventListener("keydown", (e) => {
+
+    if (e.key === "Escape") {
+
+        deletePopup.style.display = "none";
+
+        deleteNotificationIndex = null;
+
+        clearAllMode = false;
+
+    }
+
+});
+
+
+// ======================================
+// DELETE NOTIFICATION
+// ======================================
+
+window.deleteNotification = function(index){
+
+    showDeletePopup(index,false);
+
+};
+
+// ======================================
 // CLEAR ALL NOTIFICATIONS
 // ======================================
 
-window.clearAllNotifications = async function(){
-
-    if(!customerDocID){
-
-        notifications=[];
-
-        loadNotifications();
-
-        return;
-
-    }
+window.clearAllNotifications = function(){
 
     if(notifications.length===0){
 
@@ -130,278 +335,340 @@ window.clearAllNotifications = async function(){
 
     }
 
-    const ok = confirm(
-        "Clear all notifications?"
-    );
+    showDeletePopup(null,true);
 
-    if(!ok) return;
+};
 
-    try{
+// ======================================
+// UPDATE COUNTERS
+// ======================================
+
+function updateCounters(){
+
+    let unread = 0;
+    let important = 0;
+    let others = 0;
+
+    notifications.forEach(item=>{
+
+        if(item.read !== true){
+            unread++;
+        }
+
+        if(
+            item.icon==="⚠️" ||
+            item.icon==="🚨" ||
+            item.icon==="⏰"
+        ){
+
+            important++;
+
+        }else{
+
+            others++;
+
+        }
+
+    });
+
+    if(notificationCount)
+        notificationCount.textContent =
+        notifications.length;
+
+    if(unreadCount)
+        unreadCount.textContent =
+        unread;
+
+    if(importantCount)
+        importantCount.textContent =
+        important;
+
+    if(otherCount)
+        otherCount.textContent =
+        others;
+
+}
+
+// ======================================
+// CHECK LOAN REMINDERS
+// ======================================
+
+async function checkLoanReminders(
+    customerDocID,
+    customer
+){
+
+    const reminderDays =
+    [7,14,21,30];
+
+    let updated = false;
+
+    const now = Date.now();
+
+    customer.loans =
+    customer.loans || [];
+
+    for(const loan of customer.loans){
+
+        if(!loan.createdAt)
+            continue;
+
+        loan.reminders =
+        loan.reminders || [];
+
+        const diffDays = Math.floor(
+
+            (now-loan.createdAt)/
+            (1000*60*60*24)
+
+        );
+
+        if(
+
+            reminderDays.includes(diffDays) &&
+
+            !loan.reminders.includes(diffDays)
+
+        ){
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "adminNotifications"
+                ),
+
+                {
+
+                    icon:"⏰",
+
+                    title:
+                    `Loan Due ${diffDays} Days`,
+
+                    message:
+                    `${customer.name} has a pending balance for ${diffDays} days.`,
+
+                    customerID:
+                    customer.id,
+
+                    customerName:
+                    customer.name,
+
+                    createdAt:
+                    serverTimestamp()
+
+                }
+
+            );
+
+            loan.reminders.push(diffDays);
+
+            updated = true;
+
+        }
+
+    }
+
+    if(updated){
 
         await updateDoc(
 
-            doc(db,"customers",customerDocID),
+            doc(
+                db,
+                "customers",
+                customerDocID
+            ),
 
             {
 
-                notifications:[]
+                loans:
+                customer.loans
 
             }
 
         );
 
-        notifications=[];
-
-        showToast(
-            "All notifications cleared.",
-            "success"
-        );
-
-        loadNotifications();
-
     }
 
-    catch(error){
-
-        console.error(error);
-
-        showToast(
-            "Failed to clear notifications.",
-            "error"
-        );
-
-    }
-
-};
+}
 
 // ======================================
 // LOAD NOTIFICATIONS
 // ======================================
 
-async function loadNotifications() {
+async function loadNotifications(){
 
-    if (typeof showLoader === "function") {
+    if(typeof showLoader==="function"){
         showLoader();
     }
 
-    const notificationList =
-        document.getElementById("notificationList");
+    notificationList.innerHTML="";
+    notifications=[];
 
-    const notificationCount =
-        document.getElementById("notificationCount");
+    try{
 
-notificationList.innerHTML = "";
+        // ======================================
+        // CUSTOMER
+        // ======================================
 
-notifications = [];
+        if(!isAdmin){
 
-let count = 0;
+            const snap = await getDoc(
+                doc(db,"customers",customerDocID)
+            );
 
-try {
+            if(!snap.exists()){
 
-    // ===========================
-    // CUSTOMER NOTIFICATIONS
-    // ===========================
+                notificationList.innerHTML = `
+<div class="empty-wrapper">
 
-    if (!isAdmin) {
+    <div class="empty-text">
 
-        const snap = await getDoc(
-    doc(db, "customers", customerDocID)
-);
-
-
-        if (!snap.exists()) {
-
-            notificationList.innerHTML = `
-                <div class="notification-card">
-                    <h3>Customer Not Found</h3>
-                </div>
-            `;
-
-            return;
-
-        }
-
-        const customer = snap.data();
-
-        customer.notifications =
-            customer.notifications || [];
-
-customer.notifications.reverse().forEach((item) => {
-
-    count++;
-
-    notifications.push(item);
-
-    notificationList.innerHTML += `
-
-    <div class="notification-card">
-
-        <button
-        class="delete-notification"
-        onclick="deleteNotification(${notifications.length - 1})">
-
-        🗑️
-
-        </button>
-
-        <h3>${item.icon} ${item.title}</h3>
-
-        <p>${item.message}</p>
-
-        <p> ${item.date}</p>
+        No Notifications Found
 
     </div>
 
-    `;
+</div>
+`;
 
-});
-
-        if (count === 0) {
-
-            notificationList.innerHTML = `
-
-            <div class="notification-card">
-
-                <h3>🔔 No Notifications</h3>
-
-                <p>No new updates.</p>
-
-            </div>
-
-            `;
-
-        }
-
-        notificationCount.textContent = count;
-
-        document.getElementById("backButton").href =
-            "profile.html";
-
-        return;
-
-    }
-
-    // ===========================
-    // ADMIN NOTIFICATIONS
-    // ===========================
-
-    const snapshot = await getDocs(
-        collection(db, "customers")
-    );
-
-        const today = new Date();
-
-        snapshot.forEach((docSnap) => {
-
-            const customer = docSnap.data();
-
-            customer.loans = customer.loans || [];
-            customer.payments = customer.payments || [];
-
-            const loan = customer.loans.reduce((sum, item) => {
-
-                return sum + Number(item.total || 0);
-
-            }, 0);
-
-            const paid = customer.payments.reduce((sum, item) => {
-
-                return sum + Number(item.amount || 0);
-
-            }, 0);
-
-            const balance = Math.max(loan - paid, 0);
-
-            if (
-                balance <= 0 ||
-                customer.loans.length === 0
-            ) {
+                updateCounters();
                 return;
             }
 
-            const lastLoan =
-                customer.loans[customer.loans.length - 1];
+            const customer=snap.data();
 
-            const loanDate = new Date(lastLoan.date);
+            const list=
+                customer.notifications || [];
 
-            if (isNaN(loanDate)) return;
+            list.slice().reverse().forEach((item,index)=>{
 
-            const diffDays = Math.floor(
-                (today - loanDate) /
-                (1000 * 60 * 60 * 24)
-            );
+                notifications.push(item);
 
-            if (diffDays >= 7) {
-
-                count++;
-                
-                notifications.push({
-    customer: customer.name,
-    balance: balance,
-    days: diffDays
-});
-
-notificationList.innerHTML += `
+                notificationList.innerHTML += `
 
 <div class="notification-card">
 
-<button
-class="delete-notification"
-onclick="deleteNotification(${notifications.length-1})">
+    <div class="notification-icon">
+        ${item.icon || "🔔"}
+    </div>
 
-🗑️
+    <div class="notification-info">
 
-</button>
+        <h3 class="notification-title">
+            ${item.title}
+        </h3>
 
-<h3>
+        <p class="notification-message">
+            ${item.message}
+        </p>
 
-⚠️ ${customer.name}
+        <p class="notification-time">
+            ${item.date || ""}
+        </p>
 
-</h3>
+    </div>
 
-<p>
-
-🆔 ${customer.id}
-
-</p>
-
-<p>
-
-📞 ${customer.mobile}
-
-</p>
-
-<p>
-
-💰 Pending Balance :
-<b>₹${balance}</b>
-
-</p>
-
-<p>
-
-📅 Pending Since :
-${diffDays} Days
-
-</p>
+    <button
+        class="delete-notification"
+        onclick="deleteNotification(${index})">
+        🗑️
+    </button>
 
 </div>
 
 `;
 
+            });
+
+        }
+
+        // ======================================
+        // ADMIN
+        // ======================================
+
+        else{
+
+            const customers =
+            await getDocs(
+                collection(db,"customers")
+            );
+
+            for(const customerDoc of customers.docs){
+
+                await checkLoanReminders(
+                    customerDoc.id,
+                    customerDoc.data()
+                );
+
             }
 
-        });
+            const q=query(
 
-        if (count === 0) {
+                collection(db,"adminNotifications"),
 
-            notificationList.innerHTML = `
+                orderBy("createdAt","desc")
 
-            <div class="notification-card">
+            );
 
-                <h3>✅ No Pending Notifications</h3>
+            const snapshot=await getDocs(q);
 
-                <p>All customers are up to date.</p>
+            snapshot.forEach((docSnap)=>{
+
+                const item={
+
+                    id:docSnap.id,
+
+                    ...docSnap.data()
+
+                };
+
+                notifications.push(item);
+
+                notificationList.innerHTML += `
+
+<div class="notification-card">
+
+    <div class="notification-icon">
+        ${item.icon || "🔔"}
+    </div>
+
+    <div class="notification-info">
+
+        <h3 class="notification-title">
+            ${item.title}
+        </h3>
+
+        <p class="notification-message">
+            ${item.message}
+        </p>
+
+    </div>
+
+    <button
+        class="delete-notification"
+        onclick="deleteNotification(${notifications.length-1})">
+        🗑️
+    </button>
+
+</div>
+
+`;
+
+            });
+
+        }
+
+        // ======================================
+        // EMPTY
+        // ======================================
+
+        if(notifications.length===0){
+
+            notificationList.innerHTML=`
+
+            <div class="empty-text">
+
+                No Notifications Found
 
             </div>
 
@@ -409,13 +676,11 @@ ${diffDays} Days
 
         }
 
-        if (notificationCount) {
-            notificationCount.textContent = count;
-        }
+        updateCounters();
 
     }
 
-    catch (error) {
+    catch(error){
 
         console.error(error);
 
@@ -426,9 +691,9 @@ ${diffDays} Days
 
     }
 
-    finally {
+    finally{
 
-        if (typeof hideLoader === "function") {
+        if(typeof hideLoader==="function"){
             hideLoader();
         }
 
@@ -441,3 +706,7 @@ ${diffDays} Days
 // ======================================
 
 loadNotifications();
+
+// Auto refresh every 30 seconds
+
+setInterval(loadNotifications,30000);
