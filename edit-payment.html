@@ -3,149 +3,103 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Edit Payment</title>
+    <title>Edit Payment</title>
 
-<link rel="stylesheet" href="admin.css">
-<link rel="stylesheet" href="toast.css">
-<link rel="stylesheet" href="loader.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="toast.css">
 
 </head>
 
-
 <body>
 
+    <!-- Header -->
 
-<!-- Loader -->
-<div id="loader" class="loader-overlay">
-    <div class="loader"></div>
-</div>
+    <div class="edit-header">
 
+        <a id="backBtn" class="back-circle">
+            ❮
+        </a>
 
+        <div class="header-text">
+            <h1>💰 Edit Payment</h1>
+            <p>Update customer payment details</p>
+        </div>
 
-<header>
+    </div>
 
-<h2>
-  Edit Payment
-</h2>
+    <!-- Main Card -->
 
-</header>
+    <div class="edit-card">
 
+        <h2>Payment Information</h2>
 
 
-<div class="container">
 
+        <div class="input-group">
 
-<div class="payment-card">
+            <label for="customerName">
+                👥 Customer
+            </label>
 
+            <div id="customerName" class="customer-display">
+                Customer Payment
+            </div>
 
+        </div>
 
-<div class="payment-header">
+        <div class="input-group">
 
-<h3>
- Payment Update
-</h3>
+            <label for="amount">
+                💵 Payment Amount
+            </label>
 
-<p id="customerName">
-Customer Payment
-</p>
+            <input
+                type="number"
+                id="amount"
+                placeholder="₹ Enter payment amount"
+                min="1">
 
-</div>
+        </div>
 
+        <div class="input-group">
 
+            <label for="date">
+                📅 Payment Date & Time
+            </label>
 
-<div class="payment-box">
+            <input
+                type="datetime-local"
+                id="date">
 
-<label>
-👤 Developed By
-</label>
+        </div>
 
-<div class="customer-display">
-Abhishek
-</div>
+        <button
+            id="updateBtn"
+            class="update-btn">
 
-</div>
+            Update Payment
 
+        </button>
 
+    </div>
 
+    <!-- Loader -->
 
-<div class="payment-box">
+    <div id="loader" class="loader-overlay">
+        <div class="loader"></div>
+    </div>
 
-<label>
-Amount
-</label>
+    <!-- Scripts -->
 
-<input
-type="number"
-id="amount"
-placeholder="₹ Enter Payment Amount"
-min="1">
+    <script src="loader.js"></script>
+    <script src="toast.js"></script>
+    <script src="auth.js"></script>
+    <script src="theme.js"></script>
 
-</div>
-
-
-
-
-<div class="payment-box">
-
-<label>
-Date
-</label>
-
-<input
-type="datetime-local"
-id="date">
-
-</div>
-
-
-
-
-<div class="button-group">
-
-
-<button
-id="updateBtn"
-class="green-btn">
-
- Update Payment
-
-</button>
-
-
-
-<a
-id="backBtn"
-class="back-btn">
-
-  Cancel
-
-</a>
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-<!-- Scripts -->
-
-<script src="loader.js"></script>
-<script src="toast.js"></script>
-<script src="auth.js"></script>
-<script src="theme.js"></script>
-
-<script type="module" src="edit-payment.js"></script>
-
+    <script type="module" src="edit-payment.js"></script>
 
 </body>
 
