@@ -20,6 +20,59 @@ const customerId = params.get("id");
 let customer = {};
 
 // ======================================
+// AVATAR COLORS
+// ======================================
+
+const colors = [
+
+"#2563EB",
+"#3B82F6",
+"#1D4ED8",
+"#6366F1",
+"#7C3AED",
+"#9333EA",
+"#A855F7",
+"#EC4899",
+"#DB2777",
+"#E11D48",
+"#EF4444",
+"#DC2626",
+"#F97316",
+"#EA580C",
+"#F59E0B",
+"#D97706",
+"#0EA5E9",
+"#0284C7",
+"#4F46E5",
+"#8B5CF6",
+"#C026D3",
+"#BE123C",
+"#B91C1C",
+"#334155",
+"#475569",
+"#6B7280",
+"#0F172A",
+"#7C2D12",
+"#9A3412",
+"#581C87"
+
+];
+
+function getAvatarColor(name = "") {
+
+    let hash = 0;
+
+    for (let i = 0; i < name.length; i++) {
+
+        hash += name.charCodeAt(i);
+
+    }
+
+    return colors[Math.abs(hash) % colors.length];
+
+}
+
+// ======================================
 // LOAD CUSTOMER
 // ======================================
 
@@ -81,6 +134,9 @@ async function loadCustomer() {
 
         const customerName =
             document.getElementById("customerName");
+     
+        const customerAvatar =
+            document.getElementById("customerAvatar");
 
         const customerMobile =
             document.getElementById("customerMobile");
@@ -93,6 +149,18 @@ async function loadCustomer() {
 
         if (customerName)
             customerName.textContent = customer.name || "";
+            
+            if (customerAvatar) {
+
+    customerAvatar.textContent =
+        (customer.name || "?")
+        .charAt(0)
+        .toUpperCase();
+
+    customerAvatar.style.background =
+        getAvatarColor(customer.name);
+
+}
 
         if (customerMobile)
             customerMobile.textContent =
@@ -199,7 +267,7 @@ function showPayments() {
                     class="delete-btn"
                     onclick="deletePayment(${originalIndex})">
 
-                    🗑️ DELETE
+                    ️ DELETE
 
                 </button>
 
