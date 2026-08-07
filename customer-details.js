@@ -113,9 +113,7 @@ async function loadCustomer() {
         );
 
         showCustomer();
-
         showLoans();
-
         showPayments();
 
     }
@@ -178,11 +176,60 @@ function showCustomer() {
         const totalProducts =
     document.getElementById("totalProducts");
 
-    if (customerAvatar)
-        customerAvatar.textContent =
-            customer.name
-                ? customer.name.charAt(0).toUpperCase()
-                : "?";
+if (customerAvatar) {
+
+    const letter = customer.name
+        ? customer.name.charAt(0).toUpperCase()
+        : "?";
+
+    customerAvatar.textContent = letter;
+
+    const colors = [
+
+"#2563EB", // Blue
+"#3B82F6", // Sky Blue
+"#1D4ED8", // Royal Blue
+"#6366F1", // Indigo
+"#7C3AED", // Purple
+"#9333EA", // Violet
+"#A855F7", // Bright Purple
+"#EC4899", // Pink
+"#DB2777", // Dark Pink
+"#E11D48", // Rose
+"#EF4444", // Red
+"#DC2626", // Dark Red
+"#F97316", // Orange
+"#EA580C", // Deep Orange
+"#F59E0B", // Amber
+"#D97706", // Gold
+"#0EA5E9", // Light Blue
+"#0284C7", // Ocean Blue
+"#4F46E5", // Deep Indigo
+"#8B5CF6", // Lavender Purple
+"#C026D3", // Magenta
+"#BE123C", // Crimson
+"#B91C1C", // Wine Red
+"#334155", // Slate
+"#475569", // Steel Gray
+"#6B7280", // Gray
+"#0F172A", // Navy Black
+"#7C2D12", // Brown
+"#9A3412", // Burnt Orange
+"#581C87"  // Dark Violet
+
+];
+
+    let hash = 0;
+
+    const name = customer.name || "";
+
+    for (let i = 0; i < name.length; i++) {
+        hash += name.charCodeAt(i);
+    }
+
+    customerAvatar.style.background =
+        colors[hash % colors.length];
+}
 
     if (customerName)
         customerName.textContent =
@@ -284,16 +331,12 @@ function showLoans() {
             <p><strong>Date :</strong> ${loan.date || "-"}</p>
 
             <div class="card-bottom">
-
-                <span></span>
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteLoan(${originalIndex})">
-
-                    🗑️ DELETE
-
-                </button>
+            
+ <button
+    class="delete-btn"
+    onclick="showDeleteModal(${originalIndex})">
+     DELETE
+</button>
 
             </div>
 
@@ -342,11 +385,7 @@ window.editLoan = function (index) {
 // DELETE LOAN
 // ======================================
 
-window.deleteLoan = async function (index) {
-
-    const ok = confirm("Delete this borrowed product?");
-
-    if (!ok) return;
+async function performDelete(index){
 
     if (typeof showLoader === "function") {
         showLoader();
@@ -447,6 +486,51 @@ window.backToCustomers = function () {
     window.location.href = "customers.html";
 
 };
+
+
+// ==============================
+// Bottom Navigation Active State
+// ==============================
+
+const navItems = document.querySelectorAll(".bottom-nav a");
+
+navItems.forEach(item => {
+    item.addEventListener("click", () => {
+        navItems.forEach(i => i.classList.remove("active"));
+        item.classList.add("active");
+    });
+});
+
+
+let deleteIndex = null;
+
+window.showDeleteModal = function(index){
+
+    deleteIndex = index;
+
+    document
+        .getElementById("deleteModal")
+        .classList.add("show");
+
+}
+
+window.closeDeleteModal = function(){
+
+    document
+        .getElementById("deleteModal")
+        .classList.remove("show");
+
+}
+
+document
+.getElementById("confirmDeleteBtn")
+.addEventListener("click", async ()=>{
+
+    closeDeleteModal();
+
+    await performDelete(deleteIndex);
+
+});
 
 // ======================================
 // START
