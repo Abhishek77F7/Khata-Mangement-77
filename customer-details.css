@@ -1,0 +1,664 @@
+/* ==========================================
+   CUSTOMER DETAILS - MODERN UI
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#222;
+    padding-bottom:95px;
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.customer-header{
+    background:linear-gradient(135deg,#16a34a,#18b357);
+    padding:20px;
+    border-bottom-left-radius:30px;
+    border-bottom-right-radius:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+}
+
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.back-circle{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    background:#fff;
+    color:#16a34a;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.header-title{
+    flex:1;
+}
+
+.header-title h2{
+    color:#fff;
+    font-size:26px;
+}
+
+.header-title p{
+    color:rgba(255,255,255,.9);
+    margin-top:5px;
+}
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.container{
+    padding:18px;
+}
+
+/* ==========================================
+   PROFILE CARD
+========================================== */
+
+.customer-profile-card{
+    background:#fff;
+    border-radius:24px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    margin-top:20px;
+    position:relative;
+}
+
+.profile-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.profile-avatar{
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:bold;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.profile-avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.profile-details{
+    flex:1;
+}
+
+.profile-details h2{
+    font-size:25px;
+    margin-bottom:8px;
+}
+
+.profile-details p{
+    color:#666;
+    margin:6px 0;
+    font-size:15px;
+}
+
+/* ==========================================
+   SUMMARY CARDS
+========================================== */
+
+.summary{
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+
+    gap:15px;
+
+    margin:22px 0;
+
+}
+
+.summary-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:18px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.summary-card p{
+
+    color:#666;
+
+    font-size:14px;
+
+    margin-bottom:8px;
+
+}
+
+.summary-card h2{
+
+    color:#16a34a;
+
+    font-size:26px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================
+   BORROWED PRODUCTS
+========================================== */
+
+.title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin:30px 0 18px;
+
+}
+
+#loanHistory{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.history-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border-left:5px solid #16a34a;
+
+    transition:.25s;
+
+}
+
+.history-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:15px;
+
+}
+
+.card-top h3{
+
+    font-size:20px;
+
+    color:#222;
+
+}
+
+.history-card hr{
+
+    border:none;
+
+    border-top:1px solid #ececec;
+
+    margin:12px 0;
+
+}
+
+.history-card p{
+
+    margin:8px 0;
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+.history-amount{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#16a34a;
+
+    margin-top:5px;
+
+}
+
+.card-bottom{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    margin-top:15px;
+
+}
+
+.edit-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#eaf6ff;
+
+    color:#fff;
+
+    font-size:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.edit-btn:hover{
+
+    transform:scale(1.08);
+
+}
+
+.delete-btn{
+
+    padding:10px 18px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ef4444;
+
+    color:#fff;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+}
+
+/* ==========================================
+   FLOATING ACTION BUTTON
+========================================== */
+
+.fab-container{
+    position:fixed;
+    right:20px;
+    bottom:90px;
+    z-index:1000;
+}
+
+.fab-main{
+    width:65px;
+    height:65px;
+    border:none;
+    border-radius:50%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:#fff;
+    font-size:34px;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(22,163,74,.35);
+    transition:.3s;
+}
+
+.fab-main.rotate{
+    transform:rotate(45deg);
+}
+
+.fab-menu{
+    position:absolute;
+    right:0;
+    bottom:78px;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(20px);
+
+    transition:.3s;
+}
+
+.fab-menu.show{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.fab-item{
+    min-width:180px;
+    padding:14px 18px;
+    border-radius:16px;
+    text-decoration:none;
+    color:#000;
+    font-weight:700;
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.fab-item.loan{
+    background:#fff;
+}
+
+.fab-item.payment{
+    background:#fff;
+}
+
+.fab-item.history{
+    background:#fff;
+}
+
+.fab-item.back{
+    background:#fff;
+}
+
+/* ==========================================
+   BOTTOM NAVIGATION
+========================================== */
+
+.bottom-nav{
+
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:65px;
+
+    background:#fff;
+
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+    box-shadow:0 -8px 25px rgba(0,0,0,.10);
+
+    z-index:999;
+}
+
+.bottom-nav a{
+
+    flex:1;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:#666;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    gap:4px;
+
+    transition:.25s;
+}
+
+.bottom-nav a span{
+
+    font-size:18px;
+
+}
+
+.bottom-nav a.active{
+
+    color:#16a34a;
+
+}
+
+.bottom-nav a:hover{
+
+    color:#16a34a;
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+    .summary{
+        gap:12px;
+    }
+
+    .summary-card{
+        padding:15px;
+    }
+
+    .summary-card h2{
+        font-size:22px;
+    }
+
+    .profile-avatar{
+        width:72px;
+        height:72px;
+        font-size:28px;
+    }
+
+    .profile-details h2{
+        font-size:22px;
+    }
+
+    .fab-item{
+        min-width:160px;
+    }
+
+}
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+.dark-theme{
+
+    background:#111827;
+
+    color:#fff;
+
+}
+
+.dark-theme .customer-profile-card,
+.dark-theme .summary-card,
+.dark-theme .history-card,
+.dark-theme .bottom-nav{
+
+    background:#1f2937;
+
+    color:#fff;
+
+}
+
+.dark-theme .history-card p,
+.dark-theme .profile-details p{
+
+    color:#d1d5db;
+
+}
+
+.dark-theme .bottom-nav a{
+
+    color:#d1d5db;
+
+}
+
+.dark-theme .bottom-nav a.active{
+
+    color:#22c55e;
+
+}
+
+/*==============================
+DELETE MODAL
+==============================*/
+
+.delete-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    backdrop-filter:blur(5px);
+}
+
+.delete-modal.show{
+    display:flex;
+    animation:fadeIn .25s;
+}
+
+.delete-box{
+    width:88%;
+    max-width:340px;
+    background:#fff;
+    border-radius:28px;
+    padding:30px 22px;
+    text-align:center;
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+    animation:popup .25s;
+}
+
+.delete-icon{
+    width:72px;
+    height:72px;
+    margin:auto;
+    border-radius:50%;
+    background:#ffe5e5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+}
+
+.delete-box h2{
+    margin:18px 0 10px;
+    font-size:24px;
+}
+
+.delete-box p{
+    color:#666;
+    line-height:1.5;
+    margin-bottom:25px;
+}
+
+.delete-actions{
+    display:flex;
+    gap:12px;
+}
+
+.cancel-btn,
+.confirm-btn{
+    flex:1;
+    border:none;
+    padding:14px;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.cancel-btn{
+    background:#f3f4f6;
+    color:#444;
+}
+
+.confirm-btn{
+    background:#ef4444;
+    color:#fff;
+}
+
+.cancel-btn:hover{
+    background:#e5e7eb;
+}
+
+.confirm-btn:hover{
+    background:#dc2626;
+}
+
+@keyframes popup{
+    from{
+        transform:scale(.8);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
