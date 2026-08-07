@@ -8,17 +8,35 @@
 
 <title>Customer Details</title>
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="customer-details.css">
 <link rel="stylesheet" href="toast.css">
-<link rel="stylesheet" href="loader.css">
+
 
 </head>
 
 <body>
 
-<header>
+<!-- Green Header -->
 
-<h2>📒 Customer Details</h2>
+<header class="customer-header">
+
+    <div class="header-top">
+
+        <a href="customers.html" class="back-circle">
+
+            ❮
+
+        </a>
+
+        <div class="header-title">
+
+            <h2>📒 Customer Details</h2>
+
+            <p>Customer Information</p>
+
+        </div>
+
+    </div>
 
 </header>
 
@@ -128,52 +146,98 @@
 
 </div>
 
-<!-- Floating Quick Action Button -->
+<!-- Floating Action Button -->
 
 <div class="fab-container">
 
     <button id="fabMain" class="fab-main">
-
-        ⊕
-
+      ⊕
     </button>
 
     <div id="fabMenu" class="fab-menu">
-      
-              <a id="addLoanBtn" class="fab-item loan">
 
-             ➕ Add Loan
-
+        <a id="addLoanBtn" class="fab-item loan">
+            ➕ Add Loan
         </a>
 
-
         <a id="paymentBtn" class="fab-item payment">
-
             💰 Payment
-
         </a>
 
         <a id="historyBtn" class="fab-item history">
-
             📜 History
-
-        </a>
-
-        <a href="customers.html" class="fab-item back">
-
-            👥 Customers
-
         </a>
 
     </div>
 
 </div>
 
+<!-- Bottom Navigation -->
+
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+        <span>🏠</span>
+        Dashboard
+    </a>
+
+    <a href="customers.html">
+        <span>👥</span>
+        Customers
+    </a>
+
+    <a href="add-customer.html">
+        <span>➕</span>
+        Add
+    </a>
+
+    <a href="settings.html">
+        <span>⚙️</span>
+        Settings
+    </a>
+
+</nav>
+
 <!-- Loader -->
 
 <div id="loader" class="loader-overlay">
 
     <div class="loader"></div>
+
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="delete-modal">
+
+    <div class="delete-box">
+
+        <div class="delete-icon">
+            ⚠️
+        </div>
+
+        <h2>Delete Product?</h2>
+
+        <p>
+            Are you sure you want to delete this borrowed product?
+        </p>
+
+        <div class="delete-actions">
+
+            <button
+                class="cancel-btn"
+                onclick="closeDeleteModal()">
+                Cancel
+            </button>
+
+            <button
+                class="confirm-btn"
+                id="confirmDeleteBtn">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -197,7 +261,7 @@ fabMain.addEventListener("click", () => {
     fabMain.textContent =
         fabMenu.classList.contains("show")
         ? "＋"
-        : "⨁";
+        : "⊕";
 
 });
 
