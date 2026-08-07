@@ -20,6 +20,61 @@ const customerId = params.get("id");
 let customer = {};
 
 // ======================================
+// AVATAR COLORS
+// ======================================
+
+const colors = [
+
+"#2563EB", // Blue
+"#3B82F6", // Sky Blue
+"#1D4ED8", // Royal Blue
+"#6366F1", // Indigo
+"#7C3AED", // Purple
+"#9333EA", // Violet
+"#A855F7", // Bright Purple
+"#EC4899", // Pink
+"#DB2777", // Dark Pink
+"#E11D48", // Rose
+"#EF4444", // Red
+"#DC2626", // Dark Red
+"#F97316", // Orange
+"#EA580C", // Deep Orange
+"#F59E0B", // Amber
+"#D97706", // Gold
+"#0EA5E9", // Light Blue
+"#0284C7", // Ocean Blue
+"#4F46E5", // Deep Indigo
+"#8B5CF6", // Lavender Purple
+"#C026D3", // Magenta
+"#BE123C", // Crimson
+"#B91C1C", // Wine Red
+"#334155", // Slate
+"#475569", // Steel Gray
+"#6B7280", // Gray
+"#0F172A", // Navy Black
+"#7C2D12", // Brown
+"#9A3412", // Burnt Orange
+"#581C87"  // Dark Violet
+
+];
+
+function getAvatarColor(name){
+
+    if(!name) return colors[0];
+
+    let hash = 0;
+
+    for(let i=0;i<name.length;i++){
+
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+
+    }
+
+    return colors[Math.abs(hash) % colors.length];
+
+}
+
+// ======================================
 // LOAD CUSTOMER
 // ======================================
 
@@ -77,23 +132,63 @@ async function loadCustomer() {
             0
         );
 
-        const customerName =
-            document.getElementById("customerName");
+        const customerAvatar =
+    document.getElementById("customerAvatar");
 
-        const customerMobile =
-            document.getElementById("customerMobile");
+const customerName =
+    document.getElementById("customerName");
 
-        const backBtn =
-            document.getElementById("backBtn");
+const customerMobile =
+    document.getElementById("customerMobile");
 
-        if (customerName) {
-            customerName.textContent = customer.name || "";
-        }
+const totalPaid =
+    document.getElementById("totalPaid");
 
-        if (customerMobile) {
-            customerMobile.textContent =
-                "📞 " + (customer.mobile || "");
-        }
+const balanceAmount =
+    document.getElementById("balanceAmount");
+
+const backBtn =
+    document.getElementById("backBtn");
+
+        if(customerAvatar){
+
+    customerAvatar.textContent =
+        customer.name
+        ? customer.name.charAt(0).toUpperCase()
+        : "?";
+
+    customerAvatar.style.background =
+        getAvatarColor(customer.name);
+
+}
+
+if(customerName){
+
+    customerName.textContent =
+        customer.name || "Customer";
+
+}
+
+if(customerMobile){
+
+    customerMobile.textContent =
+        "📞 " + (customer.mobile || "No Mobile");
+
+}
+
+if(totalPaid){
+
+    totalPaid.textContent =
+        "₹" + customer.paid;
+
+}
+
+if(balanceAmount){
+
+    balanceAmount.textContent =
+        "₹" + customer.balance;
+
+}
 
         if (backBtn) {
             backBtn.href =
@@ -287,7 +382,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadCustomer();
 
+    const amount =
+        document.getElementById("amount");
+
+    if(amount){
+
+        setTimeout(()=>{
+
+            amount.focus();
+
+        },300);
+
+    }
+
 });
+
+// ======================================
+// QUICK AMOUNT BUTTONS
+// ======================================
+
+window.fillAmount = function(amount){
+
+    const input =
+        document.getElementById("amount");
+
+    if(input){
+
+        input.value = amount;
+
+        input.focus();
+
+    }
+
+};
 
 // ======================================
 // MAKE FUNCTION AVAILABLE TO HTML
