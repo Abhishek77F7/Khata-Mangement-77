@@ -27,6 +27,66 @@ let customer = {};
 
 
 // ======================================
+// AVATAR COLORS
+// ======================================
+
+const colors = [
+
+"#2563EB", // Blue
+"#3B82F6", // Sky Blue
+"#1D4ED8", // Royal Blue
+"#6366F1", // Indigo
+"#7C3AED", // Purple
+"#9333EA", // Violet
+"#A855F7", // Bright Purple
+"#EC4899", // Pink
+"#DB2777", // Dark Pink
+"#E11D48", // Rose
+"#EF4444", // Red
+"#DC2626", // Dark Red
+"#F97316", // Orange
+"#EA580C", // Deep Orange
+"#F59E0B", // Amber
+"#D97706", // Gold
+"#0EA5E9", // Light Blue
+"#0284C7", // Ocean Blue
+"#4F46E5", // Deep Indigo
+"#8B5CF6", // Lavender Purple
+"#C026D3", // Magenta
+"#BE123C", // Crimson
+"#B91C1C", // Wine Red
+"#334155", // Slate
+"#475569", // Steel Gray
+"#6B7280", // Gray
+"#0F172A", // Navy Black
+"#7C2D12", // Brown
+"#9A3412", // Burnt Orange
+"#581C87"  // Dark Violet
+
+];
+
+function getAvatarColor(name){
+
+    if(!name) return colors[0];
+
+    let hash = 0;
+
+    for(let i=0;i<name.length;i++){
+
+        hash =
+        name.charCodeAt(i) +
+        ((hash<<5)-hash);
+
+    }
+
+    return colors[
+        Math.abs(hash)%colors.length
+    ];
+
+}
+
+
+// ======================================
 // LOAD CUSTOMER
 // ======================================
 
@@ -111,34 +171,47 @@ async function loadCustomer(){
 
 
 
-        const customerName =
-            document.getElementById(
-                "customerName"
-            );
+        const customerAvatar =
+document.getElementById(
+"customerAvatar"
+);
 
+const customerName =
+document.getElementById(
+"customerName"
+);
 
-        if(customerName){
+const customerMobile =
+document.getElementById(
+"customerMobile"
+);
 
-            customerName.textContent =
-            customer.name || "";
+if(customerAvatar){
 
-        }
+customerAvatar.textContent =
+customer.name
+? customer.name.charAt(0).toUpperCase()
+: "?";
 
+customerAvatar.style.background =
+getAvatarColor(customer.name);
 
+}
 
-        const customerMobile =
-            document.getElementById(
-                "customerMobile"
-            );
+if(customerName){
 
+customerName.textContent =
+customer.name || "Customer";
 
-        if(customerMobile){
+}
 
-            customerMobile.textContent =
-            "📞 " +
-            (customer.mobile || "");
+if(customerMobile){
 
-        }
+customerMobile.textContent =
+"📞 " +
+(customer.mobile || "No Mobile");
+
+}
 
 
 
@@ -205,9 +278,10 @@ function calculateTotal(){
 
 
     const qty =
-    Number(
-        document.getElementById("qty")?.value
-    ) || 0;
+parseInt(
+    document.getElementById("qty")?.value.trim(),
+    10
+) || 0;
 
 
 
@@ -225,8 +299,7 @@ function calculateTotal(){
 
     if(total){
 
-        total.value =
-        qty * price;
+        total.value = (qty * price).toFixed(2);
 
     }
 
@@ -267,9 +340,10 @@ async function saveLoan(){
 
 
     const qty =
-    Number(
-        document.getElementById("qty").value
-    );
+parseInt(
+    document.getElementById("qty").value.trim(),
+    10
+) || 0;
 
 
     const price =
@@ -322,35 +396,34 @@ async function saveLoan(){
     try{
 
 
-        const newLoan = {
+        const now = new Date();
 
+const newLoan = {
 
-            product: product,
+    product: product,
 
+    qty: qty,
 
-            qty: qty,
+    price: price,
 
+    total: total,
 
-            price: price,
+    date: now.toLocaleString(
+        "en-IN",
+        {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit"
+        }
+    ),
 
+    createdAt: now.getTime(),
 
-            total: total,
+    reminders: []
 
-
-            date:
-            new Date()
-            .toLocaleString(
-                "en-IN",
-                {
-                    day:"2-digit",
-                    month:"short",
-                    year:"numeric",
-                    hour:"2-digit",
-                    minute:"2-digit"
-                }
-            )
-
-        };
+};
 
 
 
@@ -445,26 +518,14 @@ customer.notifications.push({
 
 
         showToast(
-            "Loan added successfully.",
-            "success"
-        );
+"Borrowed product added successfully.",
+"success"
+);
 
-
-
-        document.getElementById("product")
-        .value = "";
-
-
-        document.getElementById("qty")
-        .value = "";
-
-
-        document.getElementById("price")
-        .value = "";
-
-
-        document.getElementById("total")
-        .value = "";
+document.getElementById("product").value="";
+document.getElementById("qty").value="";
+document.getElementById("price").value="";
+document.getElementById("total").value="";
 
 
 
@@ -528,7 +589,20 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-    loadCustomer();
+loadCustomer();
+
+setTimeout(()=>{
+
+const product =
+document.getElementById("product");
+
+if(product){
+
+product.focus();
+
+}
+
+},300);
 
 });
 
