@@ -3,83 +3,100 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+    <title>Edit Customer</title>
 
-<title>Edit Customer</title>
-
-<link rel="stylesheet" href="admin.css">
-<link rel="stylesheet" href="toast.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="toast.css">
 
 </head>
 
 <body>
 
-<header>
+    <!-- Header -->
+    <div class="edit-header">
 
-<h2>✏️ Edit Customer</h2>
+        <a href="customers.html" class="back-circle">
+            ❮
+        </a>
 
-</header>
+        <div class="header-text">
+            <h1>✏️ Edit Customer</h1>
+            <p>Update customer information</p>
+        </div>
 
-<div class="container">
+    </div>
 
-<div class="setting-card">
+    <!-- Main Card -->
+    <div class="edit-card">
 
-<h3>Customer Details</h3>
+        <h2>Customer Details</h2>
 
-<input
-type="text"
-id="name"
-placeholder="Customer Name">
+        <div class="input-group">
 
-<input
-type="tel"
-id="mobile"
-maxlength="10"
-placeholder="Mobile Number">
+            <label for="name">
+                👤 Customer Name
+            </label>
 
-<input
-type="text"
-id="address"
-placeholder="Address">
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter customer name">
 
-<br><br>
+        </div>
 
-<button
-id="updateBtn"
-class="green-btn">
+        <div class="input-group">
 
-Update Customer
+            <label for="mobile">
+                📞 Mobile Number
+            </label>
 
-</button>
+            <input
+                type="tel"
+                id="mobile"
+                maxlength="10"
+                placeholder="Enter mobile number">
 
-</div>
+        </div>
 
-<a
-href="customers.html"
-class="modern-back-btn">
+        <div class="input-group">
 
-   Back to Customers
+            <label for="address">
+                📍 Address
+            </label>
 
-</a>
+            <input
+                type="text"
+                id="address"
+                placeholder="Enter address">
 
-</div>
+        </div>
 
-<!-- Loader -->
+        <button
+            id="updateBtn"
+            class="update-btn">
 
-<div id="loader" class="loader-overlay">
+             Update Customer
 
-<div class="loader"></div>
+        </button>
 
-</div>
+    </div>
 
-<script src="loader.js"></script>
-<script src="toast.js"></script>
-<script src="theme.js"></script>
+    <!-- Loader -->
+    <div id="loader" class="loader-overlay">
 
-<script type="module" src="edit-customer.js"></script>
+        <div class="loader"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="loader.js"></script>
+    <script src="toast.js"></script>
+    <script src="theme.js"></script>
+
+    <script type="module" src="edit-customer.js"></script>
 
 </body>
 
