@@ -1,70 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Payment History</title>
+    <title>Payment History</title>
 
-<link rel="stylesheet" href="admin.css">
-<link rel="stylesheet" href="toast.css">
+    <link rel="stylesheet" href="payment-history.css">
+    <link rel="stylesheet" href="toast.css">
 
 </head>
+
 <body>
 
-<header>
+    <!-- Header -->
 
-<h2>💰 Payment History</h2>
+    <div class="history-header">
 
-</header>
+        <a id="backBtn" class="back-circle">
+            ❮
+        </a>
 
-<div class="container">
+        <div class="header-text">
+            <h1> Payment History</h1>
+            <p>View all customer payment records</p>
+        </div>
 
-<div class="customer-name-box">
+    </div>
 
-    <h2 id="customerName">
-        Customer Name
+    <!-- Customer Card -->
+
+    <div class="customer-card">
+
+       <div class="customer-avatar" id="customerAvatar">
+    A
+</div>
+
+        <div class="customer-info">
+
+            <h2 id="customerName">
+                Customer Name
+            </h2>
+            
+            <p id="customerMobile">
+            📞 Mobile Number
+        </p>
+
+            <p>
+                Payment Records
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Summary -->
+
+    <div class="summary-card">
+
+        <p>Total Amount Paid</p>
+
+        <h2 id="totalPaid">
+            ₹0
+        </h2>
+
+    </div>
+
+    <!-- Payment History -->
+
+    <h2 class="section-title">
+        Payment Timeline
     </h2>
 
-</div>
+    <div id="paymentHistory">
 
-<div class="summary-card">
+        <div class="history-card">
 
-<h3>Total Paid</h3>
+            <h3>No Payments Yet</h3>
 
-<h2 id="totalPaid">₹0</h2>
+            <p>
+                No payment records available.
+            </p>
 
-</div>
+        </div>
 
-<div id="paymentHistory">
+    </div>
 
-<p style="text-align:center;color:gray;">
-No payments yet.
-</p>
+    <!-- Loader -->
 
-</div>
+    <div id="loader" class="loader-overlay">
 
-<center>
-<a id="backBtn" class="back-btn">
-      Back
-</a>
-</center>
+        <div class="loader"></div>
 
-</div>
+    </div>
 
-<div id="loader" class="loader-overlay">
+    <!-- Scripts -->
 
-    <div class="loader"></div>
+    <script src="loader.js"></script>
+    <script src="toast.js"></script>
+    <script src="theme.js"></script>
 
-</div>
-
-<script src="loader.js"></script>
-
-<script src="toast.js"></script>
-
-<script type="module" src="payment-history.js"></script>
-<script src="theme.js"></script>
+    <script type="module" src="payment-history.js"></script>
 
 </body>
+
 </html>
