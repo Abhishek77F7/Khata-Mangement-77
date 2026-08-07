@@ -1,63 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Receive Payment</title>
 
-<link rel="stylesheet" href="admin.css">
 <link rel="stylesheet" href="toast.css">
+<link rel="stylesheet" href="payments.css">
 
 </head>
+
 <body>
 
-<header>
+<!-- Loader -->
 
-<h2>💰 Receive Payment</h2>
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+</div>
 
-</header>
+<!-- Header -->
+
+<div class="page-header payment-page-header">
+
+    <a id="backBtn" class="back-circle">
+        ❮
+    </a>
+
+    <div class="header-content">
+
+        <h1>Receive Payment</h1>
+
+     <p>Record customer payment quickly</p>
+
+    </div>
+
+</div>
 
 <div class="container">
 
-<div class="customer-info">
+    <!-- Customer Card -->
 
-<h2 id="customerName"></h2>
+    <div class="payment-card">
+
+        <div class="customer-profile">
+
+            <div id="customerAvatar" class="customer-avatar">
+                A
+            </div>
+
+            <div class="customer-info">
+
+                <h2 id="customerName">
+                    Customer Name
+                </h2>
+
+                <p id="customerMobile">
+                    📞 Mobile Number
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Summary -->
+
+        <div class="payment-summary">
+
+            <div class="summary-item">
+
+                <span>Total Loan</span>
+
+                <strong id="totalLoan">
+                    ₹0
+                </strong>
+
+            </div>
+
+            <div class="summary-item">
+
+                <span>Paid</span>
+
+                <strong class="paid-text" id="totalPaid">
+                    ₹0
+                </strong>
+
+            </div>
+
+            <div class="summary-item">
+
+                <span>Balance</span>
+
+                <strong class="balance-text" id="balanceAmount">
+                    ₹0
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Payment Card -->
+
+    <div class="payment-card">
+
+        <div class="input-group">
 
 
-</div>
 
-<input
-type="number"
-id="amount"
-placeholder="Enter Payment Amount">
+            <input
+                type="number"
+                id="amount"
+                placeholder="₹ Enter Payment Amount">
 
-<button onclick="receivePayment()" class="green-btn">
+        </div>
 
-Receive Payment
+        <!-- Quick Amount -->
 
-</button>
+        <label class="quick-label">
 
-<center>
-<a id="backBtn" class="back-btn">
-      Back
-</a>
-</center>
+            Quick Amount
 
-</div>
+        </label>
 
-<div id="loader" class="loader-overlay">
+        <div class="quick-amounts">
 
-    <div class="loader"></div>
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="document.getElementById('amount').value=100">
+
+                ₹100
+
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="document.getElementById('amount').value=500">
+
+                ₹500
+
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="document.getElementById('amount').value=1000">
+
+                ₹1000
+
+            </button>
+
+            <button
+                type="button"
+                class="quick-btn"
+                onclick="document.getElementById('amount').value=2000">
+
+                ₹2000
+
+            </button>
+
+        </div>
+
+        <button
+            onclick="receivePayment()"
+            class="save-btn">
+
+            ✅ Receive Payment
+
+        </button>
+
+    </div>
 
 </div>
 
 <script src="loader.js"></script>
-
 <script src="toast.js"></script>
+<script src="theme.js"></script>
 
 <script type="module" src="payments.js"></script>
-<script src="theme.js"></script>
 
 </body>
 </html>
