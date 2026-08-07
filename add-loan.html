@@ -4,116 +4,17 @@
 <head>
 
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Add Borrowed Product</title>
 
-<link rel="stylesheet" href="admin.css">
 <link rel="stylesheet" href="toast.css">
+<link rel="stylesheet" href="add-loan.css">
 
 </head>
 
-
 <body>
-
-
-<header>
-
-<h2>
-🛒 Add Borrowed Product
-</h2>
-
-</header>
-
-
-
-<div class="container">
-
-
-
-<div class="customer-info">
-
-
-<h2 id="customerName">
-Customer Name
-</h2>
-
-
-</div>
-
-
-
-<!-- Customer Document ID -->
-
-<input
-type="hidden"
-id="customerDocID">
-
-
-
-<!-- Product Details -->
-
-
-<input
-type="text"
-id="product"
-placeholder="Product Name">
-
-
-
-<input
-type="number"
-id="qty"
-placeholder="Quantity">
-
-
-
-<input
-type="number"
-id="price"
-placeholder="Price per Unit">
-
-
-
-<input
-type="number"
-id="total"
-placeholder="Total Amount"
-readonly>
-
-
-
-
-<button
-onclick="saveLoan()"
-class="blue-btn">
-
-Save Loan
-
-</button>
-
-
-
-<center>
-
-<a
-id="backBtn"
-class="back-btn">
-
-Back
-
-</a>
-
-
-</center>
-
-
-
-</div>
-
-
-
 
 <!-- Loader -->
 
@@ -121,22 +22,163 @@ Back
 id="loader"
 class="loader-overlay">
 
-<div class="loader"></div>
+    <div class="loader"></div>
 
 </div>
 
+<!-- Modern Header -->
 
+<div class="page-header loan-page-header">
 
+    <a
+        id="backBtn"
+        class="back-circle">
+
+        ❮
+
+    </a>
+
+    <div class="header-content">
+
+        <h1>Add Borrowed Product</h1>
+
+        
+
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="loan-card">
+
+        <!-- Customer Profile -->
+
+        <div class="customer-profile">
+
+            <div
+                id="customerAvatar"
+                class="customer-avatar">
+
+                A
+
+            </div>
+
+            <div class="customer-info">
+
+                <h2 id="customerName">
+
+                    Customer Name
+
+                </h2>
+
+                <p id="customerMobile">
+
+                    📞 Mobile Number
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Hidden ID -->
+
+        <input
+            type="hidden"
+            id="customerDocID">
+
+        <!-- Product Name -->
+
+        <div class="input-group">
+
+            <label>
+
+                 Product Name
+
+            </label>
+
+            <input
+                type="text"
+                id="product"
+                placeholder="Enter Product Name">
+
+        </div>
+
+        <!-- Quantity -->
+
+        <div class="input-group">
+
+            <label>
+
+                 Quantity
+
+            </label>
+
+            <input
+type="text"
+id="qty"
+placeholder="Quantity"
+autocomplete="off">
+        </div>
+
+        <!-- Price -->
+
+        <div class="input-group">
+
+            <label>
+
+                 Price Per Unit
+
+            </label>
+
+            <input
+                type="number"
+                id="price"
+                placeholder="Enter Price">
+
+        </div>
+
+        <!-- Total -->
+
+        <div class="input-group">
+
+            <label>
+
+                 Total Amount
+
+            </label>
+
+            <input
+                type="number"
+                id="total"
+                placeholder="₹ Total Amount"
+                readonly>
+
+        </div>
+
+        <!-- Save Button -->
+
+        <button
+            onclick="saveLoan()"
+            class="save-btn">
+
+             Save Borrowed Product
+
+        </button>
+
+    </div>
+
+</div>
 
 <script src="loader.js"></script>
 
 <script src="toast.js"></script>
 
-
-<script type="module" src="loans.js"></script>
-
 <script src="theme.js"></script>
 
+<script type="module"
+src="loans.js"></script>
 
 </body>
 
