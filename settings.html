@@ -8,58 +8,132 @@
 
 <title>Settings</title>
 
-<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="settings.css">
 <link rel="stylesheet" href="toast.css">
 
 </head>
 
 <body>
 
-<header>
+<!-- Header -->
 
-<h2>⚙️ Settings</h2>
+<header class="settings-header">
+
+    <a href="dashboard.html" class="settings-back">
+        ❮
+    </a>
+
+    <div class="settings-heading">
+
+        <h2>Settings</h2>
+
+        <p>Khata Management</p>
+
+    </div>
 
 </header>
 
-<div class="container">
+<!-- Profile -->
 
-<!-- Shop Name -->
+<div class="profile-card">
 
-<div class="setting-card">
+    <div class="profile-avatar-wrapper">
 
-<h3>🏪 Shop Name</h3>
+        <img
+            id="adminProfile"
+            class="profile-avatar"
+            src="https://ui-avatars.com/api/?name=Admin&background=16a34a&color=fff"
+            alt="Profile">
 
-<input
-type="text"
-id="shopName"
-placeholder="Enter Shop Name">
+        <label for="adminPhoto" class="camera-btn">📷</label>
 
-<button
-onclick="saveShopName()"
-class="blue-btn">
+        <input
+            type="file"
+            id="adminPhoto"
+            accept="image/*"
+            onchange="uploadAdminPhoto()"
+            hidden>
 
-Save Shop Name
+    </div>
 
-</button>
+    <div class="profile-details">
+
+        <h2>ABHISHEK</h2>
+
+        <p>Administrator</p>
+
+    </div>
+
+    <div class="profile-arrow">›</div>
 
 </div>
 
-<!-- Admin Username -->
+<div class="container">
+
+<div class="section-title">
+
+    General
+
+</div>
+
+<!-- Shop -->
 
 <div class="setting-card">
 
-<h3>👤 Admin Username</h3>
+    <div class="setting-header">
+
+        <div class="setting-icon green">
+            🏪
+        </div>
+
+        <div class="setting-info">
+            <h3>Shop Name</h3>
+            <p>Change your business name</p>
+        </div>
+
+        <div class="setting-arrow">
+            ›
+        </div>
+
+    </div>
+
+    <input
+        type="text"
+        id="shopName"
+        placeholder="Enter Shop Name">
+
+    <button
+        onclick="saveShopName()"
+        class="blue-btn">
+
+        Save
+
+    </button>
+
+</div>
+
+<!-- Username -->
+
+<div class="setting-card">
+
+<div class="setting-top">
+
+<span>👤 Username</span>
+
+<span>›</span>
+
+</div>
 
 <input
 type="text"
 id="newUsername"
-placeholder="Enter New Username">
+placeholder="Enter Username">
 
 <button
 onclick="changeUsername()"
 class="blue-btn">
 
-Update Username
+Update
 
 </button>
 
@@ -69,7 +143,13 @@ Update Username
 
 <div class="setting-card">
 
-<h3>🔒 Change Admin Password</h3>
+<div class="setting-top">
+
+<span>🔒 Password</span>
+
+<span>›</span>
+
+</div>
 
 <input
 type="password"
@@ -80,7 +160,7 @@ placeholder="New Password">
 onclick="changePassword()"
 class="green-btn">
 
-Update Password
+Change Password
 
 </button>
 
@@ -90,74 +170,132 @@ Update Password
 
 <div class="setting-card">
 
-<h3>🎨 Theme</h3>
+    <div class="setting-top">
 
-<button
-onclick="setLightTheme()"
-class="theme-btn">
+        <span>🎨 Theme</span>
+        
+        <span>›</span>
 
-🌞 Light Theme
+    </div>
 
-</button>
+    <p class="setting-desc">
+        Choose your preferred theme
+    </p>
 
-<br><br>
+    <div class="theme-switch">
 
-<button
-onclick="setDarkTheme()"
-class="theme-btn">
+        <button
+            id="lightBtn"
+            class="theme-option active-theme"
+            onclick="setLightTheme()">
 
-🌙 Dark Theme
+             Light
 
-</button>
+        </button>
 
-<br><br>
+        <button
+            id="darkBtn"
+            class="theme-option"
+            onclick="setDarkTheme()">
+
+             Dark
+
+        </button>
+
+    </div>
+
 </div>
 
-
-<!-- Password Recovery -->
+<!-- Recovery -->
 
 <div class="setting-card">
 
-<h3>🛡️ Password Recovery</h3>
+<div class="setting-top">
+
+<span>🛡 Password Recovery</span>
+
+<span>›</span>
+
+</div>
 
 <button
 onclick="window.location.href='forgot-password.html'"
 class="orange-btn">
 
-🔑 Reset Admin Password
+Reset Password
 
 </button>
 
 </div>
 
-
-<!-- Version -->
+<!-- App -->
 
 <div class="setting-card">
 
-<h3>ℹ️ Application</h3>
+    <div class="setting-header">
 
-<p><strong>Khata Management v2.0</strong></p>
+        <div class="setting-icon blue">
+            ℹ️
+        </div>
 
-<p>DVELOPED BY ABHISHEK</p>
+        <div class="setting-info">
+            <h3>About Application</h3>
+            <p>Version & Developer</p>
+        </div>
+
+    </div>
+
+    <div class="app-info">
+
+        <div class="app-version">
+
+            <span>Version</span>
+
+            <strong>v2.0</strong>
+
+        </div>
+
+        <div class="developer-box">
+
+            <span>Developed By</span>
+
+            <strong>ABHISHEK</strong>
+
+        </div>
+
+    </div>
 
 </div>
 
-<button onclick="logoutDashboard()" class="logout-btn">
-    🚪 Logout
+<button
+onclick="logoutDashboard()"
+class="logout-btn">
+
+ Logout
+
 </button>
 
-<a
-href="dashboard.html"
-class="modern-back-btn">
-
-  Back to Dashboard
-
-</a>
 
 </div>
 
-<!-- Loader -->
+<nav class="settings-nav">
+
+    <a href="dashboard.html">
+        🏠
+        <span>Home</span>
+    </a>
+
+    <a href="customers.html">
+        👥
+        <span>Customers</span>
+    </a>
+
+    <a href="settings.html" class="active">
+        ⚙️
+        <span>Settings</span>
+    </a>
+
+</nav>
 
 <div id="loader" class="loader-overlay">
 
@@ -173,25 +311,68 @@ class="modern-back-btn">
 
 <script>
 
-function logoutDashboard() {
+function logoutDashboard(){
 
-    localStorage.removeItem("adminLoggedIn");
+localStorage.removeItem("adminLoggedIn");
 
-    showToast(
-        "Logged out successfully",
-        "success"
-    );
+showToast("Logged out successfully","success");
 
-    setTimeout(() => {
+setTimeout(()=>{
 
-        window.location.href = "admin-login.html";
+window.location.href="admin-login.html";
 
-    }, 700);
+},700);
 
 }
 
 </script>
 
-</body>
+<script>
 
+function uploadAdminPhoto() {
+
+    const input = document.getElementById("adminPhoto");
+
+    if (!input.files.length) return;
+
+    const file = input.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        const photo = e.target.result;
+
+        document.getElementById("adminProfile").src = photo;
+
+        localStorage.setItem("adminProfilePhoto", photo);
+
+        showToast(
+            "Profile photo updated successfully.",
+            "success"
+        );
+
+    };
+
+    reader.readAsDataURL(file);
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const savedPhoto = localStorage.getItem("adminProfilePhoto");
+
+    if (savedPhoto) {
+
+        document.getElementById("adminProfile").src = savedPhoto;
+
+    }
+
+});
+
+window.uploadAdminPhoto = uploadAdminPhoto;
+
+</script>
+
+</body>
 </html>
