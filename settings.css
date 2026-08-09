@@ -520,3 +520,354 @@ body{
     color:#22c55e;
 
 }
+
+/* ==========================================
+   MODERN LOGOUT POPUP
+========================================== */
+
+.logout-modal {
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:20px;
+
+    opacity:0;
+
+    visibility:hidden;
+
+    pointer-events:none;
+
+    z-index:10000;
+
+    transition:
+        opacity .25s ease,
+        visibility .25s ease;
+
+}
+
+
+/* Show popup */
+
+.logout-modal.show {
+
+    opacity:1;
+
+    visibility:visible;
+
+    pointer-events:auto;
+
+}
+
+
+/* Dark background */
+
+.logout-overlay {
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(15,23,42,.62);
+
+    backdrop-filter:blur(6px);
+
+    -webkit-backdrop-filter:blur(6px);
+
+}
+
+
+/* Popup */
+
+.logout-popup {
+
+    position:relative;
+
+    width:100%;
+
+    max-width:390px;
+
+    padding:30px 24px 24px;
+
+    background:#ffffff;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.28);
+
+    transform:
+        translateY(20px)
+        scale(.94);
+
+    transition:
+        transform .28s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/* Popup animation */
+
+.logout-modal.show .logout-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* Icon */
+
+.logout-icon {
+
+    width:72px;
+
+    height:72px;
+
+    margin:0 auto 18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:22px;
+
+    background:#fff1f2;
+
+    font-size:34px;
+
+    box-shadow:
+        0 8px 20px rgba(239,68,68,.12);
+
+}
+
+
+/* Title */
+
+.logout-popup h2 {
+
+    margin:0;
+
+    color:#111827;
+
+    font-size:25px;
+
+    font-weight:800;
+
+}
+
+
+/* Description */
+
+.logout-popup p {
+
+    margin:10px 10px 25px;
+
+    color:#6b7280;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+
+/* Buttons */
+
+.logout-actions {
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+}
+
+
+/* Cancel */
+
+.logout-cancel {
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:#f1f5f9;
+
+    color:#334155;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+
+.logout-cancel:hover {
+
+    background:#e2e8f0;
+
+    transform:translateY(-1px);
+
+}
+
+
+/* Confirm */
+
+.logout-confirm {
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:linear-gradient(
+        135deg,
+        #ef4444,
+        #dc2626
+    );
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 20px rgba(220,38,38,.25);
+
+    transition:.2s;
+
+}
+
+
+.logout-confirm:hover {
+
+    transform:translateY(-1px);
+
+    box-shadow:
+        0 10px 24px rgba(220,38,38,.32);
+
+}
+
+
+.logout-confirm:active,
+.logout-cancel:active {
+
+    transform:scale(.97);
+
+}
+
+
+/* Prevent page scrolling while popup is open */
+
+body.logout-popup-open {
+
+    overflow:hidden;
+
+}
+
+
+/* ==========================================
+   DARK THEME
+========================================== */
+
+.dark-theme .logout-popup {
+
+    background:#1f2937;
+
+}
+
+
+.dark-theme .logout-popup h2 {
+
+    color:#ffffff;
+
+}
+
+
+.dark-theme .logout-popup p {
+
+    color:#d1d5db;
+
+}
+
+
+.dark-theme .logout-icon {
+
+    background:#3f1d23;
+
+}
+
+
+.dark-theme .logout-cancel {
+
+    background:#374151;
+
+    color:#ffffff;
+
+}
+
+
+.dark-theme .logout-cancel:hover {
+
+    background:#4b5563;
+
+}
+
+
+/* ==========================================
+   SMALL SCREEN
+========================================== */
+
+@media(max-width:420px){
+
+    .logout-popup {
+
+        max-width:100%;
+
+        padding:26px 20px 20px;
+
+        border-radius:25px;
+
+    }
+
+    .logout-icon {
+
+        width:64px;
+
+        height:64px;
+
+        font-size:30px;
+
+    }
+
+    .logout-popup h2 {
+
+        font-size:23px;
+
+    }
+
+   }
