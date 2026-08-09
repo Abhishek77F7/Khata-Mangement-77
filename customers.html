@@ -4,23 +4,406 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Customer List</title>
 
 <link rel="stylesheet" href="admin.css">
 <link rel="stylesheet" href="toast.css">
 
+<style>
+
+/* ==========================================
+   MODERN SORT BUTTON
+========================================== */
+
+.sort-container{
+
+    width:92%;
+    margin:0 auto 20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+}
+
+.sort-container label{
+
+    font-size:17px;
+    font-weight:600;
+
+    color:#1f2937;
+
+}
+
+.sort-select{
+
+    min-width:145px;
+    height:52px;
+
+    padding:0 18px;
+
+    border:none;
+    border-radius:18px;
+
+    background:#fff;
+
+    color:#111827;
+
+    font-size:16px;
+    font-weight:600;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================
+   CUSTOM SORT OVERLAY
+========================================== */
+
+.sort-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.48);
+
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+
+    display:none;
+
+    align-items:flex-end;
+
+    z-index:99999;
+
+}
+
+.sort-overlay.show{
+
+    display:flex;
+
+}
+
+
+/* ==========================================
+   SORT SHEET
+========================================== */
+
+.sort-sheet{
+
+    width:100%;
+
+    background:#fff;
+
+    border-radius:30px 30px 0 0;
+
+    padding:10px 18px 28px;
+
+    box-shadow:
+        0 -10px 40px rgba(0,0,0,.20);
+
+    animation:sortSheetUp .28s ease-out;
+
+}
+
+@keyframes sortSheetUp{
+
+    from{
+
+        transform:translateY(100%);
+
+    }
+
+    to{
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+/* ==========================================
+   HANDLE
+========================================== */
+
+.sort-handle{
+
+    width:45px;
+    height:5px;
+
+    margin:4px auto 20px;
+
+    border-radius:20px;
+
+    background:#d1d5db;
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.sort-sheet-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:4px 3px 18px;
+
+}
+
+.sort-sheet-header h3{
+
+    margin:0;
+
+    font-size:23px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+.sort-close{
+
+    width:42px;
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f3f4f6;
+
+    color:#374151;
+
+    font-size:22px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================
+   SORT OPTION
+========================================== */
+
+.sort-option{
+
+    width:100%;
+
+    min-height:64px;
+
+    margin-bottom:9px;
+
+    padding:0 14px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#f8fafc;
+
+    color:#1f2937;
+
+    display:flex;
+
+    align-items:center;
+
+    text-align:left;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+.sort-option:active{
+
+    transform:scale(.98);
+
+}
+
+.sort-option.selected{
+
+    background:#ecfdf5;
+
+    color:#15803d;
+
+}
+
+
+/* ==========================================
+   OPTION ICON
+========================================== */
+
+.sort-option-icon{
+
+    width:42px;
+    height:42px;
+
+    margin-right:13px;
+
+    border-radius:13px;
+
+    background:#fff;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:19px;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.06);
+
+}
+
+
+/* ==========================================
+   RADIO
+========================================== */
+
+.sort-radio{
+
+    width:23px;
+    height:23px;
+
+    margin-left:auto;
+
+    border:2px solid #9ca3af;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+}
+
+.sort-option.selected .sort-radio{
+
+    border-color:#16a34a;
+
+}
+
+.sort-option.selected .sort-radio::after{
+
+    content:"";
+
+    width:11px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:#16a34a;
+
+}
+
+
+/* ==========================================
+   DARK MODE
+========================================== */
+
+.dark-theme .sort-container label{
+
+    color:#fff;
+
+}
+
+.dark-theme .sort-select{
+
+    background:#1f2937;
+    color:#fff;
+
+}
+
+.dark-theme .sort-sheet{
+
+    background:#111827;
+
+}
+
+.dark-theme .sort-sheet-header h3{
+
+    color:#fff;
+
+}
+
+.dark-theme .sort-close{
+
+    background:#374151;
+    color:#fff;
+
+}
+
+.dark-theme .sort-option{
+
+    background:#1f2937;
+    color:#fff;
+
+}
+
+.dark-theme .sort-option.selected{
+
+    background:#064e3b;
+    color:#86efac;
+
+}
+
+.dark-theme .sort-option-icon{
+
+    background:#374151;
+
+}
+
+</style>
+
 </head>
 
+
 <body>
+
+
+<!-- ==========================================
+     CUSTOMER HEADER
+========================================== -->
 
 <header class="customer-header">
 
     <div class="header-top">
 
-        <a href="dashboard.html" class="back-circle">
+        <a
+            href="dashboard.html"
+            class="back-circle">
+
             ❮
+
         </a>
 
         <div class="header-title">
@@ -35,9 +418,17 @@
 
 </header>
 
+
+
+<!-- ==========================================
+     SEARCH
+========================================== -->
+
 <div class="search-container">
 
-    <span class="search-icon">🔍</span>
+    <span class="search-icon">
+        🔍
+    </span>
 
     <input
         type="text"
@@ -48,27 +439,79 @@
 
 </div>
 
+
+
+<!-- ==========================================
+     SORT
+========================================== -->
+
 <div class="sort-container">
 
-    <label>Sort By</label>
+    <label>
+        Sort By
+    </label>
 
-    <select id="sortCustomer" class="sort-select">
+    <!-- Keep this hidden so existing
+         customers.js continues working -->
 
-        <option value="latest">Latest</option>
+    <select
+        id="sortCustomer"
+        class="sort-select"
+        style="display:none;">
 
-        <option value="oldest">Oldest</option>
+        <option value="name">
+            Name (A-Z)
+        </option>
 
-        <option value="name">Name (A-Z)</option>
+        <option value="latest">
+            Latest
+        </option>
+
+        <option value="oldest">
+            Oldest
+        </option>
+
+        
 
     </select>
 
+
+    <!-- Modern visible button -->
+
+    <button
+        type="button"
+        id="sortButton"
+        class="sort-select"
+        onclick="openSortSheet()">
+
+        <span id="sortButtonText">
+            Sort Sections
+        </span>
+
+        
+    </button>
+
 </div>
+
+
+
+<!-- ==========================================
+     CUSTOMER LIST
+========================================== -->
 
 <div id="customerList"></div>
 
+
+
+<!-- ==========================================
+     BACK BUTTON
+========================================== -->
+
 <center>
 
-<a href="dashboard.html" class="back-btn">
+<a
+    href="dashboard.html"
+    class="back-btn">
 
     Back to Dashboard
 
@@ -76,32 +519,163 @@
 
 </center>
 
-<!-- Floating Add Customer Button -->
 
-<a href="add-customer.html" class="fab-add">
+
+<!-- ==========================================
+     FLOATING ADD CUSTOMER
+========================================== -->
+
+<a
+    href="add-customer.html"
+    class="fab-add">
 
     <span>＋</span>
 
 </a>
 
-<!-- Delete Confirmation Popup -->
 
-<div id="deletePopup" class="delete-popup">
+
+<!-- ==========================================
+     SORT BOTTOM SHEET
+========================================== -->
+
+<div
+    id="sortOverlay"
+    class="sort-overlay"
+    onclick="closeSortSheet(event)">
+
+
+    <div
+        class="sort-sheet"
+        onclick="event.stopPropagation()">
+
+
+        <div class="sort-handle"></div>
+
+
+        <div class="sort-sheet-header">
+
+            <h3>
+                Sort Customers
+            </h3>
+
+            <button
+                type="button"
+                class="sort-close"
+                onclick="closeSortSheet()">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+       <!-- Name -->
+
+        <button
+            type="button"
+            class="sort-option selected"
+            data-sort="name"
+            onclick="selectSort('name','Name (A-Z)')">
+
+            <span class="sort-option-icon">
+                🔤
+            </span>
+
+            <span>
+                Name (A-Z)
+            </span>
+
+            <span class="sort-radio"></span>
+
+        </button>
+    
+
+        <!-- Latest -->
+
+        <button
+            type="button"
+            class="sort-option"
+            data-sort="latest"
+            onclick="selectSort('latest','Latest')">
+
+            <span class="sort-option-icon">
+                🕐
+            </span>
+
+            <span>
+                Latest
+            </span>
+
+            <span class="sort-radio"></span>
+
+        </button>
+
+
+
+        <!-- Oldest -->
+
+        <button
+            type="button"
+            class="sort-option"
+            data-sort="oldest"
+            onclick="selectSort('oldest','Oldest')">
+
+            <span class="sort-option-icon">
+                🕰️
+            </span>
+
+            <span>
+                Oldest
+            </span>
+
+            <span class="sort-radio"></span>
+
+        </button>
+
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ==========================================
+     DELETE CONFIRMATION POPUP
+========================================== -->
+
+<div
+    id="deletePopup"
+    class="delete-popup">
+
 
     <div class="delete-card">
+
 
         <div class="delete-icon">
             ⚠️
         </div>
 
-        <h2>Delete Customer</h2>
+
+        <h2>
+            Delete Customer
+        </h2>
+
 
         <p>
-    This customer will be moved to the <b>Recycle Bin</b>.
-    You can restore it later.
-</p>
+
+            This customer will be moved to
+            the <b>Recycle Bin</b>.
+
+            You can restore it later.
+
+        </p>
+
 
         <div class="delete-actions">
+
 
             <button
                 id="cancelDelete"
@@ -111,27 +685,181 @@
 
             </button>
 
-<button
-    id="confirmDelete"
-    class="confirm-delete">
-    Move to Bin
-</button>
+
+            <button
+                id="confirmDelete"
+                class="confirm-delete">
+
+                Move to Bin
+
+            </button>
+
 
         </div>
+
 
     </div>
 
 </div>
 
-<div id="loader" class="loader-overlay">
+
+
+<!-- ==========================================
+     LOADER
+========================================== -->
+
+<div
+    id="loader"
+    class="loader-overlay">
+
     <div class="loader"></div>
+
 </div>
 
+
+
+<!-- ==========================================
+     SCRIPTS
+========================================== -->
+
 <script src="theme.js"></script>
+
 <script src="loader.js"></script>
+
 <script src="toast.js"></script>
 
-<script type="module" src="customers.js"></script>
+<script type="module"
+src="customers.js"></script>
+
+
+
+<!-- ==========================================
+     SORT CONTROLLER
+========================================== -->
+
+<script>
+
+function openSortSheet(){
+
+    const overlay =
+        document.getElementById("sortOverlay");
+
+    if(overlay){
+
+        overlay.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+}
+
+
+function closeSortSheet(event){
+
+    if(
+        event &&
+        event.target !==
+        document.getElementById("sortOverlay")
+    ){
+
+        return;
+
+    }
+
+    const overlay =
+        document.getElementById("sortOverlay");
+
+    if(overlay){
+
+        overlay.classList.remove("show");
+
+        document.body.style.overflow = "";
+
+    }
+
+}
+
+
+function selectSort(value, text){
+
+    const select =
+        document.getElementById("sortCustomer");
+
+    const buttonText =
+        document.getElementById("sortButtonText");
+
+
+    if(select){
+
+        select.value = value;
+
+        /*
+         * Important:
+         * This keeps your existing
+         * customers.js sorting code working.
+         */
+
+        select.dispatchEvent(
+            new Event("change", {
+                bubbles:true
+            })
+        );
+
+    }
+
+
+    if(buttonText){
+
+        buttonText.textContent = text;
+
+    }
+
+
+    document
+        .querySelectorAll(".sort-option")
+        .forEach(option => {
+
+            option.classList.remove("selected");
+
+        });
+
+
+    const selected =
+        document.querySelector(
+            `.sort-option[data-sort="${value}"]`
+        );
+
+
+    if(selected){
+
+        selected.classList.add("selected");
+
+    }
+
+
+    closeSortSheet();
+
+}
+
+
+/* Close with Android/browser back-style escape */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeSortSheet();
+
+        }
+
+    }
+);
+
+</script>
+
 
 </body>
 
