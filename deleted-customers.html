@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Recycle Bin</title>
+
+<link rel="stylesheet" href="admin.css">
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+<body>
+
+<header class="customer-header">
+
+    <div class="top-bar">
+
+        <div class="top-bar">
+
+    <a href="dashboard.html" class="back-btn-circle">
+        ❮
+    </a>
+
+    <div class="title-area">
+        <h2>️ Recycle Bin</h2>
+        <p>Restore deleted customers</p>
+    </div>
+
+</div>
+
+    </div>
+
+</header>
+
+<div class="search-container">
+
+    <span class="search-icon">🔍</span>
+
+    <input
+        type="text"
+        id="search"
+        placeholder="Search deleted customer...">
+
+</div>
+
+<div id="deletedCustomerList"></div>
+
+<div id="loader" class="loader-overlay">
+    <div class="loader"></div>
+</div>
+
+<script src="theme.js"></script>
+<script src="loader.js"></script>
+<script src="toast.js"></script>
+
+<script type="module" src="deleted-customers.js"></script>
+
+</body>
+
+</html>
