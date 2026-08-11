@@ -1,0 +1,2111 @@
+/* =========================================================
+   KHATA MANAGEMENT - CUSTOMER PROFILE
+   Google Material Design inspired
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --green-light: #dcfce7;
+
+    --black: #111827;
+    --black-soft: #374151;
+
+    --orange: #f59e0b;
+    --orange-dark: #d97706;
+    --orange-light: #fef3c7;
+
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+
+    --pink: #e1306c;
+    --pink-light: #fce7f3;
+
+    --whatsapp: #25d366;
+    --whatsapp-light: #dcfce7;
+
+    --text: #172033;
+    --muted: #687386;
+
+    --line: #e5e7eb;
+    --background: #f5f8f6;
+    --card: #ffffff;
+
+    --shadow-small: 0 4px 14px rgba(15, 23, 42, 0.07);
+    --shadow-medium: 0 10px 30px rgba(15, 23, 42, 0.09);
+    --shadow-large: 0 18px 45px rgba(15, 23, 42, 0.12);
+
+    --radius-small: 12px;
+    --radius-medium: 18px;
+    --radius-large: 24px;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        Roboto,
+        "Google Sans",
+        Arial,
+        sans-serif;
+
+    background: var(--background);
+    color: var(--text);
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   MATERIAL SYMBOLS
+   ========================================================= */
+
+.material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+
+    font-variation-settings:
+        "FILL" 0,
+        "wght" 500,
+        "GRAD" 0,
+        "opsz" 24;
+}
+
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.page-bg {
+    position: fixed;
+    inset: 0;
+
+    z-index: -1;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fcf9 0%,
+            #eef8f1 50%,
+            #f4f8f6 100%
+        );
+}
+
+.orb {
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(20px);
+
+    opacity: 0.35;
+
+    pointer-events: none;
+}
+
+.orb-one {
+    width: 320px;
+    height: 320px;
+
+    background: #bbf7d0;
+
+    top: -150px;
+    right: -100px;
+}
+
+.orb-two {
+    width: 280px;
+    height: 280px;
+
+    background: #dbeafe;
+
+    bottom: -120px;
+    left: -120px;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding:
+        0 max(16px, calc((100% - 1080px) / 2));
+
+    background: rgba(255, 255, 255, 0.94);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid var(--line);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 14px;
+
+    display: grid;
+    place-items: center;
+
+    color: #fff;
+    background: var(--green);
+
+    box-shadow:
+        0 8px 22px rgba(22, 163, 74, 0.25);
+}
+
+.brand-icon .material-symbols-outlined {
+    font-size: 27px;
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 500,
+        "GRAD" 0,
+        "opsz" 28;
+}
+
+.brand-text strong {
+    display: block;
+
+    font-size: 16px;
+    font-weight: 750;
+
+    color: var(--black);
+}
+
+.brand-text small {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+
+    color: var(--muted);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.icon-button {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--line);
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    color: #4b5563;
+
+    transition:
+        transform 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.icon-button:hover {
+    color: var(--green);
+
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-small);
+}
+
+.icon-button .material-symbols-outlined {
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.profile-page {
+    width: min(1080px, calc(100% - 32px));
+
+    margin:
+        26px auto 55px;
+}
+
+
+/* =========================================================
+   PROFILE
+   ========================================================= */
+
+.profile-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f4fbf6 100%
+        );
+
+    border: 1px solid var(--line);
+
+    border-radius: var(--radius-large);
+
+    padding: 28px;
+
+    box-shadow: var(--shadow-medium);
+}
+
+.hero-top {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+}
+
+.avatar-wrap {
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.profile-photo {
+    width: 112px;
+    height: 112px;
+
+    object-fit: cover;
+
+    border-radius: 30px;
+
+    background: #edf7f0;
+
+    border: 5px solid #fff;
+
+    box-shadow:
+        0 9px 25px rgba(15, 23, 42, 0.14);
+}
+
+.camera-button {
+    position: absolute;
+
+    right: -6px;
+    bottom: -6px;
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: var(--green);
+    color: #fff;
+
+    border: 3px solid #fff;
+
+    box-shadow:
+        0 5px 14px rgba(22, 163, 74, 0.28);
+}
+
+.camera-button .material-symbols-outlined {
+    font-size: 21px;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    background: var(--green-light);
+    color: var(--green-dark);
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.status-pill .material-symbols-outlined {
+    font-size: 16px;
+
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 600,
+        "GRAD" 0,
+        "opsz" 20;
+}
+
+.profile-main h1 {
+    margin: 9px 0 8px;
+
+    font-size: 30px;
+    line-height: 1.15;
+
+    color: var(--black);
+
+    font-weight: 750;
+}
+
+.profile-main p {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    margin-top: 6px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.profile-main p .material-symbols-outlined {
+    color: var(--green);
+    font-size: 19px;
+}
+
+.address-row {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 22px;
+    padding-top: 17px;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.address-row .material-symbols-outlined {
+    color: var(--green);
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   AMOUNT CARDS
+   Total = BLACK
+   Paid = GREEN
+   Balance = ORANGE
+   ========================================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+
+    margin-top: 18px;
+}
+
+.summary-card {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+
+    background: var(--card);
+
+    border: 1px solid var(--line);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: var(--shadow-medium);
+}
+
+.summary-icon {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 14px;
+}
+
+.summary-icon .material-symbols-outlined {
+    font-size: 25px;
+}
+
+
+/* Total Amount - BLACK */
+
+.summary-card:nth-child(1) .summary-icon {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+.summary-card:nth-child(1) strong {
+    color: #111827;
+}
+
+
+/* Total Paid - GREEN */
+
+.summary-card:nth-child(2) .summary-icon {
+    background: var(--green-light);
+    color: var(--green-dark);
+}
+
+.summary-card:nth-child(2) strong {
+    color: var(--green-dark);
+}
+
+
+/* Remaining Balance - ORANGE */
+
+.summary-card:nth-child(3) .summary-icon {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+}
+
+.summary-card:nth-child(3) strong {
+    color: var(--orange-dark);
+}
+
+.summary-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.summary-card strong {
+    display: block;
+
+    margin-top: 5px;
+
+    font-size: 23px;
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    margin:
+        30px 2px 12px;
+}
+
+.section-heading h2 {
+    margin-top: 4px;
+
+    color: var(--black);
+
+    font-size: 21px;
+    line-height: 1.2;
+
+    font-weight: 750;
+}
+
+.section-kicker {
+    display: block;
+
+    color: var(--green-dark);
+
+    font-size: 10px;
+    font-weight: 850;
+
+    letter-spacing: 0.15em;
+}
+
+.section-heading.compact {
+    margin:
+        0 0 18px;
+}
+
+.view-all-button {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 4px;
+
+    color: var(--green-dark);
+
+    font-size: 13px;
+    font-weight: 750;
+
+    padding: 7px 2px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.view-all-button:hover {
+    color: var(--green);
+
+    transform: translateX(2px);
+}
+
+.view-all-button .material-symbols-outlined {
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.action-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.action-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-height: 86px;
+
+    padding: 17px;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-small);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cfe8d7;
+
+    box-shadow: var(--shadow-medium);
+}
+
+.action-icon {
+    width: 50px;
+    height: 50px;
+
+    flex: 0 0 50px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 15px;
+}
+
+.action-icon .material-symbols-outlined {
+    font-size: 27px;
+}
+
+.green-bg {
+    background: var(--green-light);
+    color: var(--green-dark);
+}
+
+.blue-bg {
+    background: var(--blue-light);
+    color: var(--blue);
+}
+
+.amber-bg {
+    background: var(--orange-light);
+    color: var(--orange-dark);
+}
+
+.action-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.action-content strong {
+    display: block;
+
+    color: var(--black);
+
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.action-content span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+.arrow {
+    flex-shrink: 0;
+
+    color: #9ca3af;
+
+    font-size: 23px;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.action-card:hover .arrow {
+    color: var(--green);
+
+    transform: translateX(3px);
+}
+
+
+/* =========================================================
+   RECENT ACTIVITY
+   ========================================================= */
+
+.activity-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.activity-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 13px;
+
+    min-height: 88px;
+
+    padding: 18px;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 18px;
+
+    box-shadow: var(--shadow-small);
+}
+
+.activity-icon {
+    width: 44px;
+    height: 44px;
+
+    flex: 0 0 44px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 13px;
+
+    background: #f0fdf4;
+
+    color: var(--green);
+}
+
+.activity-icon .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.activity-card > div:last-child {
+    min-width: 0;
+}
+
+.activity-card span {
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.activity-card strong {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--black);
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================================
+   PAYMENT CARD
+   QR FIRST
+   UPI BELOW
+   ========================================================= */
+
+.payment-card {
+    margin-top: 18px;
+
+    padding: 28px;
+
+    color: #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d4d2a 0%,
+            #126b39 52%,
+            #15803d 100%
+        );
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 18px 42px rgba(22, 101, 52, 0.25);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.payment-header {
+    width: 100%;
+
+    text-align: left;
+}
+
+.payment-header .section-kicker {
+    color: #a7f3c1;
+}
+
+.payment-header h2 {
+    margin-top: 6px;
+
+    font-size: 25px;
+    line-height: 1.2;
+
+    font-weight: 800;
+}
+
+.payment-header p {
+    max-width: 650px;
+
+    margin-top: 8px;
+
+    color: #d7f5df;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* QR */
+
+.qr-preview {
+    width: min(300px, 100%);
+
+    margin-top: 22px;
+
+    padding: 11px;
+
+    border: 0;
+
+    border-radius: 20px;
+
+    background: #fff;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.22);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.qr-preview:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.28);
+}
+
+.qr-image-wrapper {
+    width: 100%;
+
+    background: #fff;
+
+    border-radius: 13px;
+
+    overflow: hidden;
+}
+
+.qr-image-wrapper img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    border-radius: 12px;
+}
+
+.qr-pay-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding-top: 10px;
+
+    color: var(--green-dark);
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.qr-pay-label .material-symbols-outlined {
+    font-size: 20px;
+}
+
+
+/* UPI */
+
+.upi-row {
+    width: min(560px, 100%);
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 16px;
+
+    padding: 13px 14px;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 15px;
+}
+
+.upi-icon {
+    width: 43px;
+    height: 43px;
+
+    flex: 0 0 43px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    color: #bbf7d0;
+}
+
+.upi-icon .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.upi-details {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.upi-details small {
+    display: block;
+
+    color: #b9dfc5;
+
+    font-size: 10px;
+}
+
+.upi-details strong {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    overflow-wrap: anywhere;
+}
+
+.copy-button {
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    display: grid;
+    place-items: center;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: #fff;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.copy-button:hover {
+    background: rgba(255, 255, 255, 0.24);
+
+    transform: scale(1.04);
+}
+
+.copy-button .material-symbols-outlined {
+    font-size: 21px;
+}
+
+
+/* =========================================================
+   CONTACT / SOCIAL
+   Large centered app icons
+   ========================================================= */
+
+.contact-card {
+    margin-top: 28px;
+
+    padding: 22px;
+
+    background: #fff;
+
+    border: 1px solid var(--line);
+
+    border-radius: 22px;
+
+    box-shadow: var(--shadow-medium);
+}
+
+
+/*
+   This creates the centered:
+   
+   Instagram   |   WhatsApp
+   
+   layout similar to your screenshot.
+*/
+
+.social-icons-row {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 30px;
+
+    padding:
+        12px 10px 8px;
+}
+
+.social-app {
+    width: 150px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.social-app:hover {
+    transform: translateY(-4px);
+}
+
+
+/* Large app circle */
+
+.social-circle {
+    width: 76px;
+    height: 76px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 20px rgba(15, 23, 42, 0.13);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.social-app:hover .social-circle {
+    transform: scale(1.06);
+
+    box-shadow:
+        0 12px 28px rgba(15, 23, 42, 0.18);
+}
+
+
+/* Instagram */
+
+.instagram-circle {
+    color: #fff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4 0%,
+            #e1306c 45%,
+            #fd1d1d 72%,
+            #fcb045 100%
+        );
+}
+
+
+/* WhatsApp */
+
+.whatsapp-circle {
+    color: #fff;
+
+    background: #25d366;
+}
+
+
+/* Actual SVG brand icons */
+
+.brand-svg {
+    width: 43px;
+    height: 43px;
+
+    display: block;
+}
+
+.instagram-svg {
+    color: #fff;
+}
+
+.whatsapp-svg {
+    color: #fff;
+}
+
+
+.social-app strong {
+    margin-top: 11px;
+
+    color: var(--black);
+
+    font-size: 15px;
+
+    font-weight: 750;
+}
+
+.social-app small {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* Straight center divider */
+
+.social-divider {
+    width: 1px;
+
+    height: 78px;
+
+    flex: 0 0 1px;
+
+    background: #d9dee5;
+}
+
+
+/* =========================================================
+   ABOUT
+   ========================================================= */
+
+.about-card {
+    margin-top: 28px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8faf9
+        );
+
+    border: 1px solid var(--line);
+
+    border-radius: 20px;
+
+    box-shadow: var(--shadow-small);
+}
+
+.about-logo {
+    width: 52px;
+    height: 52px;
+
+    flex: 0 0 52px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 15px;
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+}
+
+.about-logo .material-symbols-outlined {
+    font-size: 28px;
+
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 600,
+        "GRAD" 0,
+        "opsz" 28;
+}
+
+.about-content {
+    min-width: 0;
+}
+
+.about-content .section-kicker {
+    margin-bottom: 4px;
+}
+
+.about-content strong {
+    display: block;
+
+    color: var(--black);
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.about-content > span:not(.section-kicker) {
+    display: block;
+
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.about-content small {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #9ca3af;
+
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(3, 12, 7, 0.68);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.22s ease,
+        visibility 0.22s ease;
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.qr-modal,
+.settings-box {
+    position: relative;
+
+    width: min(420px, 100%);
+
+    padding: 26px;
+
+    background: #fff;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.28);
+
+    transform:
+        translateY(15px)
+        scale(0.97);
+
+    transition:
+        transform 0.22s ease;
+}
+
+.show .qr-modal,
+.show .settings-box {
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+.modal-close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 40px;
+    height: 40px;
+
+    display: grid;
+    place-items: center;
+
+    border: 1px solid var(--line);
+
+    border-radius: 12px;
+
+    background: #f8faf9;
+
+    color: #536071;
+}
+
+.modal-close:hover {
+    color: var(--green);
+}
+
+.qr-modal h2,
+.settings-box h2 {
+    margin-top: 6px;
+
+    color: var(--black);
+
+    font-size: 25px;
+
+    font-weight: 800;
+}
+
+.qr-modal p {
+    margin:
+        7px 0 17px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.qr-large {
+    display: block;
+
+    width: min(310px, 100%);
+
+    margin: auto;
+
+    border-radius: 14px;
+}
+
+.modal-upi {
+    display: block;
+
+    margin:
+        14px 0;
+
+    color: var(--black);
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+.modal-copy {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 13px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    background: var(--green);
+
+    color: #fff;
+
+    font-weight: 750;
+}
+
+.modal-copy:hover {
+    background: var(--green-dark);
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+.settings-box {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+}
+
+.settings-box > h2 {
+    margin-bottom: 5px;
+}
+
+.settings-box button:not(.modal-close) {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 13px;
+
+    border: 1px solid var(--line);
+
+    border-radius: 13px;
+
+    background: #fff;
+
+    color: #344054;
+
+    text-align: left;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.settings-box button:not(.modal-close):hover {
+    background: #f0fdf4;
+
+    color: var(--green-dark);
+}
+
+.settings-box button .material-symbols-outlined {
+    font-size: 22px;
+}
+
+.settings-box .logout-button {
+    color: #dc2626 !important;
+}
+
+.settings-box .logout-button:hover {
+    background: #fef2f2 !important;
+}
+
+
+/* =========================================================
+   LOADER
+   ========================================================= */
+
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+
+    z-index: 200;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    backdrop-filter: blur(5px);
+}
+
+.loader {
+    width: 46px;
+    height: 46px;
+
+    border: 4px solid #d1fae5;
+
+    border-top-color: var(--green);
+
+    border-radius: 50%;
+
+    animation:
+        spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+.dark-theme {
+    --text: #f1f5f9;
+    --muted: #a8b2c0;
+    --line: #29352e;
+    --background: #09110c;
+    --card: #111914;
+}
+
+.dark-theme .page-bg {
+    background:
+        linear-gradient(
+            145deg,
+            #09110c,
+            #0d1711
+        );
+}
+
+.dark-theme .app-header {
+    background: rgba(17, 25, 20, 0.94);
+
+    border-color: var(--line);
+}
+
+.dark-theme .brand-text strong {
+    color: #f8fafc;
+}
+
+.dark-theme .icon-button {
+    background: #172019;
+
+    border-color: #2a382f;
+
+    color: #d8e2dc;
+}
+
+.dark-theme .profile-hero,
+.dark-theme .summary-card,
+.dark-theme .action-card,
+.dark-theme .activity-card,
+.dark-theme .contact-card,
+.dark-theme .about-card {
+    background: #111914;
+
+    border-color: var(--line);
+}
+
+.dark-theme .profile-hero {
+    background:
+        linear-gradient(
+            135deg,
+            #111914,
+            #15231a
+        );
+}
+
+.dark-theme .profile-main h1,
+.dark-theme .summary-card strong,
+.dark-theme .action-content strong,
+.dark-theme .activity-card strong,
+.dark-theme .section-heading h2,
+.dark-theme .about-content strong {
+    color: #f8fafc;
+}
+
+.dark-theme .social-app strong {
+    color: #f8fafc;
+}
+
+.dark-theme .about-card {
+    background: #111914;
+}
+
+.dark-theme .qr-modal,
+.dark-theme .settings-box {
+    background: #111914;
+
+    border: 1px solid var(--line);
+}
+
+.dark-theme .qr-modal h2,
+.dark-theme .settings-box h2 {
+    color: #f8fafc;
+}
+
+.dark-theme .modal-close {
+    background: #172019;
+
+    border-color: #2a382f;
+
+    color: #d8e2dc;
+}
+
+.dark-theme .settings-box button:not(.modal-close) {
+    background: #172019;
+
+    border-color: #2a382f;
+
+    color: #d8e2dc;
+}
+
+.dark-theme .activity-card,
+.dark-theme .action-card,
+.dark-theme .summary-card {
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .profile-page {
+        width: min(100% - 20px, 620px);
+
+        margin-top: 16px;
+    }
+
+    .app-header {
+        height: 68px;
+
+        padding: 0 12px;
+    }
+
+    .brand strong {
+        font-size: 14px;
+    }
+
+    .brand small {
+        font-size: 10px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .profile-hero {
+        padding: 20px;
+
+        border-radius: 22px;
+    }
+
+    .hero-top {
+        align-items: flex-start;
+    }
+
+    .profile-photo {
+        width: 92px;
+        height: 92px;
+
+        border-radius: 24px;
+    }
+
+    .profile-main h1 {
+        font-size: 23px;
+    }
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-card {
+        padding: 22px;
+
+        align-items: center;
+    }
+
+    .payment-header {
+        text-align: center;
+    }
+
+    .qr-preview {
+        width: min(300px, 90%);
+    }
+
+    .upi-row {
+        width: 100%;
+    }
+
+    .contact-card {
+        padding: 20px;
+    }
+
+    .social-icons-row {
+        gap: 25px;
+    }
+
+    .social-app {
+        width: 135px;
+    }
+
+    .social-circle {
+        width: 72px;
+        height: 72px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+
+    .profile-page {
+        width: calc(100% - 16px);
+
+        margin:
+            12px auto 35px;
+    }
+
+    .app-header {
+        padding: 0 10px;
+    }
+
+    .header-actions {
+        gap: 6px;
+    }
+
+    .icon-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand {
+        gap: 9px;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+
+        border-radius: 12px;
+    }
+
+    .brand-text strong {
+        font-size: 13px;
+    }
+
+    .profile-hero {
+        padding: 18px;
+
+        border-radius: 20px;
+    }
+
+    .hero-top {
+        gap: 14px;
+    }
+
+    .profile-photo {
+        width: 82px;
+        height: 82px;
+
+        border-radius: 22px;
+    }
+
+    .camera-button {
+        width: 35px;
+        height: 35px;
+
+        border-radius: 11px;
+    }
+
+    .camera-button .material-symbols-outlined {
+        font-size: 18px;
+    }
+
+    .status-pill {
+        font-size: 9px;
+
+        padding: 5px 8px;
+    }
+
+    .profile-main h1 {
+        font-size: 20px;
+    }
+
+    .profile-main p {
+        font-size: 12px;
+
+        gap: 5px;
+    }
+
+    .profile-main p .material-symbols-outlined {
+        font-size: 17px;
+    }
+
+    .address-row {
+        font-size: 12px;
+    }
+
+    .summary-card {
+        padding: 16px;
+    }
+
+    .summary-icon {
+        width: 45px;
+        height: 45px;
+
+        flex-basis: 45px;
+    }
+
+    .summary-card strong {
+        font-size: 21px;
+    }
+
+    .section-heading {
+        margin-top: 26px;
+    }
+
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .action-card {
+        min-height: 82px;
+
+        padding: 14px;
+    }
+
+    .action-icon {
+        width: 46px;
+        height: 46px;
+
+        flex-basis: 46px;
+    }
+
+    .action-content strong {
+        font-size: 14px;
+    }
+
+    .action-content span {
+        font-size: 11px;
+    }
+
+    .payment-card {
+        padding: 20px;
+
+        border-radius: 22px;
+    }
+
+    .payment-header h2 {
+        font-size: 22px;
+    }
+
+    .payment-header p {
+        font-size: 12px;
+    }
+
+    .qr-preview {
+        width: min(280px, 100%);
+    }
+
+    .upi-row {
+        gap: 9px;
+
+        padding: 11px;
+    }
+
+    .upi-icon {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+    }
+
+    .upi-details strong {
+        font-size: 12px;
+    }
+
+    .copy-button {
+        width: 40px;
+        height: 40px;
+
+        flex-basis: 40px;
+    }
+
+    .contact-card {
+        padding: 18px;
+    }
+
+    .social-icons-row {
+        gap: 18px;
+    }
+
+    .social-app {
+        width: 120px;
+    }
+
+    .social-circle {
+        width: 70px;
+        height: 70px;
+
+        border-radius: 20px;
+    }
+
+    .brand-svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .social-app strong {
+        font-size: 14px;
+    }
+
+    .social-app small {
+        max-width: 120px;
+
+        overflow-wrap: anywhere;
+
+        font-size: 10px;
+    }
+
+    .social-divider {
+        height: 72px;
+    }
+
+    .about-card {
+        padding: 16px;
+    }
+
+    .about-logo {
+        width: 46px;
+        height: 46px;
+
+        flex-basis: 46px;
+    }
+
+    .about-content strong {
+        font-size: 12px;
+    }
+
+    .about-content > span:not(.section-kicker) {
+        font-size: 10px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .hero-top {
+        gap: 10px;
+    }
+
+    .profile-photo {
+        width: 72px;
+        height: 72px;
+    }
+
+    .profile-main h1 {
+        font-size: 18px;
+    }
+
+    .profile-main p {
+        font-size: 11px;
+    }
+
+    .social-icons-row {
+        gap: 10px;
+    }
+
+    .social-app {
+        width: 105px;
+    }
+
+    .social-circle {
+        width: 64px;
+        height: 64px;
+    }
+
+    .brand-svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .social-divider {
+        height: 65px;
+    }
+
+}

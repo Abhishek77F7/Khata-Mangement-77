@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="theme-color"
+    content="#f5f8ff">
+
+<title>Verify Mobile</title>
+
+
+<!-- ======================================
+     GOOGLE MATERIAL SYMBOLS
+====================================== -->
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,0">
+
+
+<!-- ======================================
+     STYLES
+====================================== -->
+
+<link
+    rel="stylesheet"
+    href="login.css">
+
+<link
+    rel="stylesheet"
+    href="toast.css">
+
+
+<style>
+
+/* ======================================
+   OTP POPUP
+====================================== */
+
+.otp-popup-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(5, 15, 10, 0.55);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    z-index: 9999;
+
+}
+
+
+.otp-popup-overlay.show {
+
+    display: flex;
+
+    animation:
+        popupFade .25s ease;
+
+}
+
+
+.otp-popup {
+
+    width: 100%;
+
+    max-width: 360px;
+
+    padding: 28px 24px;
+
+    border-radius: 26px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.25);
+
+    text-align: center;
+
+    position: relative;
+
+    animation:
+        popupScale .3s ease;
+
+}
+
+
+.otp-popup-close {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f1f5f3;
+
+    color: #4b5563;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.otp-popup-icon {
+
+    width: 64px;
+
+    height: 64px;
+
+    margin: 0 auto 16px;
+
+    border-radius: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        #e8f7ef;
+
+    color:
+        #16a34a;
+
+}
+
+
+.otp-popup-icon .material-symbols-outlined {
+
+    font-size: 34px;
+
+}
+
+
+.otp-popup h2 {
+
+    margin: 0 0 7px;
+
+    color: #17211b;
+
+    font-size: 23px;
+
+}
+
+
+.otp-popup-text {
+
+    margin: 0 0 20px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+.demo-otp-box {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    margin-bottom: 18px;
+
+    border-radius: 16px;
+
+    background:
+        #f0fdf4;
+
+    border:
+        1px solid #bbf7d0;
+
+}
+
+
+.demo-otp {
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+    letter-spacing: 7px;
+
+    color: #15803d;
+
+}
+
+
+.copy-otp-btn {
+
+    width: 42px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #16a34a;
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+.copy-otp-btn:active {
+
+    transform: scale(.94);
+
+}
+
+
+.otp-popup-note {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 6px;
+
+    color: #6b7280;
+
+    font-size: 12px;
+
+}
+
+
+.otp-popup-note .material-symbols-outlined {
+
+    font-size: 17px;
+
+    color: #16a34a;
+
+}
+
+
+@keyframes popupFade {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+@keyframes popupScale {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(.88)
+            translateY(15px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* ======================================
+   OTP PAGE ADDITIONS
+====================================== */
+
+.otp-card {
+
+    max-width: 430px;
+
+}
+
+
+.otp-group {
+
+    margin-top: 24px;
+
+}
+
+
+.otp-wrapper input {
+
+    text-align: center;
+
+    letter-spacing: 8px;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+.verified-mobile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.verified-mobile-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #e8f7ef;
+
+    color: #16a34a;
+
+}
+
+
+.verified-mobile-info {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.verified-label {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    color: #7b847e;
+
+    text-transform: uppercase;
+
+    letter-spacing: .7px;
+
+}
+
+
+.verified-mobile-info strong {
+
+    color: #17211b;
+
+    font-size: 16px;
+
+}
+
+
+.change-mobile {
+
+    border: none;
+
+    background: transparent;
+
+    color: #16a34a;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+}
+
+
+.change-mobile .material-symbols-outlined {
+
+    font-size: 18px;
+
+}
+
+
+/* ======================================
+   RESEND OTP
+====================================== */
+
+.resend-section {
+
+    text-align: center;
+
+    margin-top: 18px;
+
+}
+
+
+.resend-text {
+
+    margin: 0;
+
+    color: #737b76;
+
+    font-size: 14px;
+
+}
+
+
+.resend-btn {
+
+    border: none;
+
+    background: transparent;
+
+    color: #16a34a;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 7px 4px;
+
+}
+
+
+.resend-btn:hover {
+
+    color: #15803d;
+
+    text-decoration: underline;
+
+}
+
+
+.resend-btn:disabled {
+
+    color: #9ca3af;
+
+    cursor: not-allowed;
+
+    text-decoration: none;
+
+}
+
+
+.resend-countdown {
+
+    color: #6b7280;
+
+    font-size: 13px;
+
+    margin-top: 3px;
+
+}
+
+
+/* ======================================
+   OTP HINT
+====================================== */
+
+.input-hint {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+}
+
+
+.input-hint .material-symbols-outlined {
+
+    font-size: 17px;
+
+    color: #16a34a;
+
+}
+
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media(max-width:480px) {
+
+    .otp-popup {
+
+        max-width: 340px;
+
+        padding: 25px 20px;
+
+    }
+
+    .demo-otp {
+
+        font-size: 27px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     BACKGROUND
+====================================== -->
+
+<div class="background"></div>
+
+
+<!-- ======================================
+     OTP PAGE
+====================================== -->
+
+<main class="login-card otp-card">
+
+
+    <!-- ==================================
+         TOP ICON
+    ================================== -->
+
+    <div class="login-icon">
+
+        <span class="material-symbols-outlined">
+            mark_email_read
+        </span>
+
+    </div>
+
+
+    <!-- ==================================
+         TITLE
+    ================================== -->
+
+    <h1>
+        Verify Mobile
+    </h1>
+
+
+    <p class="subtitle">
+
+        Enter the verification code sent to
+        your registered mobile number.
+
+    </p>
+
+
+    <!-- ==================================
+         REGISTERED MOBILE
+    ================================== -->
+
+    <div class="verified-mobile">
+
+
+        <div class="verified-mobile-icon">
+
+            <span class="material-symbols-outlined">
+                phone_iphone
+            </span>
+
+        </div>
+
+
+        <div class="verified-mobile-info">
+
+            <span class="verified-label">
+                Registered Mobile
+            </span>
+
+            <strong id="mobileDisplay">
+                +91 XXXXX XXXXX
+            </strong>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="change-mobile"
+            onclick="changeMobile()">
+
+            <span class="material-symbols-outlined">
+                edit
+            </span>
+
+            <span>
+                Change
+            </span>
+
+        </button>
+
+    </div>
+
+
+    <!-- ==================================
+         OTP SECTION
+    ================================== -->
+
+    <div class="input-group otp-group">
+
+
+        <label for="otp">
+
+            <span class="material-symbols-outlined">
+                pin
+            </span>
+
+            <span>
+                Verification Code
+            </span>
+
+        </label>
+
+
+        <div class="otp-wrapper">
+
+            <input
+                type="text"
+                id="otp"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                maxlength="4"
+                placeholder="••••"
+                aria-label="Enter your OTP">
+
+        </div>
+
+
+        <small class="input-hint">
+
+            <span class="material-symbols-outlined">
+                info
+            </span>
+
+            <span>
+                Enter the 4-digit code shown after requesting OTP.
+            </span>
+
+        </small>
+
+    </div>
+
+
+    <!-- ==================================
+         VERIFY BUTTON
+    ================================== -->
+
+    <button
+        type="button"
+        id="verifyBtn"
+        class="login-btn"
+        onclick="verifyCustomerOTP()">
+
+        <span>
+            Verify &amp; Continue
+        </span>
+
+    </button>
+
+
+    <!-- ==================================
+         RESEND OTP
+    ================================== -->
+
+    <div class="resend-section">
+
+        <p class="resend-text">
+            Didn't receive the code?
+        </p>
+
+
+        <button
+            type="button"
+            id="resendBtn"
+            class="resend-btn"
+            onclick="resendOTP()">
+
+            Resend OTP
+
+        </button>
+
+
+        <div
+            id="resendCountdown"
+            class="resend-countdown">
+
+        </div>
+
+    </div>
+
+
+    <!-- ==================================
+         SECURITY
+    ================================== -->
+
+    <div class="security-note">
+
+        <span class="material-symbols-outlined">
+            verified_user
+        </span>
+
+        <span>
+            Your verification is secure and protected
+        </span>
+
+    </div>
+
+
+    <!-- ==================================
+         BACK
+    ================================== -->
+
+    <a
+        href="customer-login.html"
+        class="back-btn">
+
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+
+        <span>
+            Back to Mobile Login
+        </span>
+
+    </a>
+
+
+</main>
+
+
+<!-- ======================================
+     OTP POPUP
+====================================== -->
+
+<div
+    id="otpPopup"
+    class="otp-popup-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="otpPopupTitle">
+
+
+    <div class="otp-popup">
+
+
+        <button
+            type="button"
+            class="otp-popup-close"
+            onclick="closeOTPPopup()"
+            aria-label="Close">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+
+        <div class="otp-popup-icon">
+
+            <span class="material-symbols-outlined">
+                password
+            </span>
+
+        </div>
+
+
+        <h2 id="otpPopupTitle">
+            Your Demo OTP
+        </h2>
+
+
+        <p class="otp-popup-text">
+
+            Use this verification code to
+            continue to your Customer ID.
+
+        </p>
+
+
+        <div class="demo-otp-box">
+
+
+            <strong
+                id="demoOTPDisplay"
+                class="demo-otp">
+
+            </strong>
+
+
+            <button
+                type="button"
+                id="copyOTPBtn"
+                class="copy-otp-btn"
+                onclick="copyOTP()"
+                aria-label="Copy OTP">
+
+                <span
+                    id="copyOTPIcon"
+                    class="material-symbols-outlined">
+
+                    content_copy
+
+                </span>
+
+            </button>
+
+        </div>
+
+
+        <div class="otp-popup-note">
+
+            <span class="material-symbols-outlined">
+                info
+            </span>
+
+            <span>
+                Demo mode • Do not share this code
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================
+     LOADER
+====================================== -->
+
+<div
+    id="loader"
+    class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+
+<!-- ======================================
+     SCRIPTS
+====================================== -->
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+
+<script>
+
+/* ======================================
+   GET MOBILE
+====================================== */
+
+const mobile =
+    sessionStorage.getItem(
+        "customerLoginMobile"
+    );
+
+
+/* ======================================
+   SESSION CHECK
+====================================== */
+
+if (!mobile) {
+
+    window.location.replace(
+        "customer-login.html"
+    );
+
+}
+
+
+/* ======================================
+   OTP ELEMENTS
+====================================== */
+
+const otpInput =
+    document.getElementById("otp");
+
+const mobileDisplay =
+    document.getElementById(
+        "mobileDisplay"
+    );
+
+const resendBtn =
+    document.getElementById(
+        "resendBtn"
+    );
+
+const resendCountdown =
+    document.getElementById(
+        "resendCountdown"
+    );
+
+const otpPopup =
+    document.getElementById(
+        "otpPopup"
+    );
+
+const demoOTPDisplay =
+    document.getElementById(
+        "demoOTPDisplay"
+    );
+
+const copyOTPIcon =
+    document.getElementById(
+        "copyOTPIcon"
+    );
+
+
+let resendTimer = null;
+
+
+/* ======================================
+   DISPLAY MOBILE
+====================================== */
+
+if (
+    mobileDisplay &&
+    mobile
+) {
+
+    const cleanMobile =
+        mobile.replace(/\D/g, "");
+
+
+    if (
+        cleanMobile.length === 10
+    ) {
+
+        mobileDisplay.textContent =
+            "+91 " +
+            cleanMobile.substring(0, 5) +
+            " " +
+            cleanMobile.substring(5);
+
+    }
+
+}
+
+
+/* ======================================
+   GENERATE RANDOM OTP
+====================================== */
+
+function generateOTP() {
+
+    return String(
+        Math.floor(
+            1000 +
+            Math.random() * 9000
+        )
+    );
+
+}
+
+
+/* ======================================
+   CREATE OTP
+====================================== */
+
+function createNewOTP() {
+
+    const newOTP =
+        generateOTP();
+
+
+    sessionStorage.setItem(
+        "customerDemoOTP",
+        newOTP
+    );
+
+
+    return newOTP;
+
+}
+
+
+/* ======================================
+   GET CURRENT OTP
+====================================== */
+
+function getCurrentOTP() {
+
+    return sessionStorage.getItem(
+        "customerDemoOTP"
+    );
+
+}
+
+
+/* ======================================
+   SHOW OTP POPUP
+====================================== */
+
+function showOTPPopup(otp) {
+
+    if (!otp) return;
+
+
+    demoOTPDisplay.textContent =
+        otp;
+
+
+    otpPopup.classList.add(
+        "show"
+    );
+
+
+    console.log(
+        "Demo OTP:",
+        otp
+    );
+
+}
+
+
+/* ======================================
+   CLOSE OTP POPUP
+====================================== */
+
+window.closeOTPPopup = function () {
+
+    otpPopup.classList.remove(
+        "show"
+    );
+
+    setTimeout(() => {
+
+        otpInput?.focus();
+
+    }, 150);
+
+};
+
+
+/* ======================================
+   GENERATE FIRST OTP
+====================================== */
+
+let savedOTP =
+    getCurrentOTP();
+
+
+if (!savedOTP) {
+
+    savedOTP =
+        createNewOTP();
+
+}
+
+
+/* ======================================
+   SHOW OTP AUTOMATICALLY
+====================================== */
+
+setTimeout(() => {
+
+    showOTPPopup(
+        savedOTP
+    );
+
+}, 350);
+
+
+/* ======================================
+   OTP INPUT
+====================================== */
+
+otpInput?.addEventListener(
+    "input",
+    function () {
+
+        this.value =
+            this.value
+            .replace(/\D/g, "")
+            .slice(0, 4);
+
+    }
+);
+
+
+/* ======================================
+   VERIFY OTP
+====================================== */
+
+window.verifyCustomerOTP =
+    function () {
+
+        const otp =
+            otpInput?.value.trim();
+
+
+        if (!otp) {
+
+            showToast(
+                "Please enter the OTP.",
+                "warning"
+            );
+
+            otpInput?.focus();
+
+            return;
+
+        }
+
+
+        if (
+            otp.length !== 4
+        ) {
+
+            showToast(
+                "Enter the 4-digit OTP.",
+                "warning"
+            );
+
+            otpInput?.focus();
+
+            return;
+
+        }
+
+
+        const currentOTP =
+            getCurrentOTP();
+
+
+        if (
+            otp !== currentOTP
+        ) {
+
+            showToast(
+                "Invalid OTP. Please try again.",
+                "error"
+            );
+
+            otpInput?.focus();
+
+            otpInput?.select();
+
+            return;
+
+        }
+
+
+        /* ==============================
+           VERIFIED
+        ============================== */
+
+        sessionStorage.setItem(
+            "customerMobileVerified",
+            "true"
+        );
+
+
+        /* ==============================
+           LOADER
+        ============================== */
+
+        if (
+            typeof showLoader ===
+            "function"
+        ) {
+
+            showLoader();
+
+        }
+
+
+        setTimeout(() => {
+
+            if (
+                typeof hideLoader ===
+                "function"
+            ) {
+
+                hideLoader();
+
+            }
+
+
+            window.location.replace(
+                "customer-id.html"
+            );
+
+        }, 500);
+
+    };
+
+
+/* ======================================
+   RESEND OTP
+====================================== */
+
+window.resendOTP = function () {
+
+
+    if (
+        resendBtn.disabled
+    ) {
+
+        return;
+
+    }
+
+
+    /* ----------------------------------
+       GENERATE NEW OTP
+    ---------------------------------- */
+
+    const newOTP =
+        createNewOTP();
+
+
+    savedOTP =
+        newOTP;
+
+
+    /* ----------------------------------
+       CLEAR INPUT
+    ---------------------------------- */
+
+    if (otpInput) {
+
+        otpInput.value = "";
+
+    }
+
+
+    /* ----------------------------------
+       SHOW NEW OTP
+    ---------------------------------- */
+
+    showOTPPopup(
+        newOTP
+    );
+
+
+    /* ----------------------------------
+       TOAST
+    ---------------------------------- */
+
+    showToast(
+        "A new OTP has been generated.",
+        "success"
+    );
+
+
+    /* ----------------------------------
+       START COUNTDOWN
+    ---------------------------------- */
+
+    startResendCountdown();
+
+};
+
+
+/* ======================================
+   RESEND COUNTDOWN
+====================================== */
+
+function startResendCountdown() {
+
+    let seconds = 30;
+
+
+    resendBtn.disabled = true;
+
+
+    resendCountdown.textContent =
+        "You can resend again in " +
+        seconds +
+        " seconds";
+
+
+    clearInterval(
+        resendTimer
+    );
+
+
+    resendTimer =
+        setInterval(
+            () => {
+
+                seconds--;
+
+
+                if (
+                    seconds <= 0
+                ) {
+
+                    clearInterval(
+                        resendTimer
+                    );
+
+
+                    resendBtn.disabled =
+                        false;
+
+
+                    resendCountdown.textContent =
+                        "You can request a new OTP now.";
+
+
+                    return;
+
+                }
+
+
+                resendCountdown.textContent =
+                    "You can resend again in " +
+                    seconds +
+                    " seconds";
+
+            },
+            1000
+        );
+
+}
+
+
+/* ======================================
+   COPY OTP
+====================================== */
+
+window.copyOTP = async function () {
+
+    const otp =
+        getCurrentOTP();
+
+
+    if (!otp) return;
+
+
+    try {
+
+        await navigator.clipboard.writeText(
+            otp
+        );
+
+
+        copyOTPIcon.textContent =
+            "check";
+
+
+        showToast(
+            "OTP copied successfully.",
+            "success"
+        );
+
+
+        setTimeout(() => {
+
+            copyOTPIcon.textContent =
+                "content_copy";
+
+        }, 1500);
+
+    }
+
+    catch (error) {
+
+        showToast(
+            "Unable to copy OTP.",
+            "error"
+        );
+
+    }
+
+};
+
+
+/* ======================================
+   CHANGE MOBILE
+====================================== */
+
+window.changeMobile =
+    function () {
+
+        clearInterval(
+            resendTimer
+        );
+
+
+        sessionStorage.removeItem(
+            "customerLoginMobile"
+        );
+
+
+        sessionStorage.removeItem(
+            "customerDemoOTP"
+        );
+
+
+        sessionStorage.removeItem(
+            "customerMobileVerified"
+        );
+
+
+        window.location.replace(
+            "customer-login.html"
+        );
+
+    };
+
+
+/* ======================================
+   ENTER KEY
+====================================== */
+
+otpInput?.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            verifyCustomerOTP();
+
+        }
+
+    }
+);
+
+
+/* ======================================
+   CLOSE POPUP WITH ESCAPE
+====================================== */
+
+document.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closeOTPPopup();
+
+        }
+
+    }
+);
+
+
+/* ======================================
+   CLICK OUTSIDE POPUP
+====================================== */
+
+otpPopup?.addEventListener(
+    "click",
+    (event) => {
+
+        if (
+            event.target ===
+            otpPopup
+        ) {
+
+            closeOTPPopup();
+
+        }
+
+    }
+);
+
+
+/* ======================================
+   AUTO FOCUS
+====================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        setTimeout(() => {
+
+            otpInput?.focus();
+
+        }, 600);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

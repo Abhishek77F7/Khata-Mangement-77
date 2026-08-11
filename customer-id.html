@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="theme-color"
+    content="#16a34a">
+
+<title>Confirm Customer ID</title>
+
+
+<!-- Google Material Symbols -->
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..600,0..1,0">
+
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="customer-id.css">
+
+<link rel="stylesheet" href="toast.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     BACKGROUND
+====================================== -->
+
+<div class="page-background">
+
+    <div class="background-circle circle-one"></div>
+
+    <div class="background-circle circle-two"></div>
+
+    <div class="background-circle circle-three"></div>
+
+</div>
+
+
+
+<!-- ======================================
+     MAIN PAGE
+====================================== -->
+
+<main class="customer-id-page">
+
+
+    <!-- ==================================
+         TOP BAR
+    ================================== -->
+
+    <header class="top-bar">
+
+        <a
+            href="customer-login.html"
+            class="back-button"
+            aria-label="Go back">
+
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+
+        </a>
+
+
+        <div class="top-title">
+
+            <span>
+                Customer Portal
+            </span>
+
+            <small>
+                Account Verification
+            </small>
+
+        </div>
+
+
+        <div class="top-avatar">
+
+            <span class="material-symbols-outlined">
+                person
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ==================================
+         STEPS
+    ================================== -->
+
+    <section class="steps-card">
+
+        <div class="step completed">
+
+            <div class="step-icon">
+
+                <span class="material-symbols-outlined">
+                    check
+                </span>
+
+            </div>
+
+            <span>
+                Mobile
+            </span>
+
+        </div>
+
+
+        <div class="step-line active"></div>
+
+
+        <div class="step current">
+
+            <div class="step-icon">
+                2
+            </div>
+
+            <span>
+                Customer ID
+            </span>
+
+        </div>
+
+
+        <div class="step-line"></div>
+
+
+        <div class="step">
+
+            <div class="step-icon">
+                3
+            </div>
+
+            <span>
+                Profile
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         HERO
+    ================================== -->
+
+    <section class="hero-section">
+
+        <div class="hero-icon">
+
+            <span class="material-symbols-outlined">
+                badge
+            </span>
+
+        </div>
+
+
+        <div class="hero-text">
+
+            <span class="eyebrow">
+                IDENTITY CHECK
+            </span>
+
+            <h1>
+                Confirm your Customer ID
+            </h1>
+
+            <p>
+                One more step to securely access
+                your Khata profile.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         VERIFIED MOBILE
+    ================================== -->
+
+    <section class="verified-card">
+
+        <div class="verified-icon">
+
+            <span class="material-symbols-outlined">
+                verified
+            </span>
+
+        </div>
+
+
+        <div class="verified-content">
+
+            <span class="verified-label">
+                MOBILE NUMBER VERIFIED
+            </span>
+
+            <strong id="mobileDisplay">
+                +91 XXXXX XXXXX
+            </strong>
+
+        </div>
+
+
+        <div class="verified-status">
+
+            <span class="material-symbols-outlined">
+                check_circle
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         CUSTOMER ID CARD
+    ================================== -->
+
+    <section class="id-card">
+
+
+        <div class="card-heading">
+
+            <div class="heading-icon">
+
+                <span class="material-symbols-outlined">
+                    account_box
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <h2>
+                    Customer ID
+                </h2>
+
+                <p>
+                    Enter the ID linked to your account
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- INPUT LABEL -->
+
+        <div class="input-label">
+
+            <span>
+                Your Customer ID
+            </span>
+
+            <span class="required">
+                Required
+            </span>
+
+        </div>
+
+
+
+        <!-- INPUT -->
+
+        <div class="id-input-wrapper">
+
+            <span class="material-symbols-outlined input-symbol">
+                badge
+            </span>
+
+
+            <input
+                type="text"
+                id="customerCode"
+                placeholder="E.g. ABHI00001"
+                autocomplete="off"
+                autocapitalize="characters"
+                spellcheck="false">
+
+
+            <button
+                type="button"
+                id="clearBtn"
+                class="clear-button"
+                aria-label="Clear Customer ID">
+
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- HELPER -->
+
+        <div class="input-helper">
+
+            <span class="material-symbols-outlined">
+                info
+            </span>
+
+            <span>
+                Enter the Customer ID provided by
+                your shop administrator.
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================
+         FIND ID
+    ================================== -->
+
+    <section class="help-card">
+
+        <div class="help-icon">
+
+            <span class="material-symbols-outlined">
+                help
+            </span>
+
+        </div>
+
+
+        <div class="help-content">
+
+            <button
+                type="button"
+                id="helpToggle"
+                class="help-toggle">
+
+                <span>
+                    Where can I find my Customer ID?
+                </span>
+
+                <span
+                    id="helpArrow"
+                    class="material-symbols-outlined">
+
+                    expand_more
+
+                </span>
+
+            </button>
+
+
+            <div
+                id="helpDetails"
+                class="help-details">
+
+                <p>
+                    Your Customer ID is normally given
+                    to you when your Khata account is
+                    registered.
+                </p>
+
+                <p>
+                    If you don't remember it, contact
+                    the shop administrator who created
+                    your account.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         SECURITY FEATURES
+    ================================== -->
+
+    <section class="security-grid">
+
+
+        <div class="security-item">
+
+            <div class="security-icon green">
+
+                <span class="material-symbols-outlined">
+                    lock
+                </span>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Secure
+                </strong>
+
+                <span>
+                    Protected access
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="security-item">
+
+            <div class="security-icon green">
+
+                <span class="material-symbols-outlined">
+                    verified_user
+                </span>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Verified
+                </strong>
+
+                <span>
+                    Mobile confirmed
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="security-item">
+
+            <div class="security-icon green">
+
+                <span class="material-symbols-outlined">
+                    privacy_tip
+                </span>
+
+            </div>
+
+            <div>
+
+                <strong>
+                    Private
+                </strong>
+
+                <span>
+                    Your data stays safe
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==================================
+         CONTINUE
+    ================================== -->
+
+    <button
+        type="button"
+        id="continueBtn"
+        class="continue-button"
+        onclick="confirmCustomerID()">
+
+        <span>
+            Confirm & Open Profile
+        </span>
+
+        <span class="material-symbols-outlined">
+            arrow_forward
+        </span>
+
+    </button>
+
+
+
+    <!-- ==================================
+         FOOTER
+    ================================== -->
+
+    <div class="secure-footer">
+
+        <span class="material-symbols-outlined">
+            shield
+        </span>
+
+        <span>
+            Secure Customer Portal
+        </span>
+
+        <span class="footer-dot"></span>
+
+        <span>
+            Protected Verification
+        </span>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- ======================================
+     LOADER
+====================================== -->
+
+<div
+    id="loader"
+    class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+
+
+<!-- ======================================
+     SCRIPTS
+====================================== -->
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+
+
+<script type="module">
+
+import { db } from "./firebase.js";
+
+import {
+    collection,
+    getDocs
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+
+
+/* ======================================
+   SESSION
+====================================== */
+
+const mobile =
+    sessionStorage.getItem(
+        "customerLoginMobile"
+    );
+
+const verified =
+    sessionStorage.getItem(
+        "customerMobileVerified"
+    );
+
+
+/*
+    User must come from OTP verification.
+*/
+
+if (
+    !mobile ||
+    verified !== "true"
+) {
+
+    window.location.replace(
+        "customer-login.html"
+    );
+
+}
+
+
+
+/* ======================================
+   DISPLAY MOBILE
+====================================== */
+
+const mobileDisplay =
+    document.getElementById(
+        "mobileDisplay"
+    );
+
+
+const currentMobile =
+    String(mobile || "")
+    .replace(/\D/g, "")
+    .slice(-10);
+
+
+if (
+    mobileDisplay &&
+    currentMobile.length === 10
+) {
+
+    mobileDisplay.textContent =
+        "+91 " +
+        currentMobile.substring(0, 5) +
+        " " +
+        currentMobile.substring(5);
+
+}
+
+
+
+/* ======================================
+   ELEMENTS
+====================================== */
+
+const customerCode =
+    document.getElementById(
+        "customerCode"
+    );
+
+const clearBtn =
+    document.getElementById(
+        "clearBtn"
+    );
+
+const continueBtn =
+    document.getElementById(
+        "continueBtn"
+    );
+
+
+
+/* ======================================
+   FORMAT CUSTOMER ID
+====================================== */
+
+customerCode?.addEventListener(
+    "input",
+    () => {
+
+        customerCode.value =
+            customerCode.value
+            .toUpperCase()
+            .replace(/\s/g, "");
+
+    }
+);
+
+
+
+/* ======================================
+   CLEAR
+====================================== */
+
+clearBtn?.addEventListener(
+    "click",
+    () => {
+
+        customerCode.value = "";
+
+        customerCode.focus();
+
+    }
+);
+
+
+
+/* ======================================
+   HELP TOGGLE
+====================================== */
+
+const helpToggle =
+    document.getElementById(
+        "helpToggle"
+    );
+
+const helpDetails =
+    document.getElementById(
+        "helpDetails"
+    );
+
+const helpArrow =
+    document.getElementById(
+        "helpArrow"
+    );
+
+
+helpToggle?.addEventListener(
+    "click",
+    () => {
+
+        const opened =
+            helpDetails.classList.toggle(
+                "show"
+            );
+
+
+        if (helpArrow) {
+
+            helpArrow.textContent =
+                opened
+                    ? "expand_less"
+                    : "expand_more";
+
+        }
+
+    }
+);
+
+
+
+/* ======================================
+   NORMALIZE ID
+====================================== */
+
+function normalizeCustomerID(value) {
+
+    return String(value || "")
+        .trim()
+        .toUpperCase()
+        .replace(/\s/g, "");
+
+}
+
+
+
+/* ======================================
+   NORMALIZE MOBILE
+====================================== */
+
+function normalizeMobile(value) {
+
+    return String(value || "")
+        .replace(/\D/g, "")
+        .slice(-10);
+
+}
+
+
+
+/* ======================================
+   CONFIRM CUSTOMER ID
+====================================== */
+
+window.confirmCustomerID =
+async function () {
+
+
+    const enteredID =
+        normalizeCustomerID(
+            customerCode?.value
+        );
+
+
+    const enteredMobile =
+        normalizeMobile(
+            mobile
+        );
+
+
+
+    /* ==============================
+       EMPTY ID
+    ============================== */
+
+    if (!enteredID) {
+
+        showToast(
+            "Please enter your Customer ID.",
+            "warning"
+        );
+
+        customerCode?.focus();
+
+        return;
+
+    }
+
+
+
+    /* ==============================
+       MOBILE CHECK
+    ============================== */
+
+    if (
+        enteredMobile.length !== 10
+    ) {
+
+        showToast(
+            "Your verified mobile number is invalid.",
+            "error"
+        );
+
+        return;
+
+    }
+
+
+
+    /* ==============================
+       LOADER
+    ============================== */
+
+    if (
+        typeof showLoader === "function"
+    ) {
+
+        showLoader();
+
+    }
+
+
+    if (continueBtn) {
+
+        continueBtn.disabled = true;
+
+    }
+
+
+
+    try {
+
+
+        /* ==============================
+           GET CUSTOMERS
+        ============================== */
+
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "customers"
+                )
+            );
+
+
+
+        let customerFound = null;
+
+
+
+        /* ==============================
+           FIND CUSTOMER
+        ============================== */
+
+        snapshot.forEach(
+            (docSnap) => {
+
+
+                const data =
+                    docSnap.data();
+
+
+                /*
+                    Your existing customer.js
+                    uses data.id.
+
+                    So we check id FIRST.
+                */
+
+                const storedID =
+                    normalizeCustomerID(
+                        data.id ||
+                        data.customerCode ||
+                        data.customerID ||
+                        data.customerId ||
+                        data.code
+                    );
+
+
+                const storedMobile =
+                    normalizeMobile(
+                        data.mobile
+                    );
+
+
+
+                /*
+                    Match BOTH:
+
+                    Customer ID
+                    +
+                    Verified mobile
+                */
+
+                if (
+
+                    storedID === enteredID &&
+
+                    storedMobile === enteredMobile
+
+                ) {
+
+                    customerFound = {
+
+                        firebaseID:
+                            docSnap.id,
+
+                        ...data
+
+                    };
+
+                }
+
+            }
+        );
+
+
+
+        /* ==============================
+           NOT FOUND
+        ============================== */
+
+        if (!customerFound) {
+
+            showToast(
+                "Customer ID doesn't match your registered mobile number.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+
+        /* ==============================
+           SAVE CUSTOMER SESSION
+        ============================== */
+
+        /*
+            Save using the same key
+            used by your existing
+            customer.js.
+        */
+
+        localStorage.setItem(
+            "customerDocID",
+            customerFound.firebaseID
+        );
+
+
+        sessionStorage.setItem(
+            "customerFirebaseID",
+            customerFound.firebaseID
+        );
+
+
+        sessionStorage.setItem(
+            "customerCode",
+            enteredID
+        );
+
+
+        sessionStorage.setItem(
+            "customerVerified",
+            "true"
+        );
+
+
+
+        /* ==============================
+           SUCCESS
+        ============================== */
+
+        showToast(
+            "Customer ID confirmed successfully.",
+            "success"
+        );
+
+
+
+        setTimeout(
+            () => {
+
+                /*
+                    IMPORTANT:
+                    Your existing customer.js
+                    loads profile.html.
+
+                    Therefore redirect to
+                    profile.html, not
+                    customer-profile.html.
+                */
+
+                window.location.href =
+                    "profile.html";
+
+            },
+            600
+        );
+
+
+    }
+
+
+    catch (error) {
+
+
+        console.error(
+            "Customer ID Verification Error:",
+            error
+        );
+
+
+        showToast(
+            "Unable to verify Customer ID. Please try again.",
+            "error"
+        );
+
+
+    }
+
+
+    finally {
+
+
+        if (
+            typeof hideLoader === "function"
+        ) {
+
+            hideLoader();
+
+        }
+
+
+        if (continueBtn) {
+
+            continueBtn.disabled = false;
+
+        }
+
+    }
+
+};
+
+
+
+/* ======================================
+   ENTER KEY
+====================================== */
+
+customerCode?.addEventListener(
+    "keydown",
+    (event) => {
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            event.preventDefault();
+
+            confirmCustomerID();
+
+        }
+
+    }
+);
+
+
+
+/* ======================================
+   AUTO FOCUS
+====================================== */
+
+setTimeout(
+    () => {
+
+        customerCode?.focus();
+
+    },
+    450
+);
+
+</script>
+
+</body>
+
+</html>
