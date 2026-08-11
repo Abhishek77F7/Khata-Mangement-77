@@ -1,5 +1,5 @@
 // ======================================
-// FIREBASE IMPORTS
+// FIREBASE
 // ======================================
 
 import { db } from "./firebase.js";
@@ -12,32 +12,115 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
 
 
+// ======================================
+// GLOBAL CUSTOMER
+// ======================================
+
+let customer = null;
+
+
+// ======================================
+// HELPERS
+// ======================================
+
+function normalizeMobile(value){
+
+    return String(value ?? "")
+        .replace(/\D/g, "")
+        .slice(-10);
+
+}
+
+
+function getCustomerDocID(){
+
+    return (
+        localStorage.getItem("customerDocID") ||
+
+        sessionStorage.getItem(
+            "customerFirebaseID"
+        ) ||
+
+        new URLSearchParams(
+            window.location.search
+        ).get("id") ||
+
+        ""
+    );
+
+}
+
+
+function getCustomerCode(data){
+
+    return String(
+
+        data?.customerCode ??
+
+        data?.customerID ??
+
+        data?.customerId ??
+
+        data?.id ??
+
+        data?.code ??
+
+        ""
+
+    )
+    .trim()
+    .toUpperCase();
+
+}
+
+
+function setText(id, text){
+
+    const element =
+        document.getElementById(id);
+
+    if(element){
+
+        element.textContent = text;
+
+    }
+
+}
+
+
+function formatMoney(value){
+
+    return "₹" +
+        Number(value || 0)
+            .toLocaleString("en-IN");
+
+}
+
 
 // ======================================
 // CUSTOMER LOGIN
-// Mobile Number + Customer ID
 // ======================================
 
-async function loginCustomer() {
-
+async function loginCustomer(){
 
     const mobile =
-        document.getElementById("mobile")
-        .value
-        .trim();
+        document
+            .getElementById("mobile")
+            ?.value
+            .trim();
 
 
     const code =
-        document.getElementById("customerCode")
-        .value
-        .trim()
-        .toUpperCase();
+        document
+            .getElementById("customerCode")
+            ?.value
+            .trim()
+            .toUpperCase();
 
 
+    if(!mobile || !code){
 
-    if (mobile === "" || code === "") {
-
-        showToast(
+        showToast?.(
             "Enter Mobile Number and Customer ID",
             "warning"
         );
@@ -47,10 +130,9 @@ async function loginCustomer() {
     }
 
 
+    if(!/^\d{10}$/.test(mobile)){
 
-    if (!/^\d{10}$/.test(mobile)) {
-
-        showToast(
+        showToast?.(
             "Enter valid mobile number",
             "warning"
         );
@@ -60,109 +142,123 @@ async function loginCustomer() {
     }
 
 
-
-    if (typeof showLoader === "function") {
-
-        showLoader();
-
-    }
+    showLoader?.();
 
 
+    try{
 
-    try {
+        const snapshot =
+            await getDocs(
+                collection(
+                    db,
+                    "customers"
+                )
+            );
 
 
-        const snapshot = await getDocs(
-            collection(db, "customers")
+        let found = null;
+
+
+        snapshot.forEach(
+            (docSnap) => {
+
+                const data =
+                    docSnap.data();
+
+
+                const storedMobile =
+                    normalizeMobile(
+                        data.mobile
+                    );
+
+
+                const storedCode =
+                    getCustomerCode(
+                        data
+                    );
+
+
+                if(
+
+                    storedMobile ===
+                    normalizeMobile(mobile)
+
+                    &&
+
+                    storedCode === code
+
+                ){
+
+                    found = {
+
+                        id: docSnap.id,
+
+                        ...data
+
+                    };
+
+                }
+
+            }
         );
 
 
+        if(!found){
 
-        let found = false;
-
-        let customerDocID = "";
-
-
-
-        snapshot.forEach((docSnap) => {
-
-
-            const customer =
-                docSnap.data();
-
-
-
-            if (
-
-                String(customer.mobile) === mobile &&
-
-                String(customer.id)
-                .toUpperCase() === code
-
-            ) {
-
-
-                found = true;
-
-
-                customerDocID =
-                    docSnap.id;
-
-
-
-                localStorage.setItem(
-                    "customerDocID",
-                    docSnap.id
-                );
-
-
-            }
-
-
-        });
-
-
-
-        if (!found) {
-
-
-            showToast(
+            showToast?.(
                 "Invalid Mobile Number or Customer ID",
                 "error"
             );
 
-
             return;
-
 
         }
 
 
+        localStorage.setItem(
+            "customerDocID",
+            found.id
+        );
 
-        showToast(
+
+        sessionStorage.setItem(
+            "customerFirebaseID",
+            found.id
+        );
+
+
+        sessionStorage.setItem(
+            "customerCode",
+            code
+        );
+
+
+        sessionStorage.setItem(
+            "customerVerified",
+            "true"
+        );
+
+
+        showToast?.(
             "Login Successful",
             "success"
         );
 
 
+        setTimeout(
+            () => {
 
-        setTimeout(() => {
+                window.location.href =
+                    "profile.html";
 
-
-            window.location.href = "profile.html";
-            
-
-
-
-        },700);
-
-
+            },
+            600
+        );
 
     }
 
 
     catch(error){
-
 
         console.error(
             "Login Error:",
@@ -170,261 +266,216 @@ async function loginCustomer() {
         );
 
 
-        showToast(
+        showToast?.(
             "Login failed",
             "error"
         );
 
-
     }
-
 
 
     finally{
 
-
-        if(typeof hideLoader === "function"){
-
-            hideLoader();
-
-        }
-
+        hideLoader?.();
 
     }
 
-
 }
 
+
 window.loginCustomer =
-loginCustomer;
+    loginCustomer;
+
 
 // ======================================
 // LOAD CUSTOMER PROFILE
 // ======================================
 
-async function loadCustomerProfile() {
-
+async function loadCustomerProfile(){
 
     const docID =
-        localStorage.getItem(
-            "customerDocID"
-        );
+        getCustomerDocID();
 
 
-
-    if (!docID) {
-
+    if(!docID){
 
         window.location.href =
-        "customer-login.html";
+            "customer-login.html";
 
-
-        return;
-
+        return false;
 
     }
 
 
-
-    if(typeof showLoader === "function"){
-
-        showLoader();
-
-    }
+    localStorage.setItem(
+        "customerDocID",
+        docID
+    );
 
 
-
-    try {
-
-
-        const snap = await getDoc(
-            doc(db, "customers", docID)
-        );
+    sessionStorage.setItem(
+        "customerFirebaseID",
+        docID
+    );
 
 
+    showLoader?.();
 
-        if(!snap.exists()){
 
+    try{
 
-            showToast(
-                "Customer not found",
-                "error"
+        const snap =
+            await getDoc(
+                doc(
+                    db,
+                    "customers",
+                    docID
+                )
             );
 
 
+        if(!snap.exists()){
 
             localStorage.removeItem(
                 "customerDocID"
             );
 
 
+            sessionStorage.removeItem(
+                "customerFirebaseID"
+            );
 
-            window.location.href =
-            "customer-login.html";
+
+            showToast?.(
+                "Customer not found",
+                "error"
+            );
 
 
+            setTimeout(
+                () => {
 
-            return;
+                    window.location.href =
+                        "customer-login.html";
 
+                },
+                700
+            );
+
+
+            return false;
 
         }
 
 
+        customer = {
 
-        window.customer =
-        snap.data();
+            id: snap.id,
+
+            ...snap.data()
+
+        };
 
 
+        // --------------------------------
+        // LOANS
+        // --------------------------------
 
         customer.loans =
-        customer.loans || [];
+            Array.isArray(
+                customer.loans
+            )
+                ? customer.loans
+                : [];
 
 
+        // --------------------------------
+        // PAYMENTS
+        // --------------------------------
 
         customer.payments =
-        customer.payments || [];
+            Array.isArray(
+                customer.payments
+            )
+                ? customer.payments
+                : [];
 
 
-
-
-        // Calculate Total Loan
+        // --------------------------------
+        // TOTAL LOAN
+        // --------------------------------
 
         customer.loan =
+            customer.loans.reduce(
+                (
+                    total,
+                    item
+                ) => {
 
-        customer.loans.reduce(
+                    return total +
+                        Number(
+                            item.total || 0
+                        );
 
-            (sum,item)=>{
-
-                return sum +
-                Number(item.total || 0);
-
-            },
-
-            0
-
-        );
+                },
+                0
+            );
 
 
-
-
-        // Calculate Total Paid
+        // --------------------------------
+        // TOTAL PAID
+        // --------------------------------
 
         customer.paid =
+            customer.payments.reduce(
+                (
+                    total,
+                    item
+                ) => {
 
-        customer.payments.reduce(
+                    return total +
+                        Number(
+                            item.amount || 0
+                        );
 
-            (sum,item)=>{
-
-                return sum +
-                Number(item.amount || 0);
-
-            },
-
-            0
-
-        );
-
-
-
-        // Remaining Balance
-
-const totalProducts =
-    document.getElementById("totalProducts");
-
-if (totalProducts) {
-
-    totalProducts.textContent =
-        customer.loans.length;
-
-}
+                },
+                0
+            );
 
 
+        // --------------------------------
+        // BALANCE
+        // --------------------------------
 
-        // Display Customer Details
+        if(
+            customer.balance !==
+            undefined
+        ){
 
+            customer.balance =
+                Number(
+                    customer.balance || 0
+                );
 
-        if(document.getElementById("customerName")){
+        }
+        else{
 
-            document.getElementById(
-                "customerName"
-            ).textContent =
-            customer.name || "Customer";
-
+            customer.balance =
+                customer.loan -
+                customer.paid;
 
         }
 
 
-
-        if(document.getElementById("customerID")){
-
-            document.getElementById(
-                "customerID"
-            ).textContent =
-            "🆔 " + customer.id;
+        renderCustomer();
 
 
-        }
-
-
-        if(document.getElementById("customerMobile")){
-
-            document.getElementById(
-                "customerMobile"
-            ).textContent =
-            "📞 " + customer.mobile;
-
-        }
-
-
-        if(document.getElementById("customerAddress")){
-
-            document.getElementById(
-                "customerAddress"
-            ).textContent =
-            "📍 " +
-            (customer.address || "No Address");
-
-        }
-
-
-
-        if(document.getElementById("loan")){
-
-            document.getElementById(
-                "loan"
-            ).textContent =
-            "₹" + customer.loan;
-
-
-        }
-
-
-        if(document.getElementById("paid")){
-
-            document.getElementById(
-                "paid"
-            ).textContent =
-            "₹" + customer.paid;
-
-        }
-
-
-        if(document.getElementById("balance")){
-
-            document.getElementById(
-                "balance"
-            ).textContent =
-            "₹" + customer.balance;
-
-
-        }
-
+        return true;
 
     }
 
 
     catch(error){
-
 
         console.error(
             "Profile Error:",
@@ -432,24 +483,111 @@ if (totalProducts) {
         );
 
 
-        showToast(
+        showToast?.(
             "Failed to load profile",
             "error"
         );
 
 
+        return false;
+
     }
+
 
     finally{
 
-
-        if(typeof hideLoader === "function"){
-
-            hideLoader();
-
-        }
+        hideLoader?.();
 
     }
+
+}
+
+
+// ======================================
+// RENDER CUSTOMER
+// ======================================
+
+function renderCustomer(){
+
+    if(!customer){
+
+        return;
+
+    }
+
+
+    const code =
+        getCustomerCode(
+            customer
+        ) || customer.id;
+
+
+    const mobile =
+        normalizeMobile(
+            customer.mobile
+        );
+
+
+    setText(
+        "customerName",
+        customer.name ||
+        "Customer"
+    );
+
+
+    setText(
+        "customerID",
+        "ID: " + code
+    );
+
+
+    setText(
+        "customerMobile",
+
+        mobile
+
+            ? "+91 " +
+              mobile.slice(0,5) +
+              " " +
+              mobile.slice(5)
+
+            : "Mobile Number"
+    );
+
+
+    setText(
+        "customerAddress",
+
+        customer.address ||
+        "No address added"
+    );
+
+
+    setText(
+        "loan",
+        formatMoney(
+            customer.loan
+        )
+    );
+
+
+    setText(
+        "paid",
+        formatMoney(
+            customer.paid
+        )
+    );
+
+
+    setText(
+        "balance",
+        formatMoney(
+            customer.balance
+        )
+    );
+
+
+    loadRecentActivity();
 
 }
 
@@ -460,61 +598,109 @@ if (totalProducts) {
 
 function loadRecentActivity(){
 
+    if(!customer){
+
+        return;
+
+    }
+
+
     const latestLoan =
-    document.getElementById("latestLoan");
+        document.getElementById(
+            "latestLoan"
+        );
+
 
     const latestPayment =
-    document.getElementById("latestPayment");
+        document.getElementById(
+            "latestPayment"
+        );
 
 
-    if(!customer) return;
-    
-    if (latestLoan) {
-    latestLoan.textContent = "No borrowed products";
-}
+    // --------------------------------
+    // PURCHASE
+    // --------------------------------
 
-if (latestPayment) {
-    latestPayment.textContent = "No payments";
-}
-
-
-    // Latest Borrowed Product
-
-    if(
-        latestLoan &&
-        customer.loans &&
-        customer.loans.length > 0
-    ){
-
-        const loan =
-        customer.loans[
-            customer.loans.length - 1
-        ];
-
+    if(latestLoan){
 
         latestLoan.textContent =
-        ` ${loan.product} - ₹${loan.total}`;
+            "No borrowed products yet.";
+
+
+        if(customer.loans.length){
+
+            const item =
+                customer.loans[
+                    customer.loans.length - 1
+                ];
+
+
+            const product =
+                item.product ||
+                "Product";
+
+
+            const amount =
+                Number(
+                    item.total || 0
+                );
+
+
+            const date =
+                item.date ||
+                "";
+
+
+            latestLoan.textContent =
+                product +
+                " · " +
+                formatMoney(amount) +
+                (date
+                    ? " · " + date
+                    : "");
+
+        }
 
     }
 
 
+    // --------------------------------
+    // PAYMENT
+    // --------------------------------
 
-    // Latest Payment
-
-    if(
-        latestPayment &&
-        customer.payments &&
-        customer.payments.length > 0
-    ){
-
-        const payment =
-        customer.payments[
-            customer.payments.length - 1
-        ];
-
+    if(latestPayment){
 
         latestPayment.textContent =
-        `₹${payment.amount} Paid`;
+            "No payments yet.";
+
+
+        if(customer.payments.length){
+
+            const item =
+                customer.payments[
+                    customer.payments.length - 1
+                ];
+
+
+            const amount =
+                Number(
+                    item.amount || 0
+                );
+
+
+            const date =
+                item.date ||
+                "";
+
+
+            latestPayment.textContent =
+                formatMoney(amount) +
+                " paid" +
+                (date
+                    ? " · " + date
+                    : "");
+
+        }
 
     }
 
@@ -522,11 +708,10 @@ if (latestPayment) {
 
 
 // ======================================
-// BORROWED PRODUCTS
+// LOAN HISTORY
 // ======================================
 
-function loadLoanHistory() {
-
+function loadLoanHistory(){
 
     const history =
         document.getElementById(
@@ -534,98 +719,88 @@ function loadLoanHistory() {
         );
 
 
-    if (!history) return;
-
-
-
-    history.innerHTML = "";
-
-
-
     if(
-        !customer.loans ||
-        customer.loans.length === 0
+        !history ||
+        !customer
     ){
-
-
-        history.innerHTML = `
-
-        <div class="history-card">
-
-            <h3>
-            No Borrowed Products
-            </h3>
-
-            <p>
-            No products found.
-            </p>
-
-        </div>
-
-        `;
-
 
         return;
 
     }
 
 
-    let html = "";
+    if(!customer.loans.length){
 
+        history.innerHTML = `
 
+            <div class="history-card">
 
-    [...customer.loans]
-    .reverse()
-    .forEach((item)=>{
+                <h3>
+                    No Borrowed Products
+                </h3>
 
+                <p>
+                    No products found.
+                </p>
 
-        html += `
-
-        <div class="history-card">
-
-
-            <h3>
-            🛒 ${item.product || "Product"}
-            </h3>
-
-
-            <p>
-            <strong>Quantity :</strong>
-            ${item.qty || 0}
-            </p>
-
-
-            <p>
-            <strong>Price :</strong>
-            ₹${item.price || 0}
-            </p>
-
-
-            <p>
-            <strong>Total :</strong>
-            ₹${item.total || 0}
-            </p>
-
-
-            <p>
-            <strong>Date :</strong>
-            ${item.date || "-"}
-            </p>
-
-
-        </div>
-
+            </div>
 
         `;
 
+        return;
 
-    });
-
+    }
 
 
     history.innerHTML =
-    html;
+        [...customer.loans]
+            .reverse()
+            .map(
+                (item) => `
 
+                    <div class="history-card">
+
+                        <h3>
+                            ${item.product || "Product"}
+                        </h3>
+
+                        <p>
+                            <strong>
+                                Quantity:
+                            </strong>
+                            ${item.qty || 0}
+                        </p>
+
+                        <p>
+                            <strong>
+                                Price:
+                            </strong>
+                            ${formatMoney(
+                                item.price || 0
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>
+                                Total:
+                            </strong>
+                            ${formatMoney(
+                                item.total || 0
+                            )}
+                        </p>
+
+                        <p>
+                            <strong>
+                                Date:
+                            </strong>
+                            ${item.date || "-"}
+                        </p>
+
+                    </div>
+
+                `
+            )
+            .join("");
 
 }
 
@@ -636,301 +811,272 @@ function loadLoanHistory() {
 
 function loadPaymentHistory(){
 
-const totalPaid = document.getElementById("totalPaid");
-
-if (totalPaid) {
-
-    const total = customer.payments.reduce((sum, item) => {
-
-        return sum + Number(item.amount || 0);
-
-    }, 0);
-
-    totalPaid.textContent = "₹" + total;
-
-}
-
     const history =
         document.getElementById(
             "paymentHistory"
         );
 
 
-    if(!history) return;
-    
-    const totalProducts =
-    document.getElementById("totalProducts");
-
-if (totalProducts) {
-
-    totalProducts.textContent =
-        customer.loans
-            ? customer.loans.length
-            : 0;
-
-}
-    
-  
-    history.innerHTML = "";
-
-
-
     if(
-
-        !customer.payments ||
-
-        customer.payments.length === 0
-
+        !history ||
+        !customer
     ){
-
-
-        history.innerHTML = `
-
-
-        <div class="history-card">
-
-
-            <h3>
-            No Payment History
-            </h3>
-
-
-            <p>
-            No payments found.
-            </p>
-
-
-        </div>
-
-
-        `;
-
 
         return;
 
+    }
+
+
+    const totalPaid =
+        document.getElementById(
+            "totalPaid"
+        );
+
+
+    if(totalPaid){
+
+        totalPaid.textContent =
+            formatMoney(
+                customer.paid
+            );
 
     }
 
 
-    let html = "";
+    if(!customer.payments.length){
 
+        history.innerHTML = `
 
+            <div class="history-card">
 
-    [...customer.payments]
-    .reverse()
-    .forEach((item)=>{
+                <h3>
+                    No Payment History
+                </h3>
 
+                <p>
+                    No payments found.
+                </p>
 
-        html += `
-
-
-        <div class="history-card">
-
-
-            <h3>
-             ₹${item.amount || 0}
-            </h3>
-
-
-            <p>
-            <strong>Date :</strong>
-            ${item.date || "-"}
-            </p>
-
-
-        </div>
-
+            </div>
 
         `;
 
+        return;
 
-    });
-
+    }
 
 
     history.innerHTML =
-    html;
+        [...customer.payments]
+            .reverse()
+            .map(
+                (item) => `
 
+                    <div class="history-card">
 
-}
+                        <h3>
+                            ${formatMoney(
+                                item.amount || 0
+                            )}
+                        </h3>
 
-// ======================================
-// AUTO LOAD HISTORY PAGES
-// ======================================
+                        <p>
+                            <strong>
+                                Date:
+                            </strong>
+                            ${item.date || "-"}
+                        </p>
 
+                    </div>
 
-if(
-    window.location.pathname
-    .includes("my-loans.html")
-){
-
-
-    loadCustomerProfile()
-    .then(()=>{
-
-        loadLoanHistory();
-
-    });
-
-
-}
-
-
-if(
-    window.location.pathname
-    .includes("my-payment-history.html")
-){
-
-
-    loadCustomerProfile()
-    .then(()=>{
-
-
-        loadPaymentHistory();
-
-
-    });
-
+                `
+            )
+            .join("");
 
 }
 
-// ======================================
-// PROFILE PHOTO UPLOAD
-// ======================================
-
-function uploadPhoto() {
-
-    const file = document.getElementById("photo")?.files[0];
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function (e) {
-
-        const image = e.target.result;
-
-        const img = document.getElementById("profilePhoto");
-
-if (img) {
-    img.src = image;
-}
-
-        const docID = localStorage.getItem("customerDocID");
-
-        localStorage.setItem("photo_" + docID, image);
-
-        showToast(
-            "Profile photo updated successfully.",
-            "success"
-        );
-
-    };
-
-    reader.readAsDataURL(file);
-
-}
-
-window.uploadPhoto = uploadPhoto;
-
-
-
-
 
 // ======================================
-// CUSTOMER LOGOUT
+// PROFILE PHOTO
 // ======================================
 
-function customerLogout() {
+function uploadPhoto(){
 
-    const docID = localStorage.getItem("customerDocID");
+    const file =
+        document
+            .getElementById("photo")
+            ?.files?.[0];
 
-    if (docID) {
-        localStorage.removeItem("photo_" + docID);
+
+    if(!file){
+
+        return;
+
     }
 
-    localStorage.removeItem("customerDocID");
 
-    showToast(
+    if(
+        !file.type.startsWith(
+            "image/"
+        )
+    ){
+
+        showToast?.(
+            "Please select an image file.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        file.size >
+        5 * 1024 * 1024
+    ){
+
+        showToast?.(
+            "Image must be smaller than 5 MB.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function(event){
+
+            const image =
+                event.target.result;
+
+
+            const docID =
+                getCustomerDocID();
+
+
+            const img =
+                document.getElementById(
+                    "profilePhoto"
+                );
+
+
+            if(img){
+
+                img.src =
+                    image;
+
+            }
+
+
+            localStorage.setItem(
+                "photo_" + docID,
+                image
+            );
+
+
+            showToast?.(
+                "Profile photo updated successfully.",
+                "success"
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+window.uploadPhoto =
+    uploadPhoto;
+
+
+// ======================================
+// LOGOUT
+// ======================================
+
+function customerLogout(){
+
+    const docID =
+        getCustomerDocID();
+
+
+    if(docID){
+
+        localStorage.removeItem(
+            "photo_" + docID
+        );
+
+    }
+
+
+    localStorage.removeItem(
+        "customerDocID"
+    );
+
+
+    sessionStorage.removeItem(
+        "customerFirebaseID"
+    );
+
+    sessionStorage.removeItem(
+        "customerCode"
+    );
+
+    sessionStorage.removeItem(
+        "customerVerified"
+    );
+
+    sessionStorage.removeItem(
+        "customerMobileVerified"
+    );
+
+    sessionStorage.removeItem(
+        "customerLoginMobile"
+    );
+
+    sessionStorage.removeItem(
+        "customerDemoOTP"
+    );
+
+
+    showToast?.(
         "Logged out successfully",
         "success"
     );
 
-    setTimeout(() => {
-        window.location.href = "customer-login.html";
-    }, 600);
-}
 
+    setTimeout(
+        () => {
+
+            window.location.href =
+                "customer-login.html";
+
+        },
+        600
+    );
+
+}
 
 
 window.customerLogout =
-customerLogout;
-
-
-
+    customerLogout;
 
 
 // ======================================
-// SETTINGS POPUP
-// ======================================
-
-function openSettings(){
-
-
-    const popup =
-    document.getElementById(
-        "settingsPopup"
-    );
-
-
-
-    if(popup){
-
-        popup.style.display =
-        "block";
-
-    }
-
-
-}
-
-
-
-function closeSettings(){
-
-
-    const popup =
-    document.getElementById(
-        "settingsPopup"
-    );
-
-
-
-    if(popup){
-
-        popup.style.display =
-        "none";
-
-    }
-
-
-}
-
-
-
-window.openSettings =
-openSettings;
-
-
-window.closeSettings =
-closeSettings;
-
-// ======================================
-// THEME
+// LIGHT THEME
 // ======================================
 
 function setLightTheme(){
-
 
     localStorage.setItem(
         "theme",
@@ -938,20 +1084,25 @@ function setLightTheme(){
     );
 
 
-    document.body.classList
-    .remove(
+    document.body.classList.remove(
         "dark-theme"
     );
 
 
-    closeSettings();
-
+    window.closeSettings?.();
 
 }
 
 
-function setDarkTheme(){
+window.setLightTheme =
+    setLightTheme;
 
+
+// ======================================
+// DARK THEME
+// ======================================
+
+function setDarkTheme(){
 
     localStorage.setItem(
         "theme",
@@ -959,72 +1110,144 @@ function setDarkTheme(){
     );
 
 
-    document.body.classList
-    .add(
+    document.body.classList.add(
         "dark-theme"
     );
 
 
-    closeSettings();
-
+    window.closeSettings?.();
 
 }
-
-window.setLightTheme =
-setLightTheme;
 
 
 window.setDarkTheme =
-setDarkTheme;
+    setDarkTheme;
 
-// Apply saved theme
-
-if(
-    localStorage.getItem("theme")
-    === "dark"
-){
-
-
-    document.body.classList
-    .add(
-        "dark-theme"
-    );
-    
-}
 
 // ======================================
-// AUTO LOAD PROFILE PAGE
+// APPLY SAVED THEME
+// ======================================
+
+if(
+    localStorage.getItem(
+        "theme"
+    ) === "dark"
+){
+
+    document.body.classList.add(
+        "dark-theme"
+    );
+
+}
+
+
+// ======================================
+// PAGE AUTO LOAD
 // ======================================
 
 document.addEventListener(
-"DOMContentLoaded",
-async ()=>{
+    "DOMContentLoaded",
+    async () => {
+
+        const path =
+            window.location.pathname;
 
 
-    if(
-        window.location.pathname
-        .includes("profile.html")
-    ){
+        // --------------------------------
+        // PROFILE
+        // --------------------------------
+
+        if(
+            path.includes(
+                "profile.html"
+            )
+            ||
+            path.includes(
+                "customer-profile.html"
+            )
+        ){
+
+            const loaded =
+                await loadCustomerProfile();
 
 
-        await loadCustomerProfile();
-        
-        const docID = localStorage.getItem("customerDocID");
-        
+            if(loaded){
 
-const savedPhoto = localStorage.getItem("photo_" + docID);
+                const docID =
+                    getCustomerDocID();
 
-if (
-    savedPhoto &&
-    document.getElementById("profilePhoto")
-) {
-    document.getElementById("profilePhoto").src = savedPhoto;
-}
 
-        loadRecentActivity();
+                const savedPhoto =
+                    localStorage.getItem(
+                        "photo_" + docID
+                    );
 
+
+                const img =
+                    document.getElementById(
+                        "profilePhoto"
+                    );
+
+
+                if(
+                    savedPhoto &&
+                    img
+                ){
+
+                    img.src =
+                        savedPhoto;
+
+                }
+
+            }
+
+        }
+
+
+        // --------------------------------
+        // LOANS
+        // --------------------------------
+
+        if(
+            path.includes(
+                "my-loans.html"
+            )
+        ){
+
+            const loaded =
+                await loadCustomerProfile();
+
+
+            if(loaded){
+
+                loadLoanHistory();
+
+            }
+
+        }
+
+
+        // --------------------------------
+        // PAYMENTS
+        // --------------------------------
+
+        if(
+            path.includes(
+                "my-payment-history.html"
+            )
+        ){
+
+            const loaded =
+                await loadCustomerProfile();
+
+
+            if(loaded){
+
+                loadPaymentHistory();
+
+            }
+
+        }
 
     }
-
-
-});
+);
