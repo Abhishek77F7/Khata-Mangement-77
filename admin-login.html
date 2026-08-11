@@ -4,78 +4,146 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
 <title>Admin Login</title>
 
 <link rel="stylesheet" href="login.css">
 <link rel="stylesheet" href="toast.css">
 
+<!-- Google Material Symbols -->
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
 </head>
 
 <body>
 
-<!-- Background -->
+<!-- ================================
+     BACKGROUND
+================================ -->
 
 <div class="background"></div>
 
-<!-- Lamp -->
 
-<div class="lamp-area">
+<!-- ================================
+     LOADER
+================================ -->
 
-    <div class="lamp">
-
-        <div class="lamp-top"></div>
-
-        <div class="lamp-stand"></div>
-
-        <div class="lamp-base"></div>
-
-        <div class="light"></div>
-
-    </div>
-
-</div>
-
-<!-- Loader -->
-
-<div id="loader" class="loader-overlay">
+<div
+    id="loader"
+    class="loader-overlay">
 
     <div class="loader"></div>
 
 </div>
 
-<!-- Login Card -->
 
-<div class="login-card">
+<!-- ================================
+     ADMIN LOGIN CARD
+================================ -->
 
-    <h1>📒 Khata Management</h1>
+<main class="login-card">
 
-    <p class="subtitle">
-        Administrator Login
-    </p>
 
-    <!-- Username -->
+    <!-- Admin Icon -->
 
-    <div class="input-group">
+    <div class="login-icon">
 
-        <label>👤 Username</label>
+        <span class="material-symbols-outlined">
 
-        <input
-            type="text"
-            id="username"
-            placeholder="Enter Username"
-            autocomplete="username">
+            admin_panel_settings
+
+        </span>
 
     </div>
 
-    <!-- Password -->
+
+    <!-- Heading -->
+
+    <h1>
+
+        Khata Management
+
+    </h1>
+
+
+    <p class="subtitle">
+
+        Administrator Login
+
+    </p>
+
+
+    <!-- ================================
+         USERNAME
+    ================================= -->
 
     <div class="input-group">
 
-        <label>🔒 Password</label>
+        <label for="username">
 
-        <div class="password-container">
+            <span class="material-symbols-outlined">
+
+                person
+
+            </span>
+
+            Username
+
+        </label>
+
+
+        <div class="input-wrapper">
+
+            <span class="input-leading-icon material-symbols-outlined">
+
+                person
+
+            </span>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter Username"
+                autocomplete="username">
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         PASSWORD
+    ================================= -->
+
+    <div class="input-group">
+
+        <label for="password">
+
+            <span class="material-symbols-outlined">
+
+                lock
+
+            </span>
+
+            Password
+
+        </label>
+
+
+        <div class="input-wrapper password-wrapper">
+
+            <span class="input-leading-icon material-symbols-outlined">
+
+                lock
+
+            </span>
+
 
             <input
                 type="password"
@@ -83,64 +151,139 @@
                 placeholder="Enter Password"
                 autocomplete="current-password">
 
-            <span
+
+            <button
+                type="button"
                 id="togglePassword"
-                class="toggle-password"
+                class="password-toggle"
+                aria-label="Show password"
                 onclick="togglePassword()">
 
-                👁️
+                <span class="material-symbols-outlined">
 
-            </span>
+                    visibility
+
+                </span>
+
+            </button>
 
         </div>
 
     </div>
 
-    <!-- Login -->
+
+    <!-- ================================
+         LOGIN BUTTON
+    ================================= -->
 
     <button
+        type="button"
         class="login-btn"
         onclick="adminLogin()">
 
-         Login
+        <span>
+
+            Login
+
+        </span>
+
 
     </button>
 
-    <!-- Forgot Password -->
 
-<button
-    type="button"
-    class="forgot-btn"
-    onclick="window.location.href='forgot-password.html'">
+    <!-- ================================
+         FORGOT PASSWORD
+    ================================= -->
 
-     Forgot Password
+    <button
+        type="button"
+        class="forgot-btn"
+        onclick="window.location.href='forgot-password.html'">
 
-</button>
+        <span class="material-symbols-outlined">
 
-    <!-- Back -->
+            lock_reset
+
+        </span>
+
+        <span>
+
+            Forgot Password
+
+        </span>
+
+    </button>
+
+
+    <!-- ================================
+         SECURITY
+    ================================= -->
+
+    <div class="security-note">
+
+        <span class="material-symbols-outlined">
+
+            verified_user
+
+        </span>
+
+        <span>
+
+            Secure administrator access
+
+        </span>
+
+    </div>
+
+
+    <!-- ================================
+         BACK
+    ================================= -->
 
     <a
         href="index.html"
         class="back-btn">
 
-         Back to Home
+        <span class="material-symbols-outlined">
+
+            arrow_back
+
+        </span>
+
+        <span>
+
+            Back to Home
+
+        </span>
 
     </a>
 
-</div>
+
+</main>
+
+
+<!-- ================================
+     SCRIPTS
+================================ -->
 
 <script src="loader.js"></script>
+
 <script src="toast.js"></script>
+
 <script src="theme.js"></script>
+
 <script src="auth.js"></script>
+
 
 <script>
 
-// Login with Enter key
+/* ======================================
+   LOGIN WITH ENTER KEY
+====================================== */
 
-document.addEventListener("keydown", function(e){
+document.addEventListener("keydown", function (event) {
 
-    if(e.key === "Enter"){
+    if (event.key === "Enter") {
 
         adminLogin();
 
@@ -148,33 +291,62 @@ document.addEventListener("keydown", function(e){
 
 });
 
-// Show / Hide Password
 
-function togglePassword(){
+/* ======================================
+   SHOW / HIDE PASSWORD
+====================================== */
+
+function togglePassword() {
 
     const password =
-    document.getElementById("password");
+        document.getElementById("password");
+
+    const toggle =
+        document.getElementById("togglePassword");
 
     const icon =
-    document.getElementById("togglePassword");
+        toggle.querySelector(
+            ".material-symbols-outlined"
+        );
 
-    if(password.type === "password"){
+
+    if (!password || !icon) {
+        return;
+    }
+
+
+    if (password.type === "password") {
 
         password.type = "text";
 
-        icon.textContent = "🙈";
+        icon.textContent =
+            "visibility_off";
 
-    }else{
+        toggle.setAttribute(
+            "aria-label",
+            "Hide password"
+        );
+
+    }
+
+    else {
 
         password.type = "password";
 
-        icon.textContent = "👁️";
+        icon.textContent =
+            "visibility";
+
+        toggle.setAttribute(
+            "aria-label",
+            "Show password"
+        );
 
     }
 
 }
 
 </script>
+
 
 </body>
 
