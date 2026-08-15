@@ -3,166 +3,713 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<!-- PWA -->
-<link rel="manifest" href="manifest.json">
+    <meta
+        name="theme-color"
+        content="#ffffff">
 
-<meta name="theme-color" content="#2563eb">
+    <meta
+        name="apple-mobile-web-app-capable"
+        content="yes">
 
-<link rel="apple-touch-icon" href="icon-192.png">
+    <meta
+        name="mobile-web-app-capable"
+        content="yes">
 
-<title>Khata Management</title>
+    <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="default">
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="toast.css">
+    <link rel="manifest" href="manifest.json">
+
+    <link
+        rel="apple-touch-icon"
+        href="icon-192.png">
+
+    <!-- Google Material Symbols -->
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="toast.css">
+
+    <title>Khata Management</title>
 
 </head>
 
+
 <body>
 
-<!-- Background Glow -->
-<div class="bg-glow glow1"></div>
-<div class="bg-glow glow2"></div>
 
-<div class="home-card">
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-    <!-- Logo -->
+<div class="background">
 
-    <div class="logo-circle">
-        📒
-    </div>
+    <div class="background-orb orb-one"></div>
 
-    <!-- Shop Name -->
-    <h1 id="shopName">Khata Management</h1>
+    <div class="background-orb orb-two"></div>
 
-    <p class="subtitle">
-        Smart Digital Khata System
-    </p>
-
-    <!-- Login Buttons -->
-
-    <a href="admin-login.html"
-       class="main-btn admin-btn">
-
-        👨‍💼 Admin Login
-
-    </a>
-
-    <a href="customer-login.html"
-       class="main-btn customer-btn">
-
-        👤 Customer Login
-
-    </a>
-
-    <!-- Features -->
-
-    <div class="features">
-
-        <p>✅ Secure Data</p>
-
-        <p>⚡ Fast & Easy to Use</p>
-
-        <p>📱 Mobile Friendly</p>
-
-        <p>🔒 Secure Customer Login</p>
-
-    </div>
-
-    <!-- Footer -->
-
-    <div class="version-box">
-
-        <h2>Version 2.0</h2>
-
-        <p>© 2026 <span id="footerShopName">Khata Management</span></p>
-
-        <p>Developed by <strong>Abhishek</strong></p>
-
-    </div>
+    <div class="background-orb orb-three"></div>
 
 </div>
 
-<!-- Install App Popup -->
-<div id="installPopup" class="install-popup">
 
-    <div class="install-card">
 
-        <img src="icon-192.png" class="install-icon">
+<!-- =====================================================
+     APP SHELL
+===================================================== -->
 
-        <h2>Install Khata Management</h2>
+<div class="app-shell">
 
-        <p>
-            Install this app for faster access,
-            full-screen experience and offline support.
-        </p>
 
-        <div class="install-buttons">
+    <!-- =================================================
+         TOP HEADER
+    ================================================== -->
 
-            <button id="closeInstall" class="cancel-install">
-                Later
-            </button>
+    <header class="app-header">
 
-            <button id="installBtn" class="install-now">
-                Install
-            </button>
+        <div class="brand">
+
+            <div class="brand-icon">
+
+                <span class="material-symbols-outlined">
+                    menu_book
+                </span>
+
+            </div>
+
+
+            <div class="brand-text">
+
+                <h1 id="shopName">
+                    Khata Management
+                </h1>
+
+                <p>
+                    Smart Digital Khata
+                </p>
+
+            </div>
 
         </div>
 
+
+        <div class="header-status">
+
+            <span class="status-dot"></span>
+
+            <span>
+                Secure
+            </span>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         MAIN CONTENT
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="eyebrow">
+                    DIGITAL KHATA
+                </span>
+
+
+                <h2>
+                    Manage your
+                    <span>Khata</span>
+                    simply.
+                </h2>
+
+
+                <p>
+                    Access your account, track payments,
+                    and manage your records securely.
+                </p>
+
+            </div>
+
+
+            <div class="hero-icon">
+
+                <span class="material-symbols-outlined">
+                    account_balance_wallet
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CUSTOMER LOGIN
+        ================================================== -->
+
+        <a
+            href="customer-login.html"
+            class="customer-login">
+
+            <div class="login-icon">
+
+                <span class="material-symbols-outlined">
+                    person
+                </span>
+
+            </div>
+
+
+            <div class="login-text">
+
+                <strong>
+                    Customer Login
+                </strong>
+
+                <span>
+                    View your Khata account
+                </span>
+
+            </div>
+
+
+            <span class="material-symbols-outlined arrow">
+                arrow_forward
+            </span>
+
+        </a>
+
+
+
+        <!-- =================================================
+             FEATURES
+        ================================================== -->
+
+        <section class="feature-grid">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon blue">
+
+                    <span class="material-symbols-outlined">
+                        verified_user
+                    </span>
+
+                </div>
+
+                <strong>
+                    Secure Login
+                </strong>
+
+                <span>
+                    Protected account access
+                </span>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon green">
+
+                    <span class="material-symbols-outlined">
+                        receipt_long
+                    </span>
+
+                </div>
+
+                <strong>
+                    View Khata
+                </strong>
+
+                <span>
+                    Check your account
+                </span>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon orange">
+
+                    <span class="material-symbols-outlined">
+                        payments
+                    </span>
+
+                </div>
+
+                <strong>
+                    Track Payments
+                </strong>
+
+                <span>
+                    View payment history
+                </span>
+
+            </div>
+
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon purple">
+
+                    <span class="material-symbols-outlined">
+                        shopping_bag
+                    </span>
+
+                </div>
+
+                <strong>
+                    View Products
+                </strong>
+
+                <span>
+                    See borrowed products
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CUSTOMER PORTAL
+        ================================================== -->
+
+        <section class="info-card">
+
+            <div class="info-icon">
+
+                <span class="material-symbols-outlined">
+                    info
+                </span>
+
+            </div>
+
+
+            <div>
+
+                <strong>
+                    Customer Portal
+                </strong>
+
+                <p>
+                    Login using your mobile number
+                    and Customer ID.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ADMIN ACCESS
+        ================================================== -->
+
+        <div class="admin-access">
+
+            <span class="material-symbols-outlined">
+                admin_panel_settings
+            </span>
+
+            <span>
+                Staff?
+            </span>
+
+            <a href="admin-login.html">
+                Admin Access
+            </a>
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================== -->
+
+    <footer class="app-footer">
+
+        <div class="footer-line"></div>
+
+
+        <strong>
+            Version 2.0
+        </strong>
+
+
+        <p>
+            © 2026
+            <span id="footerShopName">
+                Khata Management
+            </span>
+        </p>
+
+
+        <p>
+            Developed by
+            <b>
+                Abhishek
+            </b>
+        </p>
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     INSTALL BANNER
+     
+     Browser-style custom install prompt.
+===================================================== -->
+
+<div
+    id="installPopup"
+    class="install-popup"
+    aria-hidden="true">
+
+
+    <div class="install-banner">
+
+
+        <!-- APP ICON -->
+
+        <div class="install-app-icon">
+
+            <img
+                src="icon-192.png"
+                alt="Khata Management">
+
+        </div>
+
+
+
+        <!-- INSTALL INFORMATION -->
+
+        <div class="install-information">
+
+            <strong>
+                Install Khata Management
+            </strong>
+
+
+            <span>
+                Khata Management
+            </span>
+
+
+            <small>
+                Install this app for a faster
+                app-like experience.
+            </small>
+
+        </div>
+
+
+
+        <!-- CLOSE -->
+
+        <button
+            type="button"
+            id="closeInstall"
+            class="install-close"
+            aria-label="Close install prompt">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+
+
+        <!-- INSTALL -->
+
+        <button
+            type="button"
+            id="installBtn"
+            class="install-action">
+
+            Install
+
+        </button>
+
+
     </div>
 
 </div>
 
 
+
+<!-- =====================================================
+     SCRIPTS
+===================================================== -->
+
 <script src="theme.js"></script>
+
 <script src="toast.js"></script>
 
+<script src="install.js"></script>
+
+
+
 <script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    const shopName = localStorage.getItem("shopName");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    if (shopName && shopName.trim() !== "") {
 
-        document.getElementById("shopName").textContent = shopName;
+        /* ============================================
+           LOAD SHOP NAME
+        ============================================ */
 
-        document.getElementById("footerShopName").textContent = shopName;
+        const shopName =
+            localStorage.getItem(
+                "shopName"
+            );
 
-        document.title = shopName;
+
+        if (
+            shopName &&
+            shopName.trim()
+        ) {
+
+
+            const name =
+                shopName.trim();
+
+
+            const shopElement =
+                document.getElementById(
+                    "shopName"
+                );
+
+
+            const footerElement =
+                document.getElementById(
+                    "footerShopName"
+                );
+
+
+            if (shopElement) {
+
+                shopElement.textContent =
+                    name;
+
+            }
+
+
+            if (footerElement) {
+
+                footerElement.textContent =
+                    name;
+
+            }
+
+
+            document.title =
+                name;
+
+        }
+
+
+        /* ============================================
+           INSTALL POPUP UI
+        ============================================ */
+
+        const popup =
+            document.getElementById(
+                "installPopup"
+            );
+
+
+        const closeButton =
+            document.getElementById(
+                "closeInstall"
+            );
+
+
+        if (!popup) {
+            return;
+        }
+
+
+        /* ============================================
+           CLOSE INSTALL BANNER
+        ============================================ */
+
+        function closeInstallPopup() {
+
+            popup.classList.remove(
+                "show"
+            );
+
+
+            popup.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            sessionStorage.setItem(
+                "installPromptClosed",
+                "true"
+            );
+
+        }
+
+
+        closeButton?.addEventListener(
+            "click",
+            closeInstallPopup
+        );
+
+
+        /* ============================================
+           SHOW INSTALL BANNER
+        ============================================ */
+
+        window.showInstallPopup =
+            function () {
+
+                if (
+                    sessionStorage.getItem(
+                        "installPromptClosed"
+                    ) === "true"
+                ) {
+
+                    return;
+
+                }
+
+
+                if (
+                    window.matchMedia(
+                        "(display-mode: standalone)"
+                    ).matches
+                ) {
+
+                    return;
+
+                }
+
+
+                popup.classList.add(
+                    "show"
+                );
+
+
+                popup.setAttribute(
+                    "aria-hidden",
+                    "false"
+                );
+
+            };
+
+
+        /* ============================================
+           ESC KEY
+        ============================================ */
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeInstallPopup();
+
+                }
+
+            }
+        );
+
+
+        /* ============================================
+           SERVICE WORKER
+        ============================================ */
+
+        if (
+            "serviceWorker" in navigator
+        ) {
+
+            window.addEventListener(
+                "load",
+                () => {
+
+                    navigator.serviceWorker
+                        .register(
+                            "./service-worker.js"
+                        )
+                        .then(
+                            registration => {
+
+                                console.log(
+                                    "Service Worker registered:",
+                                    registration.scope
+                                );
+
+                            }
+                        )
+                        .catch(
+                            error => {
+
+                                console.error(
+                                    "Service Worker Error:",
+                                    error
+                                );
+
+                            }
+                        );
+
+                }
+            );
+
+        }
+
 
     }
+);
 
-});
 </script>
-
-
-<script>
-if ("serviceWorker" in navigator) {
-
-    window.addEventListener("load", () => {
-
-        navigator.serviceWorker
-            .register("./service-worker.js")
-            .then(() => {
-
-                console.log("✅ Service Worker Registered");
-
-            })
-            .catch((error) => {
-
-                console.log("Service Worker Error:", error);
-
-            });
-
-    });
-
-}
-</script>
-
-<script src="install.js"></script>
 
 
 </body>
