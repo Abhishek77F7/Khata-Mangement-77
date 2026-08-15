@@ -1,509 +1,1458 @@
-/* ==========================
+/* =========================================================
    RESET
-========================== */
+========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-body{
 
-    min-height:100vh;
+html {
+    min-height: 100%;
+    background: #f4f8f6;
+}
 
-    display:flex;
 
-    justify-content:center;
+body {
 
-    align-items:center;
+    min-height: 100vh;
 
-    overflow:hidden;
+    min-height: 100dvh;
 
-    background:linear-gradient(
-        135deg,
-        #0F172A,
-        #172554,
-        #1E3A8A
+    font-family:
+        Inter,
+        Roboto,
+        Arial,
+        sans-serif;
+
+    color: #172033;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f8fffb 0%,
+            #eef8f3 45%,
+            #edf5ff 100%
+        );
+
+    overflow-x: hidden;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+.background-orb {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(90px);
+
+    opacity: .45;
+}
+
+
+.orb-one {
+
+    width: 320px;
+    height: 320px;
+
+    background: #b8f5d1;
+
+    top: -130px;
+    right: -100px;
+}
+
+
+.orb-two {
+
+    width: 280px;
+    height: 280px;
+
+    background: #bfdbfe;
+
+    bottom: -100px;
+    left: -100px;
+}
+
+
+.orb-three {
+
+    width: 180px;
+    height: 180px;
+
+    background: #dcfce7;
+
+    top: 40%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* =========================================================
+   APP SHELL
+========================================================= */
+
+.app-shell {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(
+        100%,
+        980px
     );
 
-    position:relative;
+    min-height: 100dvh;
+
+    margin: auto;
+
+    padding:
+        max(18px, env(safe-area-inset-top))
+        20px
+        max(24px, env(safe-area-inset-bottom));
 
 }
 
-/* ==========================
-   BACKGROUND GLOW
-========================== */
 
-.bg-glow{
+/* =========================================================
+   HEADER
+========================================================= */
 
-    position:fixed;
+.app-header {
 
-    border-radius:50%;
+    display: flex;
 
-    filter:blur(100px);
+    align-items: center;
 
-    opacity:.35;
+    justify-content: space-between;
 
-    pointer-events:none;
+    gap: 15px;
 
-    z-index:0;
-
+    padding: 16px 4px 22px;
 }
 
-.glow1{
 
-    width:340px;
+.brand {
 
-    height:340px;
+    display: flex;
 
-    background:#1976D2;
+    align-items: center;
 
-    top:-120px;
+    gap: 13px;
 
-    right:-120px;
-
+    min-width: 0;
 }
 
-.glow2{
 
-    width:280px;
+.brand-icon {
 
-    height:280px;
+    width: 52px;
 
-    background:#42A5F5;
+    height: 52px;
 
-    bottom:-100px;
+    flex: 0 0 52px;
 
-    left:-100px;
+    border-radius: 17px;
 
-}
+    display: grid;
 
-.home-card{
+    place-items: center;
 
-    position:relative;
+    color: white;
 
-    z-index:10;
-
-}
-
-/* ==========================
-   MAIN CARD
-========================== */
-
-.home-card{
-
-    position:relative;
-
-    width:90%;
-
-    max-width:420px;
-
-    padding:40px 30px;
-
-    border-radius:28px;
-
-    text-align:center;
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.15);
+    background:
+        linear-gradient(
+            145deg,
+            #16a34a,
+            #22c55e
+        );
 
     box-shadow:
-        0 15px 45px rgba(0,0,0,.35),
-        0 0 25px rgba(25,118,210,.20);
-
-    z-index:2;
-
+        0 12px 30px
+        rgba(22, 163, 74, .22);
 }
 
-/* ==========================
-   LOGO
-========================== */
 
-.logo-circle{
+.brand-icon .material-symbols-outlined {
 
-    width:95px;
+    font-size: 29px;
 
-    height:95px;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500;
+}
 
-    margin:auto;
 
-    border-radius:50%;
+.brand-text {
 
-    background:linear-gradient(
-        135deg,
-        #1976D2,
-        #42A5F5
+    min-width: 0;
+}
+
+
+.brand-text h1 {
+
+    font-size: clamp(
+        18px,
+        4vw,
+        23px
     );
 
-    display:flex;
+    line-height: 1.2;
 
-    justify-content:center;
+    font-weight: 800;
 
-    align-items:center;
+    white-space: nowrap;
 
-    font-size:46px;
+    overflow: hidden;
 
-    color:#fff;
-
-    box-shadow:
-        0 0 35px rgba(25,118,210,.45);
-
+    text-overflow: ellipsis;
 }
 
-/* ==========================
-   TITLE
-========================== */
 
-.home-card h1{
+.brand-text p {
 
-    margin-top:20px;
+    margin-top: 4px;
 
-    font-size:34px;
+    color: #718096;
 
-    font-weight:700;
+    font-size: 12px;
 
-    color:#FFFFFF;
-
-    letter-spacing:.5px;
-
-    text-shadow:0 0 18px rgba(66,165,245,.35);
-
+    font-weight: 600;
 }
 
-.subtitle{
 
-    margin-top:10px;
+.header-status {
 
-    margin-bottom:35px;
+    display: flex;
 
-    color:#CBD5E1;
+    align-items: center;
 
-    font-size:16px;
+    gap: 7px;
 
-    line-height:1.6;
+    padding: 8px 12px;
 
-}
+    border-radius: 999px;
 
-/* ==========================
-   BUTTONS
-========================== */
-
-.main-btn{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:12px;
-
-    width:100%;
-
-    text-decoration:none;
-
-    color:#FFFFFF;
-
-    font-size:18px;
-
-    font-weight:bold;
-
-    padding:16px;
-
-    margin:16px 0;
-
-    border-radius:16px;
-
-    transition:.3s;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.customer-btn{
-
-    background:linear-gradient(
-        135deg,
-        #1976D2,
-        #42A5F5
+    background: rgba(
+        255,
+        255,
+        255,
+        .72
     );
 
-    box-shadow:
-        0 10px 25px rgba(25,118,210,.35);
+    border: 1px solid
+        rgba(148,163,184,.18);
 
+    color: #64748b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 6px 20px
+        rgba(15,23,42,.04);
 }
 
-.admin-btn{
 
-    background:linear-gradient(
-        135deg,
-        #0F4C81,
-        #1976D2
+.status-dot {
+
+    width: 8px;
+
+    height: 8px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(34,197,94,.12);
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main-content {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    padding: 34px;
+
+    border-radius: 30px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #064e3b,
+            #047857 50%,
+            #16a34a
+        );
+
+    box-shadow:
+        0 25px 55px
+        rgba(5,150,105,.22);
+
+    margin-bottom: 16px;
+}
+
+
+.hero::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 220px;
+
+    border-radius: 50%;
+
+    right: -80px;
+
+    top: -100px;
+
+    background:
+        rgba(255,255,255,.09);
+}
+
+
+.hero::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 160px;
+
+    height: 160px;
+
+    border-radius: 50%;
+
+    left: 35%;
+
+    bottom: -110px;
+
+    background:
+        rgba(255,255,255,.06);
+}
+
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 620px;
+}
+
+
+.eyebrow {
+
+    display: inline-flex;
+
+    padding: 7px 11px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    color:
+        rgba(255,255,255,.85);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .14em;
+
+    margin-bottom: 13px;
+}
+
+
+.hero h2 {
+
+    font-size: clamp(
+        30px,
+        7vw,
+        52px
     );
 
+    line-height: 1.05;
+
+    letter-spacing: -.04em;
+
+    font-weight: 850;
+}
+
+
+.hero h2 span {
+
+    color: #bbf7d0;
+}
+
+
+.hero p {
+
+    margin-top: 14px;
+
+    max-width: 560px;
+
+    color:
+        rgba(255,255,255,.78);
+
+    line-height: 1.65;
+
+    font-size: 14px;
+}
+
+
+.hero-icon {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 78px;
+
+    height: 78px;
+
+    flex: 0 0 78px;
+
+    border-radius: 24px;
+
+    display: grid;
+
+    place-items: center;
+
+    background:
+        rgba(255,255,255,.13);
+
+    border:
+        1px solid
+        rgba(255,255,255,.16);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.hero-icon .material-symbols-outlined {
+
+    font-size: 42px;
+
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500;
+}
+
+
+/* =========================================================
+   CUSTOMER LOGIN
+========================================================= */
+
+.customer-login {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    text-decoration: none;
+
+    color: white;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #032d08,
+          hwb(120 0% 88%)
+        );
+
     box-shadow:
-        0 10px 25px rgba(15,76,129,.35);
+        0 18px 35px
+        rgba(22,163,74,.20);
 
+    overflow: hidden;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.main-btn:hover{
 
-    transform:translateY(-4px);
+.customer-login::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 120px;
+
+    height: 120px;
+
+    border-radius: 50%;
+
+    right: -35px;
+
+    top: -70px;
+
+    background:
+        rgba(255,255,255,.08);
+}
+
+
+.customer-login:hover {
+
+    transform: translateY(-3px);
 
     box-shadow:
-        0 15px 35px rgba(25,118,210,.45);
-
+        0 22px 42px
+        rgba(22,163,74,.27);
 }
 
-.main-btn:active{
 
-    transform:scale(.98);
+.customer-login:active {
 
+    transform: scale(.985);
 }
 
-/* Ripple Shine */
 
-.main-btn::before{
+.login-icon {
 
-    content:"";
+    width: 54px;
 
-    position:absolute;
+    height: 54px;
 
-    top:0;
+    flex: 0 0 54px;
 
-    left:-120%;
+    display: grid;
 
-    width:60%;
+    place-items: center;
 
-    height:100%;
+    border-radius: 17px;
 
-    background:rgba(255,255,255,.25);
-
-    transform:skewX(-25deg);
-
-    transition:.7s;
-
+    background:
+        rgba(255,255,255,.15);
 }
 
-.main-btn:hover::before{
 
-    left:140%;
+.login-icon .material-symbols-outlined {
 
+    font-size: 30px;
+
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500;
 }
 
-/* ==========================
-   VERSION
-========================== */
 
-.version-box{
+.login-text {
 
-    margin-top:35px;
+    flex: 1;
 
-    padding-top:20px;
-
-    border-top:1px solid rgba(255,255,255,.12);
-
+    min-width: 0;
 }
 
-.version-box p{
 
-    color:#E2E8F0;
+.login-text strong {
 
-    font-size:14px;
+    display: block;
 
-    margin:4px 0;
+    font-size: 18px;
 
+    font-weight: 800;
 }
 
-.version-box small{
 
-    display:block;
+.login-text span {
 
-    margin-top:10px;
+    display: block;
 
-    color:#94A3B8;
+    margin-top: 4px;
 
-    font-size:12px;
+    font-size: 12px;
 
+    color:
+        rgba(255,255,255,.75);
 }
 
-/* ==========================
-   FEATURES
-========================== */
 
-.features{
+.arrow {
 
-    width:100%;
+    position: relative;
 
-    margin:30px 0;
+    z-index: 2;
 
-    text-align:left;
-
+    font-size: 28px;
 }
 
-.feature-item{
 
-    display:flex;
+/* =========================================================
+   FEATURE GRID
+========================================================= */
 
-    align-items:center;
+.feature-grid {
 
-    gap:15px;
+    display: grid;
 
-    margin:18px 0;
+    grid-template-columns:
+        repeat(2, 1fr);
 
+    gap: 13px;
+
+    margin-top: 14px;
 }
 
-.feature-item span{
 
-    font-size:28px;
+.feature-card {
 
-    width:40px;
+    min-height: 145px;
 
-    text-align:center;
+    padding: 18px;
 
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.78);
+
+    border:
+        1px solid
+        rgba(148,163,184,.16);
+
+    box-shadow:
+        0 12px 30px
+        rgba(15,23,42,.05);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
 
-.feature-item p{
 
-    color:#E2E8F0;
+.feature-card:hover {
 
-    font-size:18px;
+    transform: translateY(-3px);
 
-    font-weight:600;
-
-    margin:0;
-
+    box-shadow:
+        0 18px 35px
+        rgba(15,23,42,.08);
 }
 
-/* ==========================================
-   INSTALL APP POPUP
-========================================== */
 
-.install-popup{
+.feature-icon {
 
-    position:fixed;
-    inset:0;
+    width: 46px;
 
-    display:none;
-    justify-content:center;
-    align-items:center;
+    height: 46px;
 
-    background:rgba(0,0,0,.45);
+    display: grid;
 
-    z-index:99999;
+    place-items: center;
 
+    border-radius: 15px;
+
+    margin-bottom: 14px;
 }
 
-.install-card{
 
-    width:90%;
-    max-width:340px;
+.feature-icon .material-symbols-outlined {
 
-    background:#ffffff;
+    font-size: 25px;
 
-    border-radius:26px;
-
-    padding:28px;
-
-    text-align:center;
-
-    box-shadow:0 20px 45px rgba(0,0,0,.25);
-
-    animation:popup .35s ease;
-
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 500;
 }
 
-.install-icon{
 
-    width:85px;
-    height:85px;
+.feature-icon.blue {
 
-    border-radius:22px;
+    background: #dbeafe;
 
-    margin-bottom:18px;
-
+    color: #2563eb;
 }
 
-.install-card h2{
 
-    margin-bottom:10px;
+.feature-icon.green {
 
-    color:#111827;
+    background: #dcfce7;
 
+    color: #16a34a;
 }
 
-.install-card p{
 
-    color:#6b7280;
+.feature-icon.orange {
 
-    line-height:1.6;
+    background: #fef3c7;
 
-    margin-bottom:22px;
-
+    color: #d97706;
 }
 
-.install-buttons{
 
-    display:flex;
+.feature-icon.purple {
 
-    gap:12px;
+    background: #ede9fe;
 
+    color: #7c3aed;
 }
 
-.install-buttons button{
 
-    flex:1;
+.feature-card strong {
 
-    border:none;
+    font-size: 15px;
 
-    border-radius:14px;
+    font-weight: 800;
 
-    padding:14px;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
+    color: #172033;
 }
 
-.cancel-install{
 
-    background:#e5e7eb;
+.feature-card > span {
 
+    margin-top: 5px;
+
+    color: #7b8797;
+
+    font-size: 11px;
+
+    line-height: 1.4;
 }
 
-.install-now{
 
-    background:#2563eb;
+/* =========================================================
+   INFO CARD
+========================================================= */
 
-    color:#ffffff;
+.info-card {
 
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-top: 14px;
+
+    padding: 17px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f0fdf4,
+            #ecfdf5
+        );
+
+    border:
+        1px solid
+        #d1fae5;
 }
 
-@keyframes popup{
 
-    from{
+.info-icon {
 
-        transform:scale(.8);
+    width: 48px;
 
-        opacity:0;
+    height: 48px;
 
+    flex: 0 0 48px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 15px;
+
+    color: #15803d;
+
+    background: #dcfce7;
+}
+
+
+.info-icon .material-symbols-outlined {
+
+    font-size: 25px;
+}
+
+
+.info-card strong {
+
+    display: block;
+
+    color: #166534;
+
+    font-size: 14px;
+}
+
+
+.info-card p {
+
+    margin-top: 4px;
+
+    color: #718096;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   ADMIN ACCESS
+========================================================= */
+
+.admin-access {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+    margin-top: 20px;
+
+    color: #8a95a3;
+
+    font-size: 12px;
+}
+
+
+.admin-access .material-symbols-outlined {
+
+    font-size: 19px;
+}
+
+
+.admin-access a {
+
+    color: #596574;
+
+    font-weight: 800;
+
+    text-decoration:
+        underline;
+
+    text-underline-offset: 3px;
+}
+
+
+.admin-access a:hover {
+
+    color: #15803d;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.app-footer {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 20px auto 0;
+
+    text-align: center;
+
+    color: #9aa4b1;
+
+    font-size: 11px;
+}
+
+
+.footer-line {
+
+    width: 100%;
+
+    height: 1px;
+
+    margin-bottom: 17px;
+
+    background:
+        rgba(148,163,184,.18);
+}
+
+
+.app-footer strong {
+
+    display: block;
+
+    color: #566171;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+
+.app-footer p {
+
+    margin-top: 4px;
+}
+
+
+.app-footer b {
+
+    color: #566171;
+}
+
+
+/* =========================================================
+   INSTALL POPUP
+========================================================= */
+
+.install-popup {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-end;
+
+    padding:
+        0
+        14px
+        max(
+            14px,
+            env(safe-area-inset-bottom)
+        );
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity .28s ease,
+        visibility .28s ease,
+        transform .28s ease;
+}
+
+
+.install-popup.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   INSTALL BANNER
+========================================================= */
+
+.install-banner {
+
+    width: min(
+        560px,
+        100%
+    );
+
+    min-height: 88px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border-radius:
+        22px;
+
+    background:
+        rgba(
+            28,
+            30,
+            35,
+            .97
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    box-shadow:
+        0 18px 50px
+        rgba(0,0,0,.35);
+
+    backdrop-filter:
+        blur(18px);
+}
+
+
+/* =========================================================
+   INSTALL APP ICON
+========================================================= */
+
+.install-app-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    flex: 0 0 58px;
+
+    border-radius: 17px;
+
+    overflow: hidden;
+
+    background: #111827;
+
+    box-shadow:
+        0 5px 16px
+        rgba(0,0,0,.25);
+}
+
+
+.install-app-icon img {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   INSTALL INFORMATION
+========================================================= */
+
+.install-information {
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.install-information strong {
+
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.install-information span {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #cbd5e1;
+
+    font-size: 11px;
+}
+
+
+.install-information small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #94a3b8;
+
+    font-size: 10px;
+
+    line-height: 1.35;
+}
+
+
+/* =========================================================
+   INSTALL CLOSE
+========================================================= */
+
+.install-close {
+
+    width: 34px;
+
+    height: 34px;
+
+    flex: 0 0 34px;
+
+    border: 0;
+
+    border-radius: 50%;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #cbd5e1;
+
+    background:
+        rgba(255,255,255,.08);
+
+    cursor: pointer;
+}
+
+
+.install-close:hover {
+
+    background:
+        rgba(255,255,255,.15);
+
+    color: #ffffff;
+}
+
+
+.install-close
+.material-symbols-outlined {
+
+    font-size: 19px;
+}
+
+
+/* =========================================================
+   INSTALL BUTTON
+========================================================= */
+
+.install-action {
+
+    min-width: 76px;
+
+    height: 40px;
+
+    padding: 0 15px;
+
+    border: 0;
+
+    border-radius: 12px;
+
+    background:
+        #a8c7fa;
+
+    color: #172033;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+
+.install-action:hover {
+
+    background: #c1d7ff;
+
+    transform: scale(1.03);
+}
+
+
+.install-action:active {
+
+    transform: scale(.96);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .app-shell {
+
+        padding-left: 16px;
+
+        padding-right: 16px;
     }
 
-    to{
 
-        transform:scale(1);
+    .app-header {
 
-        opacity:1;
+        padding-top: 12px;
+    }
+
+
+    .header-status {
+
+        padding:
+            7px 9px;
+
+        font-size: 10px;
+    }
+
+
+    .hero {
+
+        padding: 26px 22px;
+
+        border-radius: 26px;
+    }
+
+
+    .hero-icon {
+
+        width: 62px;
+
+        height: 62px;
+
+        flex-basis: 62px;
+
+        border-radius: 20px;
+    }
+
+
+    .hero-icon
+    .material-symbols-outlined {
+
+        font-size: 32px;
+    }
+
+
+    .feature-card {
+
+        min-height: 135px;
+
+        padding: 15px;
+    }
+
+
+    .install-banner {
+
+        border-radius:
+            20px;
+
+        padding: 12px;
+
+        gap: 10px;
+    }
+
+
+    .install-app-icon {
+
+        width: 50px;
+
+        height: 50px;
+
+        flex-basis: 50px;
+
+        border-radius: 14px;
+    }
+
+
+    .install-information strong {
+
+        font-size: 13px;
+    }
+
+
+    .install-information small {
+
+        font-size: 9px;
+    }
+
+
+    .install-close {
+
+        width: 30px;
+
+        height: 30px;
+
+        flex-basis: 30px;
+    }
+
+
+    .install-action {
+
+        min-width: 68px;
+
+        height: 38px;
+
+        padding:
+            0 12px;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .header-status {
+
+        display: none;
+    }
+
+
+    .hero {
+
+        display: block;
+    }
+
+
+    .hero-icon {
+
+        margin-top: 20px;
+    }
+
+
+    .feature-grid {
+
+        gap: 9px;
+    }
+
+
+    .feature-card {
+
+        min-height: 125px;
+
+        padding: 13px;
+    }
+
+
+    .install-information small {
+
+        display: none;
+    }
+
+
+    .install-close {
+
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+    prefers-reduced-motion: reduce
+) {
+
+    * {
+
+        scroll-behavior: auto !important;
+
+        transition-duration: .01ms !important;
+
+        animation-duration: .01ms !important;
 
     }
 
