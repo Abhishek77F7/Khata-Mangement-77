@@ -1,0 +1,2474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="theme-color"
+    content="#16a34a">
+
+<title>My Payments | Khata Management</title>
+
+
+<!-- =========================================
+     GOOGLE MATERIAL SYMBOLS
+========================================= -->
+
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,300..700,0..1,-50..200">
+
+
+<!-- =========================================
+     EXISTING TOAST
+========================================= -->
+
+<link
+    rel="stylesheet"
+    href="toast.css">
+
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+:root {
+
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --green-light: #dcfce7;
+
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+
+    --orange: #d97706;
+    --orange-light: #fef3c7;
+
+    --red: #dc2626;
+    --red-light: #fee2e2;
+
+    --text: #172033;
+    --muted: #687386;
+
+    --bg: #f4f8f5;
+
+    --card: #ffffff;
+
+    --border: #e6ebe8;
+
+    --shadow:
+        0 10px 30px rgba(20,42,28,.07);
+
+}
+
+
+/* =========================================================
+   BODY
+========================================================= */
+
+body {
+
+    font-family:
+        Inter,
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f7fbf8,
+            #eef8f1
+        );
+
+    color: var(--text);
+
+    min-height: 100vh;
+
+    padding-bottom: 110px;
+
+    overflow-x: hidden;
+
+}
+
+
+body.modal-open {
+
+    overflow: hidden;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+button,
+input {
+
+    font: inherit;
+
+}
+
+
+button {
+
+    cursor: pointer;
+
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.page-bg {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -1;
+
+    overflow: hidden;
+
+}
+
+
+.page-bg::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 320px;
+
+    height: 320px;
+
+    border-radius: 50%;
+
+    background: #bbf7d0;
+
+    opacity: .35;
+
+    filter: blur(25px);
+
+    top: -150px;
+
+    right: -100px;
+
+}
+
+
+.page-bg::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+
+    height: 280px;
+
+    border-radius: 50%;
+
+    background: #dbeafe;
+
+    opacity: .30;
+
+    filter: blur(30px);
+
+    bottom: -130px;
+
+    left: -100px;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 50;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 max(
+            14px,
+            calc((100% - 950px) / 2)
+        );
+
+    background:
+        rgba(255,255,255,.92);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+
+.header-left {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+}
+
+
+.back-button {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    border: 1px solid var(--border);
+
+    background: #fff;
+
+    display: grid;
+
+    place-items: center;
+
+    color: #455164;
+
+    transition: .2s;
+
+}
+
+
+.back-button:hover {
+
+    color: var(--green);
+
+    transform: translateY(-1px);
+
+}
+
+
+.header-title strong {
+
+    display: block;
+
+    font-size: 15px;
+
+}
+
+
+.header-title small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 2px;
+
+}
+
+
+.header-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 13px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.payment-page {
+
+    width:
+        min(
+            950px,
+            calc(100% - 24px)
+        );
+
+    margin:
+        22px auto 35px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.payment-hero {
+
+    background:
+        linear-gradient(
+            135deg,
+            #123b23,
+            #176b3b
+        );
+
+    color: #fff;
+
+    border-radius: 25px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 18px 40px rgba(22,101,52,.22);
+
+    margin-bottom: 17px;
+
+}
+
+
+.hero-kicker {
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .16em;
+
+    color: #bbf7d0;
+
+}
+
+
+.payment-hero h1 {
+
+    font-size: 27px;
+
+    margin-top: 6px;
+
+}
+
+
+.payment-hero p {
+
+    margin-top: 6px;
+
+    color: #d7f5df;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.hero-bottom {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+}
+
+
+.hero-total span {
+
+    display: block;
+
+    color: #b9dfc5;
+
+    font-size: 11px;
+
+}
+
+
+.hero-total strong {
+
+    display: block;
+
+    font-size: 28px;
+
+    margin-top: 4px;
+
+}
+
+
+.hero-status {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255,255,255,.12);
+
+    border:
+        1px solid rgba(255,255,255,.15);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+}
+
+
+.hero-status .material-symbols-outlined {
+
+    font-size: 16px;
+
+}
+
+
+/* =========================================================
+   SUMMARY
+========================================================= */
+
+.summary-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap: 13px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.summary-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    padding: 18px;
+
+    box-shadow: var(--shadow);
+
+}
+
+
+.summary-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    border-radius: 13px;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 13px;
+
+}
+
+
+.summary-icon.green {
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+}
+
+
+.summary-icon.blue {
+
+    background: var(--blue-light);
+
+    color: var(--blue);
+
+}
+
+
+.summary-icon.orange {
+
+    background: var(--orange-light);
+
+    color: var(--orange);
+
+}
+
+
+.summary-card span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.summary-card strong {
+
+    display: block;
+
+    font-size: 22px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+.tools {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.search-box {
+
+    position: relative;
+
+    flex: 1;
+
+}
+
+
+.search-box .material-symbols-outlined {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #9aa4b2;
+
+    font-size: 21px;
+
+}
+
+
+.search-box input {
+
+    width: 100%;
+
+    height: 48px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: #fff;
+
+    padding:
+        0 15px 0 45px;
+
+    outline: none;
+
+    color: var(--text);
+
+}
+
+
+.search-box input:focus {
+
+    border-color: var(--green);
+
+    box-shadow:
+        0 0 0 3px #16a34a18;
+
+}
+
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+}
+
+
+.section-title h2 {
+
+    font-size: 19px;
+
+}
+
+
+.payment-count {
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+/* =========================================================
+   PAYMENT HISTORY
+========================================================= */
+
+#paymentHistory {
+
+    display: grid;
+
+    gap: 12px;
+
+}
+
+
+/* =========================================================
+   PAYMENT CARD
+========================================================= */
+
+.payment-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 19px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+
+}
+
+
+.payment-card:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 14px 32px rgba(20,42,28,.10);
+
+}
+
+
+.payment-icon {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    border-radius: 14px;
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+    display: grid;
+
+    place-items: center;
+
+}
+
+
+.payment-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+.payment-info strong {
+
+    display: block;
+
+    font-size: 15px;
+
+}
+
+
+.payment-info small {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    margin-top: 5px;
+
+}
+
+
+.payment-amount {
+
+    text-align: right;
+
+}
+
+
+.payment-amount strong {
+
+    display: block;
+
+    color: var(--green-dark);
+
+    font-size: 17px;
+
+}
+
+
+.paid-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 3px;
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+    padding: 4px 7px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    margin-top: 5px;
+
+}
+
+
+.paid-badge .material-symbols-outlined {
+
+    font-size: 12px;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.payment-empty {
+
+    background: #fff;
+
+    border:
+        1px dashed #cfd8d2;
+
+    border-radius: 20px;
+
+    padding: 45px 20px;
+
+    text-align: center;
+
+}
+
+
+.empty-icon {
+
+    width: 62px;
+
+    height: 62px;
+
+    margin:
+        0 auto 12px;
+
+    border-radius: 18px;
+
+    display: grid;
+
+    place-items: center;
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+}
+
+
+.payment-empty h3 {
+
+    font-size: 17px;
+
+}
+
+
+.payment-empty p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+}
+
+
+/* =========================================================
+   BOTTOM PAY BAR
+========================================================= */
+
+.bottom-pay-bar {
+
+    position: fixed;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    z-index: 80;
+
+    padding:
+        10px max(
+            12px,
+            calc((100% - 950px) / 2)
+        );
+
+    background:
+        rgba(255,255,255,.94);
+
+    backdrop-filter: blur(18px);
+
+    border-top:
+        1px solid var(--border);
+
+}
+
+
+.bottom-pay-inner {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.bottom-balance {
+
+    flex: 1;
+
+}
+
+
+.bottom-balance small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+}
+
+
+.bottom-balance strong {
+
+    display: block;
+
+    font-size: 17px;
+
+    margin-top: 2px;
+
+}
+
+
+.pay-now-button {
+
+    min-height: 52px;
+
+    border: 0;
+
+    border-radius: 16px;
+
+    padding:
+        0 23px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16a34a,
+            #15803d
+        );
+
+    color: #fff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 9px 22px #16a34a40;
+
+    transition: .2s;
+
+}
+
+
+.pay-now-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 13px 27px #16a34a50;
+
+}
+
+
+.pay-now-button .material-symbols-outlined {
+
+    font-size: 21px;
+
+}
+
+
+/* =========================================================
+   QR MODAL
+========================================================= */
+
+.payment-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    background:
+        rgba(3,12,7,.72);
+
+    backdrop-filter:
+        blur(9px);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 18px;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition: .22s;
+
+}
+
+
+.payment-modal.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+}
+
+
+.qr-box {
+
+    position: relative;
+
+    width:
+        min(
+            410px,
+            100%
+        );
+
+    background: #fff;
+
+    border-radius: 27px;
+
+    padding: 27px 22px 23px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+
+    transform:
+        translateY(15px)
+        scale(.96);
+
+    transition: .22s;
+
+}
+
+
+.payment-modal.show .qr-box {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.qr-close {
+
+    position: absolute;
+
+    top: 14px;
+
+    right: 14px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #f8faf9;
+
+    color: #536071;
+
+    display: grid;
+
+    place-items: center;
+
+}
+
+
+.modal-kicker {
+
+    display: inline-block;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .15em;
+
+    color: var(--green-dark);
+
+}
+
+
+.qr-box h2 {
+
+    font-size: 25px;
+
+    margin-top: 7px;
+
+}
+
+
+.qr-box p {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    margin:
+        6px auto 16px;
+
+    max-width: 300px;
+
+}
+
+
+.qr-image {
+
+    width:
+        min(
+            285px,
+            100%
+        );
+
+    display: block;
+
+    margin: auto;
+
+    border-radius: 15px;
+
+    border:
+        1px solid #e5e7eb;
+
+}
+
+
+.upi-box {
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    background: #f0fdf4;
+
+    border:
+        1px solid #dcfce7;
+
+    border-radius: 13px;
+
+}
+
+
+.upi-box small {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+}
+
+
+.upi-box strong {
+
+    display: block;
+
+    color: var(--green-dark);
+
+    font-size: 14px;
+
+    margin-top: 3px;
+
+}
+
+
+.qr-actions {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 9px;
+
+    margin-top: 12px;
+
+}
+
+
+.modal-button {
+
+    min-height: 45px;
+
+    border: 0;
+
+    border-radius: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    font-weight: 700;
+
+    font-size: 12px;
+
+}
+
+
+.copy-button {
+
+    background: var(--blue);
+
+    color: #fff;
+
+}
+
+
+.whatsapp-button {
+
+    background: var(--green-light);
+
+    color: var(--green-dark);
+
+}
+
+
+/* =========================================================
+   LOADER
+========================================================= */
+
+.loader-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(255,255,255,.72);
+
+    backdrop-filter: blur(5px);
+
+}
+
+
+.loader {
+
+    width: 44px;
+
+    height: 44px;
+
+    border:
+        4px solid #d1fae5;
+
+    border-top-color:
+        var(--green);
+
+    border-radius: 50%;
+
+    animation:
+        spin .8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+.dark-theme {
+
+    --text: #f1f5f9;
+
+    --muted: #a8b2c0;
+
+    --border: #28332d;
+
+    --card: #111914;
+
+    --bg: #09110c;
+
+}
+
+
+.dark-theme body {
+
+    background:
+        #09110c;
+
+}
+
+
+.dark-theme .top-header,
+.dark-theme .bottom-pay-bar {
+
+    background:
+        rgba(13,23,17,.94);
+
+}
+
+
+.dark-theme .back-button,
+.dark-theme .summary-card,
+.dark-theme .payment-card,
+.dark-theme .payment-empty,
+.dark-theme .search-box input {
+
+    background: #111914;
+
+    color: #f1f5f9;
+
+    border-color: #28332d;
+
+}
+
+
+.dark-theme .payment-modal {
+
+    background:
+        rgba(0,0,0,.82);
+
+}
+
+
+.dark-theme .qr-box {
+
+    background: #111914;
+
+    color: #f1f5f9;
+
+}
+
+
+.dark-theme .qr-close {
+
+    background: #172019;
+
+    color: #d8e2dc;
+
+    border-color: #2a382f;
+
+}
+
+
+.dark-theme .loader-overlay {
+
+    background:
+        rgba(8,16,11,.75);
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px) {
+
+    .payment-page {
+
+        width:
+            min(
+                calc(100% - 18px),
+                600px
+            );
+
+        margin-top: 14px;
+
+    }
+
+
+    .top-header {
+
+        height: 65px;
+
+        padding:
+            0 10px;
+
+    }
+
+
+    .payment-hero {
+
+        padding: 21px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .payment-hero h1 {
+
+        font-size: 23px;
+
+    }
+
+
+    .summary-grid {
+
+        grid-template-columns:
+            1fr 1fr;
+
+    }
+
+
+    .summary-card:first-child {
+
+        grid-column:
+            1 / -1;
+
+    }
+
+
+    .tools {
+
+        margin-bottom: 19px;
+
+    }
+
+
+    .payment-card {
+
+        padding: 14px;
+
+    }
+
+
+    .payment-info strong {
+
+        font-size: 14px;
+
+    }
+
+
+    .payment-amount strong {
+
+        font-size: 16px;
+
+    }
+
+
+    .bottom-pay-inner {
+
+        gap: 8px;
+
+    }
+
+
+    .pay-now-button {
+
+        min-height: 50px;
+
+        padding:
+            0 17px;
+
+    }
+
+}
+
+
+@media(max-width:430px) {
+
+    body {
+
+        padding-bottom: 105px;
+
+    }
+
+
+    .header-title strong {
+
+        font-size: 14px;
+
+    }
+
+
+    .payment-hero h1 {
+
+        font-size: 21px;
+
+    }
+
+
+    .hero-bottom {
+
+        align-items: flex-end;
+
+    }
+
+
+    .hero-total strong {
+
+        font-size: 24px;
+
+    }
+
+
+    .hero-status {
+
+        font-size: 9px;
+
+        padding: 7px 9px;
+
+    }
+
+
+    .summary-card {
+
+        padding: 15px;
+
+    }
+
+
+    .summary-card strong {
+
+        font-size: 19px;
+
+    }
+
+
+    .payment-card {
+
+        align-items: flex-start;
+
+    }
+
+
+    .payment-icon {
+
+        width: 43px;
+
+        height: 43px;
+
+        flex-basis: 43px;
+
+    }
+
+
+    .payment-info small {
+
+        font-size: 10px;
+
+    }
+
+
+    .payment-amount strong {
+
+        font-size: 15px;
+
+    }
+
+
+    .pay-now-button {
+
+        flex: 1;
+
+        min-height: 50px;
+
+    }
+
+
+    .bottom-balance {
+
+        max-width: 110px;
+
+    }
+
+
+    .qr-actions {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="page-bg"></div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="top-header">
+
+    <div class="header-left">
+
+        <a
+            href="profile.html"
+            class="back-button"
+            aria-label="Back to profile">
+
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+
+        </a>
+
+
+        <div class="header-title">
+
+            <strong>
+                My Payments
+            </strong>
+
+            <small>
+                Khata Management
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="header-icon">
+
+        <span class="material-symbols-outlined">
+            payments
+        </span>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="payment-page">
+
+
+<!-- HERO -->
+
+<section class="payment-hero">
+
+    <span class="hero-kicker">
+        PAYMENT OVERVIEW
+    </span>
+
+
+    <h1>
+        Your Payment Account
+    </h1>
+
+
+    <p>
+        Keep track of every payment made toward
+        your Khata balance.
+    </p>
+
+
+    <div class="hero-bottom">
+
+        <div class="hero-total">
+
+            <span>
+                Total Paid
+            </span>
+
+            <strong id="heroTotalPaid">
+                ₹0
+            </strong>
+
+        </div>
+
+
+        <div class="hero-status">
+
+            <span class="material-symbols-outlined">
+                verified
+            </span>
+
+            <span id="heroStatus">
+                Payment Active
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUMMARY
+===================================================== -->
+
+<section class="summary-grid">
+
+
+    <article class="summary-card">
+
+        <div class="summary-icon green">
+
+            <span class="material-symbols-outlined">
+                account_balance_wallet
+            </span>
+
+        </div>
+
+        <span>
+            Total Paid
+        </span>
+
+        <strong id="totalPaid">
+            ₹0
+        </strong>
+
+    </article>
+
+
+    <article class="summary-card">
+
+        <div class="summary-icon blue">
+
+            <span class="material-symbols-outlined">
+                receipt_long
+            </span>
+
+        </div>
+
+        <span>
+            Payments
+        </span>
+
+        <strong id="paymentCount">
+            0
+        </strong>
+
+    </article>
+
+
+    <article class="summary-card">
+
+        <div class="summary-icon orange">
+
+            <span class="material-symbols-outlined">
+                account_balance
+            </span>
+
+        </div>
+
+        <span>
+            Current Balance
+        </span>
+
+    <strong id="currentBalance">₹0</strong>
+
+    </article>
+
+
+</section>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<section class="tools">
+
+    <div class="search-box">
+
+        <span class="material-symbols-outlined">
+            search
+        </span>
+
+
+        <input
+            type="search"
+            id="paymentSearch"
+            placeholder="Search payments or dates..."
+            autocomplete="off">
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SECTION
+===================================================== -->
+
+<div class="section-title">
+
+    <h2>
+        Payment History
+    </h2>
+
+
+    <span
+        class="payment-count"
+        id="paymentCountBadge">
+
+        0 Payments
+
+    </span>
+
+</div>
+
+
+<!-- =====================================================
+     PAYMENT HISTORY
+===================================================== -->
+
+<section id="paymentHistory">
+
+    <div class="payment-empty">
+
+        <div class="empty-icon">
+
+            <span class="material-symbols-outlined">
+                payments
+            </span>
+
+        </div>
+
+
+        <h3>
+            Loading Payments
+        </h3>
+
+
+        <p>
+            Please wait while your payment history loads.
+        </p>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     FULL BOTTOM PAY BAR
+===================================================== -->
+
+<div class="bottom-pay-bar">
+
+    <div class="bottom-pay-inner">
+
+
+        <button
+            type="button"
+            class="pay-now-button"
+            onclick="openPaymentQR()">
+
+            <span class="material-symbols-outlined">
+                qr_code_scanner
+            </span>
+
+            Pay Now
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PAYMENT QR MODAL
+===================================================== -->
+
+<div
+    id="paymentModal"
+    class="payment-modal"
+    onclick="closePaymentQR(event)">
+
+
+    <div
+        class="qr-box"
+        onclick="event.stopPropagation()">
+
+
+        <button
+            type="button"
+            class="qr-close"
+            onclick="closePaymentQR()"
+            aria-label="Close payment">
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+
+        <span class="modal-kicker">
+            SECURE UPI PAYMENT
+        </span>
+
+
+        <h2>
+            Scan to Pay
+        </h2>
+
+
+        <p>
+            Open any supported UPI application,
+            scan this QR code and complete your payment.
+        </p>
+
+
+        <img
+            src="payment-qr.png"
+            class="qr-image"
+            alt="UPI Payment QR Code">
+
+
+        <div class="upi-box">
+
+            <small>
+                UPI ID
+            </small>
+
+            <strong>
+                8310815429@ybl
+            </strong>
+
+        </div>
+
+
+        <div class="qr-actions">
+
+
+            <button
+                type="button"
+                class="modal-button copy-button"
+                onclick="copyPaymentUPI()">
+
+                <span class="material-symbols-outlined">
+                    content_copy
+                </span>
+
+                Copy UPI
+
+            </button>
+
+
+            <button
+                type="button"
+                class="modal-button whatsapp-button"
+                onclick="openPaymentWhatsApp()">
+
+                <span class="material-symbols-outlined">
+                    chat
+                </span>
+
+                WhatsApp
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div
+    id="loader"
+    class="loader-overlay">
+
+    <div class="loader"></div>
+
+</div>
+
+
+<!-- =====================================================
+     EXISTING SCRIPTS
+===================================================== -->
+
+<script src="loader.js"></script>
+
+<script src="toast.js"></script>
+
+<script src="theme.js"></script>
+
+<script
+    type="module"
+    src="customer.js">
+</script>
+
+
+<!-- =====================================================
+     PAGE JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   OPEN QR
+===================================================== */
+
+function openPaymentQR() {
+
+    const modal =
+        document.getElementById(
+            "paymentModal"
+        );
+
+
+    if (!modal) return;
+
+
+    modal.classList.add("show");
+
+
+    document.body.classList.add(
+        "modal-open"
+    );
+
+}
+
+
+/* =====================================================
+   CLOSE QR
+===================================================== */
+
+function closePaymentQR(event) {
+
+    if (
+        event &&
+        event.target !==
+        event.currentTarget
+    ) {
+
+        return;
+
+    }
+
+
+    const modal =
+        document.getElementById(
+            "paymentModal"
+        );
+
+
+    if (!modal) return;
+
+
+    modal.classList.remove("show");
+
+
+    document.body.classList.remove(
+        "modal-open"
+    );
+
+}
+
+
+/* =====================================================
+   COPY UPI
+===================================================== */
+
+async function copyPaymentUPI() {
+
+    const upi =
+        "8310815429@ybl";
+
+
+    try {
+
+        await navigator
+            .clipboard
+            .writeText(upi);
+
+
+        if (
+            typeof showToast ===
+            "function"
+        ) {
+
+            showToast(
+                "UPI ID copied successfully.",
+                "success"
+            );
+
+        }
+
+    }
+
+    catch {
+
+        if (
+            typeof showToast ===
+            "function"
+        ) {
+
+            showToast(
+                "UPI ID: " + upi,
+                "info"
+            );
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function openPaymentWhatsApp() {
+
+    const phone =
+        "918310815429";
+
+
+    const message =
+        encodeURIComponent(
+            "Hello, I want to make a payment toward my Khata balance."
+        );
+
+
+    window.open(
+        "https://wa.me/" +
+        phone +
+        "?text=" +
+        message,
+        "_blank",
+        "noopener"
+    );
+
+}
+
+
+/* =====================================================
+   SEARCH PAYMENT HISTORY
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const search =
+            document.getElementById(
+                "paymentSearch"
+            );
+
+
+        if (!search) return;
+
+
+        search.addEventListener(
+            "input",
+            () => {
+
+                const query =
+                    search.value
+                        .trim()
+                        .toLowerCase();
+
+
+                const cards =
+                    document.querySelectorAll(
+                        "#paymentHistory .payment-card"
+                    );
+
+
+                cards.forEach(
+                    card => {
+
+                        const text =
+                            card.textContent
+                                .toLowerCase();
+
+
+                        card.style.display =
+                            text.includes(query)
+                                ? "flex"
+                                : "none";
+
+                    }
+                );
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Escape"
+        ) {
+
+            closePaymentQR();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   UPDATE PAGE FROM CUSTOMER DATA
+===================================================== */
+
+function updatePaymentSummary() {
+
+    /*
+       customer.js calculates:
+
+       customer.paid
+       customer.balance
+       customer.payments
+    */
+
+
+    if (
+        typeof customer ===
+        "undefined"
+    ) {
+
+        return;
+
+    }
+
+}
+
+
+/* =====================================================
+   OBSERVE PAYMENT TOTAL
+===================================================== */
+
+const summaryObserver =
+    new MutationObserver(
+        () => {
+
+            const total =
+                document.getElementById(
+                    "totalPaid"
+                )?.textContent ||
+                "₹0";
+
+
+            const balance =
+                document.getElementById(
+                    "paymentBalance"
+                );
+
+
+            const bottomBalance =
+                document.getElementById(
+                    "bottomBalance"
+                );
+
+
+            const heroTotal =
+                document.getElementById(
+                    "heroTotalPaid"
+                );
+
+
+            if (heroTotal) {
+
+                heroTotal.textContent =
+                    total;
+
+            }
+
+
+            if (bottomBalance) {
+
+                /*
+                   customer.js will update
+                   this when balance is available.
+                */
+
+            }
+
+
+            if (balance) {
+
+                /*
+                   Leave the balance
+                   calculation to customer.js.
+                */
+
+            }
+
+        }
+    );
+
+
+const totalElement =
+    document.getElementById(
+        "totalPaid"
+    );
+
+
+if (totalElement) {
+
+    summaryObserver.observe(
+        totalElement,
+        {
+            childList: true,
+            characterData: true,
+            subtree: true
+        }
+    );
+
+}
+
+
+/* =====================================================
+   KEEP HERO TOTAL IN SYNC
+===================================================== */
+
+setInterval(
+    () => {
+
+        const total =
+            document.getElementById(
+                "totalPaid"
+            )?.textContent;
+
+
+        const hero =
+            document.getElementById(
+                "heroTotalPaid"
+            );
+
+
+        if (
+            total &&
+            hero
+        ) {
+
+            hero.textContent =
+                total;
+
+        }
+
+    },
+    500
+);
+
+
+</script>
+
+</body>
+
+</html>
